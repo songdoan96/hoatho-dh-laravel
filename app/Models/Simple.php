@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Simple extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'khachhang',
+        'mahang',
+        'loaimau',
+        'color',
+        'size',
+        'soluong',
+        'npl',
+        'rap',
+        'tailieu',
+        'maugoc',
+        'ktmay',
+        'kcs',
+        'ngaymay',
+        'ngayhen',
+        'ngaygui',
+        'tinhtrang',
+        'ketqua',
+        'tuan',
+        'bienban',
+        'ghichu',
+    ];
+    public function setTinhtrangAttribute($tinhtrang)
+    {
+        $this->attributes['tinhtrang'] = $tinhtrang ?? "dangmay";
+    }
+    public function setKetquaAttribute($ketqua)
+    {
+        $this->attributes['ketqua'] = $ketqua ?? "pending";
+    }
+    public function setBienbanAttribute($bienban)
+    {
+        $this->attributes['bienban'] = $bienban ?? false;
+    }
+}
