@@ -44,4 +44,5 @@ Route::prefix("admin")->name('admin.')->middleware('authLogged')->group(function
     Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
     Route::post('/uploadStore', [AdminController::class, 'uploadStore'])->name('uploadStore');
     Route::post('/imageChange/{welcome}', [AdminController::class, 'imageChange'])->name('imageChange');
+    Route::post('/imageDelete/{welcome}', [AdminController::class, 'imageDelete'])->name('imageDelete');
 });

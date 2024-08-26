@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Welcome;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -26,6 +27,12 @@ class AdminController extends Controller
     {
         $welcome->active = !$welcome->active;
         $welcome->save();
+        return redirect()->route('admin.welcome');
+    }
+    public function imageDelete(Welcome $welcome)
+    {
+        Storage::disk('public')->delete($welcome->path);
+        $welcome->delete();
         return redirect()->route('admin.welcome');
     }
 }

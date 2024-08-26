@@ -23,6 +23,13 @@
                             value="{{ $image->active }}"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
                     </form>
+                    <form id="image-delete-{{ $image->id }}" action="{{ route('admin.imageDelete', $image) }}"
+                        method="POST">
+                        @csrf
+                        <button
+                            onclick="if(confirm('Xóa ảnh')) document.getElementById('image-delete-{{ $image->id }}').submit()"
+                            type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
                 </div>
             @endforeach
         </div>
