@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('meta')
+    <meta http-equiv="refresh" content="1800">
+@endpush
 @push('styles')
     <style>
         tbody td {
@@ -16,7 +19,7 @@
     </div>
     <div class="">
         <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right  text-gray-400">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-300">
                 <thead class="text-xs uppercase bg-red-700 text-white text-center">
                     <tr>
                         <th class="border border-black" rowspan="2">KHÁCH HÀNG</th>

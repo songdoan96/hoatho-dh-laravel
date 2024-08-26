@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
+    @stack('meta')
 
     <title>@yield('title', 'Hòa Thọ Đông Hà')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">

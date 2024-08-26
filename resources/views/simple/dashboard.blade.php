@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @push('styles')
     <style>
         tbody td {
@@ -44,8 +45,8 @@
         <div id="dashboard">
             <div class="relative overflow-x-auto">
                 @if (count($simples))
-                    <table class="w-full text-sm text-left rtl:text-right  text-gray-400">
-                        <thead class="text-xs uppercase bg-red-700 text-white text-center">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-300">
+                        <thead class="text-xs uppercase bg-red-700 text-center">
                             <tr>
                                 <th class="border border-black" rowspan="2">KHÁCH HÀNG</th>
                                 <th class="border border-black" rowspan="2">MÃ HÀNG</th>
