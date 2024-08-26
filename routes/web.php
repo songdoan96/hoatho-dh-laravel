@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SimpleController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,11 @@ Route::prefix("maymau")->name('simple.')->group(function () {
 
     Route::delete('/{simple}', [SimpleController::class, 'destroy'])->name('destroy')->middleware('authLogged');
     Route::get('/{tuan}', [SimpleController::class, 'download'])->name('download')->middleware('authLogged');
+});
+
+
+Route::prefix("admin")->name('admin.')->middleware('authLogged')->group(function () {
+    Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
+    Route::post('/uploadStore', [AdminController::class, 'uploadStore'])->name('uploadStore');
+    Route::post('/imageChange/{welcome}', [AdminController::class, 'imageChange'])->name('imageChange');
 });
