@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SimpleController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,4 +33,5 @@ Route::prefix("maymau")->name('simple.')->group(function () {
     Route::post('/sua/{id}', [SimpleController::class, 'update'])->name('update')->middleware('authLogged');
 
     Route::delete('/{simple}', [SimpleController::class, 'destroy'])->name('destroy')->middleware('authLogged');
+    Route::get('/{tuan}', [SimpleController::class, 'download'])->name('download')->middleware('authLogged');
 });

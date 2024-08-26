@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Simple;
 use Illuminate\Http\Request;
 
+use App\Exports\SimplesExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class SimpleController extends Controller
 {
     public function index()
@@ -46,5 +49,10 @@ class SimpleController extends Controller
     {
         $simple->delete();
         return redirect()->route("simple.dashboard");
+    }
+    public function download($tuan)
+    {
+
+        return $tuan === "all" ?  Excel::download(new SimplesExport(Simple::all()), 'maymau.xlsx') : Excel::download(new SimplesExport(Simple::where("tuan", "LIKE", "%" . $tuan . "%")->get()), 'maymau.xlsx');
     }
 }

@@ -28,6 +28,12 @@ class Simple extends Model
         'ketqua',
         'tuan',
         'bienban',
+
+        'ngaycmt',
+        'ngayguilai',
+        'thaydoi',
+        'tralaiinfo',
+
         'ghichu',
     ];
     public function setTinhtrangAttribute($tinhtrang)

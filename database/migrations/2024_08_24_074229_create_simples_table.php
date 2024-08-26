@@ -32,6 +32,13 @@ return new class extends Migration
             $table->enum('ketqua', ['pending', 'failed', 'passed'])->default('pending');
             $table->string('tuan', 10)->nullable();
             $table->boolean('bienban')->default(false);
+
+
+            $table->date('ngaycmt')->nullable();
+            $table->date('ngayguilai')->nullable();
+            $table->string('thaydoi')->nullable();
+            $table->string('tralaiinfo')->nullable();
+
             $table->string('ghichu')->nullable();
             $table->timestamps();
         });

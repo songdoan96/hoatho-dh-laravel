@@ -147,14 +147,37 @@
                         <option value="1" {{ $simple->bienban == 1 ? 'selected' : null }}>Đã có</option>
                     </select>
                 </div>
+                <div class="mb-1">
+                    <label for="ngaycmt" class="block mb-2 text-sm font-medium text-white">Ngày comment</label>
+                    <input type="date" name="ngaycmt" value="{{ $simple->ngaycmt }}"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+                <div class="mb-1">
+                    <label for="ngayguilai" class="block mb-2 text-sm font-medium text-white">Ngày gửi lại</label>
+                    <input type="date" name="ngayguilai" value="{{ $simple->ngayguilai }}"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+
+                <div class="mb-1">
+                    <label for="thaydoi" class="block mb-2 text-sm font-medium text-white">Thay đổi khi may</label>
+                    <input type="text" name="thaydoi" value="{{ $simple->thaydoi }}"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+                <div class="mb-1">
+                    <label for="tralaiinfo" class="block mb-2 text-sm font-medium text-white">SL, Màu trả lại</label>
+                    <input type="text" name="tralaiinfo" value="{{ $simple->tralaiinfo }}"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
+                </div>
 
                 <div class="flex justify-start items-end mb-1 col-span-2 gap-1">
-                    <a href="{{ route('simple.dashboard') }}"
-                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Hủy</a>
                     <button type="submit" value="simple-new" name="action"
                         class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                         Thêm mới
                     </button>
+                    <a href="{{ route('simple.dashboard') }}"
+                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Hủy</a>
+
                     <button type="submit" value="simple-edit" name="action"
                         class="text-white
                         bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
@@ -167,20 +190,3 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        // const editBtn = document.getElementById("simple-edit");
-        // const newBtn = document.getElementById("simple-new");
-        // const form = document.getElementById("form-edit-new");
-        // editBtn.addEventListener("click", function(e) {
-        //     e.preventDefault();
-        //     editBtn.name = "simple-edit";
-        //     form.submit();
-        // })
-        // newBtn.addEventListener("click", function(e) {
-        //     e.preventDefault();
-        //     editBtn.name = "simple-new";
-        //     form.submit();
-        // })
-    </script>
-@endpush

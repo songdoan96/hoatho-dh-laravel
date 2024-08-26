@@ -14,20 +14,29 @@
             <a href="{{ route('simple.index') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
-            <h1 class="text-center text-2xl uppercase font-bold">Theo dõi kế hoạch may mẫu và đồng bộ NPL <a
-                    href="{{ route('simple.add') }}" title="Thêm mẫu">&plus;</a></h1>
+            @if (Request::get('tuan') && count($simples))
+                <h1 class="text-center text-2xl uppercase font-bold">Báo cáo theo dõi mẫu {{ $simples[0]->tuan }}<a
+                        href="{{ route('simple.add') }}" title="Thêm mẫu" class="mx-4"><i class="fa-solid fa-plus"></i></a>
+                    <a href="{{ route('simple.download', ['tuan' => $simples[0]->tuan]) }}"><i
+                            class="fa-solid fa-file-arrow-down"></i></a>
+                </h1>
+            @else
+                <h1 class="text-center text-2xl uppercase font-bold">Theo dõi kế hoạch may mẫu và đồng bộ NPL <a
+                        href="{{ route('simple.add') }}" title="Thêm mẫu" class="mx-4"><i
+                            class="fa-solid fa-plus"></i></a>
+                    <a href="{{ route('simple.download', ['tuan' => 'all']) }}"><i
+                            class="fa-solid fa-file-arrow-down"></i></a>
+                </h1>
+            @endif
+
             <form method="get" class="w-lg" style="width: calc(100% / 6);">
                 <div class="relative">
                     <input type="text" name="tuan" id="default-search"
                         class="block w-full py-2 ps-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Tìm theo tuần: T1-8,..." required />
                     <button type="submit"
-                        class="text-white absolute end-[2px] bottom-0.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"><svg
-                            class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
+                        class="text-white absolute end-[1px] bottom-[1px] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </form>
@@ -55,6 +64,12 @@
                                 <th class="border border-black" rowspan="2">KẾT QUẢ</th>
                                 <th class="border border-black" rowspan="2">TUẦN</th>
                                 <th class="border border-black" rowspan="2">BIÊN BẢN</th>
+
+                                <th class="border border-black" rowspan="2">Ngày comment</th>
+                                <th class="border border-black" rowspan="2">Ngày gửi lại</th>
+                                <th class="border border-black" rowspan="2">Thay đổi khi may</th>
+                                <th class="border border-black" rowspan="2">SL,Màu trả lại</th>
+
                                 <th class="border border-black" rowspan="2">GHI CHÚ</th>
                             </tr>
                             <tr>
@@ -144,9 +159,11 @@
                                             $henGuiDate = $simple->hengui;
                                         @endphp
                                         @if ($simple->tinhtrang === 'dagui')
-                                            <p class="min-w-16 py-1 font-bold rounded-sm bg-green-500 text-white">Đã gửi</p>
+                                            <p class="min-w-16 py-1 font-bold rounded-sm bg-green-500 text-white">Đã gửi
+                                            </p>
                                         @elseif($today >= $henGuiDate)
-                                            <p class="min-w-20 py-1 font-bold rounded-sm bg-red-500 text-white">Đang may</p>
+                                            <p class="min-w-20 py-1 font-bold rounded-sm bg-red-500 text-white">Đang may
+                                            </p>
                                         @else
                                             <p class="min-w-20 py-1 font-bold rounded-sm bg-blue-500 text-white">Đang may
                                             </p>
@@ -176,6 +193,15 @@
                                     <td>
                                         <?= $simple->bienban === 0 ? '&#10006;' : '&#10004;' ?>
                                     </td>
+
+                                    <td>
+                                        {{ $simple->ngaycmt ? formatDate($simple->ngaycmt, 'd-m') : '--' }}
+                                    </td>
+                                    <td>
+                                        {{ $simple->ngayguilai ? formatDate($simple->ngayguilai, 'd-m') : '--' }}
+                                    </td>
+                                    <td>{{ $simple->thaydoi }}</td>
+                                    <td>{{ $simple->tralaiinfo }}</td>
                                     <td>
                                         <p class="w-36">
                                             {{ $simple->ghichu }}
