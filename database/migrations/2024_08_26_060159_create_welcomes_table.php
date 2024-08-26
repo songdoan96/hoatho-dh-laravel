@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('welcomes', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->boolean('active')->default(false);
+            $table->boolean('active')->default(true);
             // $table->timestamps();
         });
     }

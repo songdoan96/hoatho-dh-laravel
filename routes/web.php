@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SimpleController;
+use App\Models\Welcome;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/welcome', function () {
+    $images = Welcome::where('active', 1)->get();
+    return view('welcome', compact('images'));
 });
 // Login
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
