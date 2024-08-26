@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SimpleController;
+use App\Models\Schedule;
 use App\Models\Welcome;
 use Illuminate\Support\Facades\Route;
 /*
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', function () {
     $images = Welcome::where('active', 1)->get();
-    return view('welcome', compact('images'));
+    $schedules = Schedule::where('done', 0)->get();
+    return view('welcome', compact('images', "schedules"));
 });
 // Login
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
@@ -44,5 +46,11 @@ Route::prefix("admin")->name('admin.')->middleware('authLogged')->group(function
     Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
     Route::post('/uploadStore', [AdminController::class, 'uploadStore'])->name('uploadStore');
     Route::post('/imageChange/{welcome}', [AdminController::class, 'imageChange'])->name('imageChange');
-    Route::post('/imageDelete/{welcome}', [AdminController::class, 'imageDelete'])->name('imageDelete');
+    Route::delete('/imageDelete/{welcome}', [AdminController::class, 'imageDelete'])->name('imageDelete');
+
+
+    Route::get('/lichlamviec', [AdminController::class, 'schedule'])->name('schedule');
+    Route::post('/schedule-store', [AdminController::class, 'scheduleStore'])->name('scheduleStore');
+    Route::post('/schedule-done/{schedule}', [AdminController::class, 'scheduleDone'])->name('scheduleDone');
+    Route::delete('/schedule-delete/{schedule}', [AdminController::class, 'scheduleDelete'])->name('scheduleDelete');
 });

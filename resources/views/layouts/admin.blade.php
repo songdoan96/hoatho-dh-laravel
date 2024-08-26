@@ -17,7 +17,8 @@
     <div class="flex h-screen w-screen">
         <div class="w-1/6 p-2 border-r border-white">
             <ul class="underline">
-                <li><a href="{{ route('admin.welcome') }}">Chào mừng</a></li>
+                <li><a href="{{ route('admin.welcome') }}">Hình ảnh TV</a></li>
+                <li><a href="{{ route('admin.schedule') }}">Lịch làm việc</a></li>
             </ul>
         </div>
         <div class="w-5/6">

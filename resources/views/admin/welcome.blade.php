@@ -26,6 +26,7 @@
                     <form id="image-delete-{{ $image->id }}" action="{{ route('admin.imageDelete', $image) }}"
                         method="POST">
                         @csrf
+                        @method('delete')
                         <button
                             onclick="if(confirm('Xóa ảnh')) document.getElementById('image-delete-{{ $image->id }}').submit()"
                             type="submit"><i class="fa-solid fa-trash-can"></i></button>
