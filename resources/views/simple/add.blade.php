@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="min-h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col bg-primary text-textColor">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('simple.dashboard') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
