@@ -13,7 +13,7 @@
     @stack('styles')
 </head>
 
-<body class="bg-primary text-textColor ">
+<body>
     <div class="flex h-screen w-screen">
         <div class="w-1/6 p-2 border-r border-white">
             <ul class="underline">

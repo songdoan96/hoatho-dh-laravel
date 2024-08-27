@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SimpleController;
 use App\Models\Schedule;
 use App\Models\Welcome;
@@ -26,6 +27,11 @@ Route::get('/welcome', function () {
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
 Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store');
 
+// Sx
+Route::get('/sanxuat', function () {
+    return view('produce.dashboard');
+})->name('produce.dashboard');
+
 // May mau
 Route::prefix("maymau")->name('simple.')->group(function () {
     Route::get('/', [SimpleController::class, 'index'])->name('index');
@@ -41,13 +47,19 @@ Route::prefix("maymau")->name('simple.')->group(function () {
     Route::get('/{tuan}', [SimpleController::class, 'download'])->name('download')->middleware('authLogged');
 });
 
+// Ke hoach
+Route::prefix('kehoach')->name('plan.')->middleware('authLogged')->group(function () {
+    Route::get('/', [PlanController::class, 'dashboard'])->name('dashboard');
+    Route::post('/store', [PlanController::class, 'store'])->name('store');
+    Route::post('/planUp/{plan}', [PlanController::class, 'planUp'])->name('planUp');
+});
+
 
 Route::prefix("admin")->name('admin.')->middleware('authLogged')->group(function () {
     Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
     Route::post('/uploadStore', [AdminController::class, 'uploadStore'])->name('uploadStore');
     Route::post('/imageChange/{welcome}', [AdminController::class, 'imageChange'])->name('imageChange');
     Route::delete('/imageDelete/{welcome}', [AdminController::class, 'imageDelete'])->name('imageDelete');
-
 
     Route::get('/lichlamviec', [AdminController::class, 'schedule'])->name('schedule');
     Route::post('/schedule-store', [AdminController::class, 'scheduleStore'])->name('scheduleStore');

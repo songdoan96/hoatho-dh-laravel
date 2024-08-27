@@ -13,7 +13,7 @@
     @stack('styles')
 </head>
 
-<body class="bg-primary text-textColor">
+<body>
     @yield('content')
     @stack('scripts')
 </body>

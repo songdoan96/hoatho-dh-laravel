@@ -14,57 +14,48 @@
                 <div class="mb-1">
                     <label for="khachhang" class="block mb-2 text-sm font-medium text-white">Khách hàng</label>
                     <input type="text" id="khachhang" name="khachhang"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="mahang" class="block mb-2 text-sm font-medium text-white">Mã hàng</label>
                     <input type="text" id="mahang" name="mahang"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="loaimau" class="block mb-2 text-sm font-medium text-white">Loại mẫu</label>
                     <input type="text" id="loaimau" name="loaimau"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="color" class="block mb-2 text-sm font-medium text-white">Màu</label>
                     <input type="text" name="color"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="size" class="block mb-2 text-sm font-medium text-white">Size</label>
                     <input type="text" name="size"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="soluong" class="block mb-2 text-sm font-medium text-white">Số lượng</label>
                     <input type="number" min="0" name="soluong"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
 
                 <div class="mb-1">
                     <label for="npl" class="block mb-2 text-sm font-medium text-white">Ngày nhận NPL</label>
                     <input type="date" name="npl"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="rap" class="block mb-2 text-sm font-medium text-white">Ngày nhận rập</label>
                     <input type="date" name="rap"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="tailieu" class="block mb-2 text-sm font-medium text-white">Ngày nhận tài liệu</label>
                     <input type="date" name="tailieu"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="maugoc" class="block mb-2 text-sm font-medium text-white">Ngày nhận mẫu gốc</label>
@@ -74,8 +65,7 @@
                 <div class="mb-1">
                     <label for="ktmay" class="block mb-2 text-sm font-medium text-white">Kỹ thuật may</label>
                     <input type="text" name="ktmay"
-                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                        required />
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="kcs" class="block mb-2 text-sm font-medium text-white">KC kiểm</label>

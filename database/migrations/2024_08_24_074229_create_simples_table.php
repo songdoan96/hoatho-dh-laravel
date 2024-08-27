@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('simples', function (Blueprint $table) {
             $table->id();
-            $table->string('khachhang', 30);
-            $table->string('mahang', 30);
-            $table->string('loaimau', 20);
-            $table->string('color', 30);
-            $table->string('size', 30);
+            $table->string('khachhang', 30)->nullable();
+            $table->string('mahang', 30)->nullable();
+            $table->string('loaimau', 20)->nullable();
+            $table->string('color', 30)->nullable();
+            $table->string('size', 30)->nullable();
             $table->unsignedSmallInteger('soluong');
-            $table->date('npl');
-            $table->date('rap');
-            $table->date('tailieu');
+            $table->date('npl')->nullable();
+            $table->date('rap')->nullable();
+            $table->date('tailieu')->nullable();
             $table->date('maugoc')->nullable();
-            $table->string('ktmay');
+            $table->string('ktmay')->nullable();
             $table->string('kcs')->nullable();
             $table->date('ngaymay')->nullable();
             $table->date('ngayhen')->nullable();
