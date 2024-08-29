@@ -16,6 +16,17 @@
 <body>
     @yield('content')
     @stack('scripts')
+    @session('toast')
+        <div id="toast" class="fixed z-50 bottom-2 right-2">
+            <div id="toast-default"
+                class="flex items-center w-full max-w-xs p-4 gap-2 text-white bg-blue-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                role="alert">
+                <div class="text-sm font-normal"> {{ session('toast') }}</div>
+            </div>
+            {{ Session::forget('toast') }}
+        </div>
+    @endsession
+
 </body>
 
 </html>

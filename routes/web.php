@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KCSController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\SimpleController;
 use App\Models\Schedule;
 use App\Models\Welcome;
@@ -28,9 +30,13 @@ Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
 Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store');
 
 // Sx
-Route::get('/sanxuat', function () {
-    return view('produce.dashboard');
-})->name('produce.dashboard');
+Route::prefix('/sanxuat')->name('produce.')->group(function () {
+    Route::get('/', [ProduceController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::prefix('kcs')->name('kcs.')->group(function () {
+    Route::get('/', [KCSController::class, 'dashboard'])->name('dashboard');
+});
 
 // May mau
 Route::prefix("maymau")->name('simple.')->group(function () {

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('factories', function (Blueprint $table) {
             $table->id();
-            $table->string('line', 5);
+            $table->string('line', 6);
             // $table->timestamps();
         });
     }

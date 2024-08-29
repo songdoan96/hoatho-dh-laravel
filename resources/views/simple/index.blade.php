@@ -12,7 +12,7 @@
     </style>
 @endpush
 @section('content')
-    <div class="bg-primary text-textColor">
+    <div class="bg-primary text-textColor min-h-screen">
 
         <div class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('simple.dashboard') }}" wire:navigate class="w-16"><img src="{{ asset('images/logo.png') }}"

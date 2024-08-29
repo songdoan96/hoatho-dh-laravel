@@ -31,7 +31,7 @@
             style="display: flex;padding: 0;animation-duration: <?= count($schedules) * 20 . 's' ?>">
             @foreach ($schedules as $schedule)
                 <li class="md:py-1 ml-[calc(100vw/3)] list-disc">
-                    {{ $schedule->content }}
+                    {{ formatDate($schedule->date, 'd-m-Y') }}: {{ $schedule->content }}
                 </li>
             @endforeach
         </ul>

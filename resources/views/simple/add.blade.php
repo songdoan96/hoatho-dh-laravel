@@ -13,12 +13,12 @@
                 @csrf
                 <div class="mb-1">
                     <label for="khachhang" class="block mb-2 text-sm font-medium text-white">Khách hàng</label>
-                    <input type="text" id="khachhang" name="khachhang"
+                    <input type="text" id="khachhang" name="khachhang" required
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
                     <label for="mahang" class="block mb-2 text-sm font-medium text-white">Mã hàng</label>
-                    <input type="text" id="mahang" name="mahang"
+                    <input type="text" id="mahang" name="mahang" required
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
                 <div class="mb-1">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-1">
                     <label for="soluong" class="block mb-2 text-sm font-medium text-white">Số lượng</label>
-                    <input type="number" min="0" name="soluong"
+                    <input type="number" min="1" name="soluong" value="1"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" />
                 </div>
 

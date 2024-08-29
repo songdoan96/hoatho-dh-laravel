@@ -10,7 +10,7 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen">
+    <div class="min-h-screen bg-primary">
         <div id="header" class="px-2 py-1 flex items-center bg-blue-500 text-white justify-between shadow-lg">
             <a href="{{ route('simple.index') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">

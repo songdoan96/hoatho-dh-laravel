@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('loaimau', 20)->nullable();
             $table->string('color', 30)->nullable();
             $table->string('size', 30)->nullable();
-            $table->unsignedSmallInteger('soluong');
+            $table->unsignedSmallInteger('soluong')->default(0);
             $table->date('npl')->nullable();
             $table->date('rap')->nullable();
             $table->date('tailieu')->nullable();

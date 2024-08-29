@@ -28,7 +28,7 @@ class SimpleController extends Controller
     public function store(Request $request)
     {
         Simple::create($request->all());
-        return redirect()->route('simple.dashboard');
+        return redirect()->route('simple.dashboard')->with('toast', "Thêm mẫu thành công");
     }
     public function edit(Simple $simple)
     {
@@ -37,18 +37,19 @@ class SimpleController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->action === "simple-new") {
+            $message = "Thêm mới thành công";
             Simple::create($request->all());
         }
         if ($request->action === "simple-edit") {
-
+            $message = "Chỉnh sửa thành công";
             Simple::findOrFail($id)->update($request->all());
         }
-        return redirect()->route("simple.dashboard");
+        return redirect()->route("simple.dashboard")->with('toast', $message);
     }
     public function destroy(Simple $simple)
     {
         $simple->delete();
-        return redirect()->route("simple.dashboard");
+        return redirect()->route("simple.dashboard")->with('toast', "Đã xóa mẫu");;
     }
     public function download($tuan)
     {

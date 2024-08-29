@@ -21,6 +21,11 @@ class PlanController extends Controller
     }
     public function planUp(Plan $plan)
     {
+        // $chuyen = $plan->chuyen;
+        // $countChuyen = Plan::where('chuyen', $chuyen)->where('daxong', 0)->get();
+        // if (count($countChuyen) > 1) {
+        //     return redirect()->back()->with('toast', $chuyen . ' còn đơn hàng chưa hoàn thành');
+        // }
         $plan->daraichuyen = true;
         $plan->ngayrai = date('Y-m-d');
         $plan->save();

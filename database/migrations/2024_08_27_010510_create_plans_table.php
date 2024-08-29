@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('chuyen', 5);
+            $table->string('chuyen', 6);
             $table->string('khachhang');
             $table->string('mahang');
+            $table->string('logo')->nullable();
             $table->date('ngaydukien');
             $table->date('ngayrai')->nullable();
             $table->unsignedMediumInteger('sltacnghiep');

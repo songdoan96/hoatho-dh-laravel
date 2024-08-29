@@ -15,12 +15,12 @@ class FactorySeeder extends Seeder
     {
         for ($i = 1; $i <= 10; $i++) {
             Factory::create([
-                'line' => $i < 10 ? "X1_0" . $i : "X1_" . $i
+                'line' => $i < 10 ? "XN1_0" . $i : "XN1_" . $i
             ]);
         }
         for ($i = 1; $i <= 10; $i++) {
             Factory::create([
-                'line' => $i < 10 ? "X2_0" . $i : "X2_" . $i
+                'line' => $i < 10 ? "XN2_0" . $i : "XN2_" . $i
             ]);
         }
     }
