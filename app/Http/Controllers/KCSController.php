@@ -93,7 +93,10 @@ class KCSController extends Controller
             ->where('daxong', 0)
             ->orderBy('created_at', 'desc')
             ->first();
-        $kcs= KCS::where('plan_id', $plan->id)->first();
-        return view('kcs.line', compact('plan','kcs'));
+        if ($plan) {
+            $kcs = KCS::where('plan_id', $plan->id)->first();
+            return view('kcs.line', compact('plan', 'kcs'));
+        }
+        return view('kcs.line', compact('plan'));
     }
 }

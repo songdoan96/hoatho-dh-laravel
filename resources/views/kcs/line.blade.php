@@ -4,7 +4,7 @@
 @endpush
 @section('content')
     <div class="bg-black text-white h-screen w-screen">
-        @if($plan)
+        @if($plan && $kcs)
             <div class="h-screen w-screen overflow-hidden bg-blue-900 text-white text-xl uppercase flex flex-col">
                 <div class="h-[100px] flex border-b-2">
                     <div class="w-3/12 h-full left flex justify-between items-center p-2 border-r-2">
