@@ -5,11 +5,6 @@
         <h1 class="uppercase text-2xl font-bold">Đăng nhập</h1>
         <form method="POST" action="{{ route('login.store') }}" class="w-full md:w-1/3 shadow-lg p-4 border">
             @csrf
-            @if (session('status'))
-                <div class="p-4 mb-4 text-sm rounded-lg bg-red-500 text-white" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
             <div class="mb-5">
                 <label for="username" class="block mb-2 text-sm font-medium ">Tài khoản</label>
                 <input type="text" name="username" name="username" required

@@ -23,9 +23,11 @@ return new class extends Migration
             $table->boolean('daraichuyen')->default(false);
             $table->unsignedMediumInteger('thuchien')->default(0);
             $table->unsignedMediumInteger('nhaphoanthanh')->default(0);
+            $table->unsignedMediumInteger('btpcap')->default(0);
             $table->float('mucvon')->default(0);
             $table->string('ghichu')->nullable();
             $table->boolean('daxong')->default(false);
+            $table->timestamp('ngayxong')->nullable();
             $table->timestamp('created_at')->useCurrent();
             // $table->timestamps();
         });

@@ -32,10 +32,22 @@ Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store')
 // Sx
 Route::prefix('/sanxuat')->name('produce.')->group(function () {
     Route::get('/', [ProduceController::class, 'dashboard'])->name('dashboard');
+    Route::get('/ket-thuc', [ProduceController::class, 'finish'])->name('finish');
+    Route::get('/cap-nhat/{plan}', [ProduceController::class, 'editWarehouse'])->name('editWarehouse')->middleware('authLogged');
+    Route::post('/cap-nhat/{plan}', [ProduceController::class, 'editWarehouseUpdate'])->name('editWarehouseUpdate')->middleware('authLogged');
 });
 
 Route::prefix('kcs')->name('kcs.')->group(function () {
     Route::get('/', [KCSController::class, 'dashboard'])->name('dashboard');
+    Route::get('/bao-cao/{kcs}', [KCSController::class, 'edit'])->name('edit');
+    Route::get('/them-chi-tieu/{xn}', [KCSController::class, 'add'])->name('add');
+    Route::post('/them-chi-tieu', [KCSController::class, 'store'])->name('store');
+
+    Route::post('/passed/{kcs}', [KCSController::class, 'passed'])->name('passed');
+    Route::post('/failed/{kcs}', [KCSController::class, 'failed'])->name('failed');
+    Route::post('/update-error/{kcs}', [KCSController::class, 'updateErrorInfo'])->name('updateErrorInfo');
+
+    Route::get("/{line}",[KCSController::class, 'line'])->name('line');
 });
 
 // May mau
@@ -58,6 +70,8 @@ Route::prefix('kehoach')->name('plan.')->middleware('authLogged')->group(functio
     Route::get('/', [PlanController::class, 'dashboard'])->name('dashboard');
     Route::post('/store', [PlanController::class, 'store'])->name('store');
     Route::post('/planUp/{plan}', [PlanController::class, 'planUp'])->name('planUp');
+    Route::delete('/planDelete/{plan}', [PlanController::class, 'planDelete'])->name('planDelete');
+    Route::post('/planDone/{plan}', [PlanController::class, 'planDone'])->name('planDone');
 });
 
 

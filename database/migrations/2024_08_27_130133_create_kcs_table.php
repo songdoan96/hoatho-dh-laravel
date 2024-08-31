@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('kcs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('plan_id');
+            $table->date('ngaytao')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedSmallInteger('laodong')->default(0);
             $table->unsignedSmallInteger('duphong')->default(0);
             $table->unsignedSmallInteger('chitieungay')->default(0);
             $table->unsignedSmallInteger('sldat')->default(0);
             $table->unsignedSmallInteger('slloi')->default(0);
             $table->string('chitietloi')->nullable();
-            $table->timestamp('created_at')->useCurrent();
+//            $table->timestamp('created_at')->useCurrent();
             $table->foreign('plan_id')->references('id')->on('plans');
             // $table->timestamps();
         });

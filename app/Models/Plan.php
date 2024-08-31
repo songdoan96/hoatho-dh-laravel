@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Plan extends Model
 {
@@ -23,5 +24,10 @@ class Plan extends Model
         'mucvon',
         'ghichu',
         'daxong',
+        'ngayxong'
     ];
+    public function kcs(): HasMany
+    {
+        return $this->hasMany(KCS::class);
+    }
 }

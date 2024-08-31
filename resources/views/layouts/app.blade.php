@@ -16,15 +16,25 @@
 <body>
     @yield('content')
     @stack('scripts')
-    @session('toast')
-        <div id="toast" class="fixed z-50 bottom-2 right-2">
-            <div id="toast-default"
-                class="flex items-center w-full max-w-xs p-4 gap-2 text-white bg-blue-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-                role="alert">
-                <div class="text-sm font-normal"> {{ session('toast') }}</div>
-            </div>
-            {{ Session::forget('toast') }}
+    @session('success')
+    <div id="success" class="fixed z-50 bottom-2 right-2">
+        <div id="success-toast"
+             class="flex items-center w-full max-w-xs p-4 gap-2 text-white bg-green-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+             role="alert">
+            <div class="text-sm font-normal"> {{ session('success') }}</div>
         </div>
+        {{ Session::forget('success') }}
+    </div>
+    @endsession
+    @session('danger')
+    <div id="danger" class="fixed z-50 bottom-2 right-2">
+        <div id="danger-toast"
+             class="flex items-center w-full max-w-xs p-4 gap-2 text-white bg-red-500 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+             role="alert">
+            <div class="text-sm font-normal"> {{ session('danger') }}</div>
+        </div>
+        {{ Session::forget('danger') }}
+    </div>
     @endsession
 
 </body>

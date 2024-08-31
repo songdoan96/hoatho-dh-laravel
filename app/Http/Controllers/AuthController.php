@@ -10,10 +10,11 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect(Auth::user()->username ?? "/");
+            return redirect()->route('produce.dashboard');;
         }
         return view("login");
     }
+
     public function store(Request $request)
     {
         $login = [
@@ -21,9 +22,12 @@ class AuthController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($login)) {
-            return redirect(Auth::user()->username ?? "/");
+            if ($request->username === "maymau") {
+                return redirect()->route('simple.dashboard')->with('success', 'Đăng nhập thành công');
+            }
+            return redirect()->route('produce.dashboard')->with('success', 'Đăng nhập thành công');
         } else {
-            return redirect()->back()->with('status', 'Tài khoản hoặc mật khẩu không chính xác');
+            return redirect()->back()->with('danger', 'Tài khoản hoặc mật khẩu không chính xác');
         }
     }
 }
