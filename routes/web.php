@@ -20,11 +20,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('home');
+});
+
 Route::get('/welcome', function () {
     $images = Welcome::where('active', 1)->get();
     $schedules = Schedule::where('done', 0)->get();
     return view('welcome', compact('images', "schedules"));
-});
+})->name('welcome');
 // Login
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
 Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store');
@@ -33,8 +37,8 @@ Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store')
 Route::prefix('/sanxuat')->name('produce.')->group(function () {
     Route::get('/', [ProduceController::class, 'dashboard'])->name('dashboard');
     Route::get('/ket-thuc', [ProduceController::class, 'finish'])->name('finish');
-    Route::get('/cap-nhat/{plan}', [ProduceController::class, 'editWarehouse'])->name('editWarehouse')->middleware('authLogged');
-    Route::post('/cap-nhat/{plan}', [ProduceController::class, 'editWarehouseUpdate'])->name('editWarehouseUpdate')->middleware('authLogged');
+    Route::get('/sua-ke-hoach/{plan}', [ProduceController::class, 'editWarehouse'])->name('editWarehouse')->middleware('authLogged');
+    Route::post('/sua-ke-hoach/{plan}', [ProduceController::class, 'editWarehouseUpdate'])->name('editWarehouseUpdate')->middleware('authLogged');
 });
 
 Route::prefix('kcs')->name('kcs.')->group(function () {
@@ -47,7 +51,13 @@ Route::prefix('kcs')->name('kcs.')->group(function () {
     Route::post('/failed/{kcs}', [KCSController::class, 'failed'])->name('failed');
     Route::post('/update-error/{kcs}', [KCSController::class, 'updateErrorInfo'])->name('updateErrorInfo');
 
-    Route::get("/{line}",[KCSController::class, 'line'])->name('line');
+    Route::get("/{line}", [KCSController::class, 'line'])->name('line');
+
+    Route::get("/sua-ldong-chitieu/{kcs}", [KCSController::class, 'editWorker'])->name('editWorker');
+    Route::post("/sua-ldong-chitieu/{kcs}", [KCSController::class, 'updateWorker'])->name('updateWorker');
+
+    Route::get('/sp-dat-loi/{kcs}', [KCSController::class, 'editPassFail'])->name('editPassFail')->middleware('isAdmin');
+    Route::post('/sp-dat-loi/{kcs}', [KCSController::class, 'updatePassFail'])->name('updatePassFail')->middleware('isAdmin');
 });
 
 // May mau

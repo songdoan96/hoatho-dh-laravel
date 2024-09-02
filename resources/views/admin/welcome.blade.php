@@ -3,7 +3,7 @@
     <div class="p-2 flex flex-col">
         <form id="formUpload" method="POST" action="{{ route('admin.uploadStore') }}" enctype="multipart/form-data">
             @csrf
-            <input type="file" name="image" id="">
+            <input type="file" name="image" id="" required>
             <button type="submit" value="simple-edit" name="action"
                 class="text-white
                         bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium
@@ -27,9 +27,8 @@
                         method="POST">
                         @csrf
                         @method('delete')
-                        <button
-                            onclick="if(confirm('Xóa ảnh')) document.getElementById('image-delete-{{ $image->id }}').submit()"
-                            type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                        <button onclick="return confirm('Xóa ảnh')" type="submit"><img
+                                src="{{ asset('images/trash.png') }}" alt="Xóa" width="20"></button>
                     </form>
                 </div>
             @endforeach

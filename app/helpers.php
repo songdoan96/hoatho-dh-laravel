@@ -47,7 +47,7 @@ if (!function_exists('after17h')) {
     function after17h()
     {
         $currentTime = date("H:i:s");
-        $time17h = date("20:12:00");
+        $time17h = date("17:00:00");
         if ($currentTime >= $time17h) {
             return true;
         }
@@ -57,7 +57,7 @@ if (!function_exists('after17h')) {
 if (!function_exists('formatNumber')) {
     function formatNumber($number)
     {
-        if (isset($number)){
+        if (isset($number)) {
             return number_format($number, 0, ',', '.');
         }
     }

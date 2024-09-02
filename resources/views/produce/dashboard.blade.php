@@ -24,20 +24,20 @@
 
         @if (count($plans))
             <div class="p-4">
-                <div class="grid grid-cols-4 gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @foreach ($plans as $plan)
-                        <a href="{{route('kcs.line',$plan->chuyen)}}"
-                           class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition">
+                        <a href="{{ route('kcs.line', $plan->chuyen) }}"
+                            class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition">
                             <div class="flex gap-1 text-xl font-bold">
-                                <div class="w-1/2 bg-blue-500 flex items-center justify-center">
+                                <div class="w-1/2 bg-blue-600 flex items-center justify-center">
                                     <p class="text-3xl">{{ $plan->chuyen }}</p>
                                 </div>
-                                <div class="w-1/2 bg-blue-500 flex flex-col items-center">
+                                <div class="w-1/2 bg-blue-600 flex flex-col items-center">
                                     <p class="line-clamp-1">{{ $plan->khachhang }}</p>
                                     <p class="line-clamp-1">{{ $plan->mahang }}</p>
                                 </div>
                             </div>
-                            <div class="bg-blue-500 p-2 flex flex-col">
+                            <div class="bg-blue-600 p-2 flex flex-col">
                                 <div class="flex justify-between">
                                     <span>Tác nghiệp</span>
                                     <span>{{ formatNumber($plan->sltacnghiep) }} <span class="text-sm">pcs</span></span>
@@ -49,13 +49,14 @@
                                     <span>LK thực hiện</span>
                                     <span class="flex items-center gap-1">
                                         <span>{{ formatNumber($plan->thuchien) }}<span class="text-sm"> pcs</span>
-                                            @if($thuchienPercent>95)
-                                                <form action="{{route('plan.planDone',$plan)}}" method="post" class="inline-flex items-center justify-center">
+                                            @if ($thuchienPercent > 95)
+                                                <form action="{{ route('plan.planDone', $plan) }}" method="post"
+                                                    class="inline-flex items-center justify-center">
                                                     @csrf
-                                                <button onclick="return confirm('Xác nhận kết thúc đơn hàng này?')"
+                                                    <button onclick="return confirm('Xác nhận kết thúc đơn hàng này?')"
                                                         class="inline-flex items-center justify-center"><img
-                                                        src="{{asset('images/alert.gif')}}" width="20"
-                                                        alt="Sắp hết đơn hàng"></button>
+                                                            src="{{ asset('images/alert.gif') }}" width="20"
+                                                            alt="Sắp hết đơn hàng"></button>
                                                 </form>
                                             @endif
                                         </span>
@@ -65,9 +66,10 @@
 
                                     <span class="bg-gray-100 h-3 w-full relative overflow-hidden">
                                         <span class="absolute h-full left-0 bg-[#7cd79f]"
-                                              style="width: {{ $thuchienPercent }}%"></span>
+                                            style="width: {{ $thuchienPercent }}%"></span>
                                         <span
-                                            class="text-blue-900 absolute w-full h-full text-xs font-bold flex justify-center items-center">{{ $thuchienPercent }} %</span>
+                                            class="text-blue-900 absolute w-full h-full text-xs font-bold flex justify-center items-center">{{ $thuchienPercent }}
+                                            %</span>
                                     </span>
                                 </div>
                                 <div class="flex justify-between">
@@ -78,26 +80,30 @@
 
                                 <div class="flex justify-between">
                                     <span>Nhập hoàn thành</span>
-                                    <span>{{ formatNumber($plan->nhaphoanthanh) }} <span
-                                            class="text-sm">pcs</span></span>
+                                    <span>{{ formatNumber($plan->nhaphoanthanh) }} <span class="text-sm">pcs</span></span>
                                 </div>
 
 
                             </div>
-                            @if ($kcs = $plan->kcs->where('ngaytao', date('Y-m-d'))->first())
-                                <div class="bg-blue-500 p-2">
-                                    <div class="flex justify-between">
-                                        <span>Chỉ tiêu ngày</span>
-                                        <span>{{ $kcs->chitieungay }} <span class="text-sm">pcs</span></span>
-                                    </div>
+                            @php
+                                $kcs = $plan->kcs->where('ngaytao', date('Y-m-d'))->first();
+                            @endphp
+                            <div class="bg-blue-600 p-2">
+                                <div class="flex justify-between">
+                                    <span>Chỉ tiêu ngày</span>
+                                    <span>{{ $kcs->chitieungay ?? '--' }} <span class="text-sm">pcs</span></span>
+                                </div>
 
-                                    <div class="flex justify-between">
-                                        <span>SP đạt / TL đạt</span>
-                                        <span>{{ $kcs->sldat }} <span class="text-sm">pcs</span> / {{ round($kcs->sldat / $kcs->chitieungay * 100,2)  }} %</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span>SP lỗi / TL lỗi</span>
-                                        @php
+                                <div class="flex justify-between">
+                                    <span>SP đạt / TL đạt</span>
+                                    <span>{{ $kcs->sldat ?? '--' }} <span class="text-sm">pcs</span> /
+                                        {{ $kcs ? round(($kcs->sldat / $kcs->chitieungay) * 100, 2) : '--' }} %</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>SP lỗi / TL lỗi</span>
+                                    @php
+                                        $loiPercent = null;
+                                        if (isset($kcs)) {
                                             if ($kcs->sldat == 0 && $kcs->slloi == 0) {
                                                 $loiPercent = 0;
                                             } else {
@@ -106,15 +112,28 @@
                                                     2,
                                                 );
                                             }
-                                        @endphp
-                                        <span>{{ $kcs->slloi }} <span
-                                                class="text-sm">pcs</span> / {{ $loiPercent }} %</span>
-                                    </div>
-
+                                        }
+                                    @endphp
+                                    <span>{{ $kcs->slloi ?? '--' }} <span class="text-sm">pcs</span> /
+                                        {{ $loiPercent ?? '--' }}
+                                        %</span>
                                 </div>
-                            @endif
+
+                            </div>
                         </a>
                     @endforeach
+                    @if (count($plansWaiting))
+                        <div
+                            class="bg-blue-600 p-2 border border-black text-gray-100 flex flex-col gap-1 overflow-hidden transition">
+                            <h2 class="text-center uppercase text-lg font-bold">Đơn hàng chờ sản xuất</h2>
+                            @foreach ($plansWaiting as $index => $plw)
+                                <p>- {{ $plw->chuyen }}:{{ $plw->mahang }}(
+                                    {{ formatDate($plw->ngaydukien, 'd-m') }} )
+                                </p>
+                            @endforeach
+                        </div>
+                    @endif
+
                 </div>
 
             </div>

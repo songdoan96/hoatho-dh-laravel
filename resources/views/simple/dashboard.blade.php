@@ -10,24 +10,31 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen bg-primary">
+    <div class="min-h-screen bg-primary text-textColor">
         <div id="header" class="px-2 py-1 flex items-center bg-blue-500 text-white justify-between shadow-lg">
             <a href="{{ route('simple.index') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
             @if (Request::get('tuan') && count($simples))
-                <h1 class="text-center text-2xl uppercase font-bold">Báo cáo theo dõi mẫu {{ $simples[0]->tuan }}<a
-                        href="{{ route('simple.add') }}" title="Thêm mẫu" class="mx-4"><i class="fa-solid fa-plus"></i></a>
-                    <a href="{{ route('simple.download', ['tuan' => $simples[0]->tuan]) }}"><i
-                            class="fa-solid fa-file-arrow-down"></i></a>
-                </h1>
+                <div class="text-2xl uppercase font-bold flex items-center justify-center gap-4">
+                    <h2>Báo cáo theo dõi mẫu {{ $simples[0]->tuan }}</h2>
+                    <a href="{{ route('simple.add') }}" title="Thêm mẫu" class="w-8">
+                        <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+                    </a>
+                    <a href="{{ route('simple.download', ['tuan' => $simples[0]->tuan]) }}" class="w-8">
+                        <img src="{{ asset('images/file.png') }}" alt="Xóa">
+                    </a>
+                </div>
             @else
-                <h1 class="text-center text-2xl uppercase font-bold">Theo dõi kế hoạch may mẫu và đồng bộ NPL <a
-                        href="{{ route('simple.add') }}" title="Thêm mẫu" class="mx-4"><i
-                            class="fa-solid fa-plus"></i></a>
-                    <a href="{{ route('simple.download', ['tuan' => 'all']) }}"><i
-                            class="fa-solid fa-file-arrow-down"></i></a>
-                </h1>
+                <div class="text-2xl uppercase font-bold flex items-center justify-center gap-4">
+                    <h2>Theo dõi kế hoạch may mẫu và đồng bộ NPL</h2>
+                    <a href="{{ route('simple.add') }}" title="Thêm mẫu" class="w-8">
+                        <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+                    </a>
+                    <a href="{{ route('simple.download', ['tuan' => 'all']) }}" class="w-8">
+                        <img src="{{ asset('images/file.png') }}" alt="Xóa">
+                    </a>
+                </div>
             @endif
 
             <form method="get" class="w-lg" style="width: calc(100% / 6);">
@@ -37,7 +44,7 @@
                         placeholder="Tìm theo tuần: T1-8,..." required />
                     <button type="submit"
                         class="text-white absolute end-[1px] bottom-[1px] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <img src="{{ asset('images/search.png') }}" alt="" width="20">
                     </button>
                 </div>
             </form>
@@ -97,7 +104,8 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <a title="Chỉnh sửa" href="{{ route('simple.edit', $simple) }}" class="underline">
+                                        <a title="Chỉnh sửa" href="{{ route('simple.edit', $simple) }}"
+                                            class="underline">
                                             <p class="w-20">
                                                 {{ $simple->mahang }}
                                             </p>

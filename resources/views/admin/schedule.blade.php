@@ -41,9 +41,8 @@
                                     action="{{ route('admin.scheduleDelete', $schedule) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button
-                                        onclick="if(confirm('Xóa lịch')) document.getElementById('schedule-delete-{{ $schedule->id }}').submit()"
-                                        type="submit"><i class="fa-regular fa-trash-can"></i></button>
+                                    <button onclick="return confirm('Xóa lịch')" type="submit"><img
+                                            src="{{ asset('images/trash.png') }}" alt="Xóa" width="20"></button>
                                 </form>
                             </td>
                         </tr>

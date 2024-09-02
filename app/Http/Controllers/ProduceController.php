@@ -13,7 +13,11 @@ class ProduceController extends Controller
             ->where('daraichuyen', 1)
             ->orderBy('chuyen')
             ->get();
-        return view('produce.dashboard', compact('plans'));
+        $plansWaiting = Plan::where('daxong', 0)
+            ->where('daraichuyen', 0)
+            ->orderBy('chuyen')
+            ->get();
+        return view('produce.dashboard', compact('plans', 'plansWaiting'));
     }
 
     public function finish()
@@ -40,6 +44,6 @@ class ProduceController extends Controller
             $plan->nhaphoanthanh = $request->nhaphoanthanh;
             $plan->save();
         }
-        return redirect()->back()->with('success', 'Cập nhật thành công');
+        return redirect()->route('produce.finish')->with('success', 'Cập nhật thành công');
     }
 }
