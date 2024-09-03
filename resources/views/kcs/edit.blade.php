@@ -34,7 +34,7 @@
 
             </div>
             <div class="flex flex-col text-5xl font-bold">
-                <div class="flex bg-green-500 p-3 items-center">
+                <div class="flex bg-green-500 p-3 items-center min-h-28">
                     <div class="w-1/3 text-left">ĐẠT</div>
                     <div class="w-2/3 font-bold flex justify-between items-center">
                         <span class="text-7xl font-extrabold">{{ $kcs->sldat }}</span>
@@ -46,7 +46,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="flex bg-red-500 p-3 items-center">
+                <div class="flex bg-red-500 p-3 items-center min-h-28">
                     <div class="w-1/3 text-left">LỖI</div>
                     <div class="w-2/3 flex justify-between items-center">
                         <span class="text-7xl font-extrabold ">{{ $kcs->slloi }}</span>

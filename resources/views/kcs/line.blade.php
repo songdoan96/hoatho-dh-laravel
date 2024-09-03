@@ -58,13 +58,9 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-between border-2 p-2">
-
-
                     <div class="flex justify-center items-center h-16">
                         @if ($plan->logo)
                             <img src="{{ asset('storage/' . $plan->logo) }}" alt="Logo" class="h-full">
-                        @else
-                            <div class="bg-gray-400 h-full w-1/3 rounded-md"></div>
                         @endif
                     </div>
                     <span class="text-center">
