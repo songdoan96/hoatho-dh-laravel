@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="h-screen w-full flex flex-col gap-4 p-4 items-center justify-center">
-        <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
+        <a href="{{ route('produce.dashboard') }}">
+            <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
+        </a>
         <h1 class="uppercase text-2xl font-bold">Đăng nhập</h1>
         <form method="POST" action="{{ route('login.store') }}" class="w-full md:w-1/3 shadow-lg p-4 border">
             @csrf

@@ -51,8 +51,8 @@ class KCSController extends Controller
         if ($hasPlan) {
             return redirect()->route('kcs.dashboard')->with('danger', "Thêm không thành công, do đã thêm chỉ tiêu cho hôm nay");
         } else {
-            KCS::create($request->all());
-            return redirect()->route('kcs.dashboard')->with('success', "Thêm chỉ tiêu thành công");
+            $kcs = KCS::create($request->all());
+            return redirect()->route('kcs.edit', $kcs)->with('success', "Thêm chỉ tiêu thành công");
         }
     }
 

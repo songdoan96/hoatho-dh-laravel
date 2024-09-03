@@ -6,6 +6,7 @@ use App\Http\Controllers\KCSController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\SimpleController;
+use App\Models\Factory;
 use App\Models\Schedule;
 use App\Models\Welcome;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Admin
+Route::prefix("admin")->name('admin.')->middleware('authLogged')->group(function () {
+    Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
+    Route::post('/uploadStore', [AdminController::class, 'uploadStore'])->name('uploadStore');
+    Route::post('/imageChange/{welcome}', [AdminController::class, 'imageChange'])->name('imageChange');
+    Route::delete('/imageDelete/{welcome}', [AdminController::class, 'imageDelete'])->name('imageDelete');
+
+    Route::get('/lichlamviec', [AdminController::class, 'schedule'])->name('schedule');
+    Route::post('/schedule-store', [AdminController::class, 'scheduleStore'])->name('scheduleStore');
+    Route::post('/schedule-done/{schedule}', [AdminController::class, 'scheduleDone'])->name('scheduleDone');
+    Route::delete('/schedule-delete/{schedule}', [AdminController::class, 'scheduleDelete'])->name('scheduleDelete');
+});
+
+
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/tv', function () {
+    $factories = Factory::all();
+    return view('tv', compact('factories'));
+});
+
 
 Route::get('/welcome', function () {
     $images = Welcome::where('active', 1)->get();
@@ -39,6 +59,9 @@ Route::prefix('/sanxuat')->name('produce.')->group(function () {
     Route::get('/ket-thuc', [ProduceController::class, 'finish'])->name('finish');
     Route::get('/sua-ke-hoach/{plan}', [ProduceController::class, 'editWarehouse'])->name('editWarehouse')->middleware('authLogged');
     Route::post('/sua-ke-hoach/{plan}', [ProduceController::class, 'editWarehouseUpdate'])->name('editWarehouseUpdate')->middleware('authLogged');
+
+    Route::get('/sua-btp/{plan}', [ProduceController::class, 'editBtp'])->name('editBtp');
+    Route::post('/sua-btp/{plan}', [ProduceController::class, 'editBtpUpdate'])->name('editBtpUpdate');
 });
 
 Route::prefix('kcs')->name('kcs.')->group(function () {
@@ -60,6 +83,20 @@ Route::prefix('kcs')->name('kcs.')->group(function () {
     Route::post('/sp-dat-loi/{kcs}', [KCSController::class, 'updatePassFail'])->name('updatePassFail')->middleware('isAdmin');
 });
 
+// Ke hoach
+Route::prefix('kehoach')->name('plan.')->middleware('authLogged')->group(function () {
+    Route::get('/', [PlanController::class, 'dashboard'])->name('dashboard');
+    Route::post('/store', [PlanController::class, 'store'])->name('store');
+    Route::post('/planUp/{plan}', [PlanController::class, 'planUp'])->name('planUp');
+    Route::delete('/planDelete/{plan}', [PlanController::class, 'planDelete'])->name('planDelete');
+    Route::post('/planDone/{plan}', [PlanController::class, 'planDone'])->name('planDone');
+
+    Route::get('/sua-logo/{plan}', [PlanController::class, 'editLogo'])->name('editLogo');
+    Route::post('/sua-logo/{plan}', [PlanController::class, 'storeLogo'])->name('storeLogo');
+});
+
+
+
 // May mau
 Route::prefix("maymau")->name('simple.')->group(function () {
     Route::get('/', [SimpleController::class, 'index'])->name('index');
@@ -73,26 +110,4 @@ Route::prefix("maymau")->name('simple.')->group(function () {
 
     Route::delete('/{simple}', [SimpleController::class, 'destroy'])->name('destroy')->middleware('authLogged');
     Route::get('/{tuan}', [SimpleController::class, 'download'])->name('download')->middleware('authLogged');
-});
-
-// Ke hoach
-Route::prefix('kehoach')->name('plan.')->middleware('authLogged')->group(function () {
-    Route::get('/', [PlanController::class, 'dashboard'])->name('dashboard');
-    Route::post('/store', [PlanController::class, 'store'])->name('store');
-    Route::post('/planUp/{plan}', [PlanController::class, 'planUp'])->name('planUp');
-    Route::delete('/planDelete/{plan}', [PlanController::class, 'planDelete'])->name('planDelete');
-    Route::post('/planDone/{plan}', [PlanController::class, 'planDone'])->name('planDone');
-});
-
-
-Route::prefix("admin")->name('admin.')->middleware('authLogged')->group(function () {
-    Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
-    Route::post('/uploadStore', [AdminController::class, 'uploadStore'])->name('uploadStore');
-    Route::post('/imageChange/{welcome}', [AdminController::class, 'imageChange'])->name('imageChange');
-    Route::delete('/imageDelete/{welcome}', [AdminController::class, 'imageDelete'])->name('imageDelete');
-
-    Route::get('/lichlamviec', [AdminController::class, 'schedule'])->name('schedule');
-    Route::post('/schedule-store', [AdminController::class, 'scheduleStore'])->name('scheduleStore');
-    Route::post('/schedule-done/{schedule}', [AdminController::class, 'scheduleDone'])->name('scheduleDone');
-    Route::delete('/schedule-delete/{schedule}', [AdminController::class, 'scheduleDelete'])->name('scheduleDelete');
 });

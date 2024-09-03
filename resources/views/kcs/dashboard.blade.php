@@ -1,4 +1,14 @@
 @extends('layouts.app')
+@push('meta')
+    <meta http-equiv="refresh" content="300">
+@endpush
+@push('styles')
+    <style>
+        tr td {
+            width: calc(100% / 16);
+        }
+    </style>
+@endpush
 @section('content')
     <div class="min-h-screen flex flex-col">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
@@ -29,10 +39,10 @@
                 <table class="w-full text-base text-center text-black border">
                     <thead class=" font-bold text-gray-700 uppercase bg-blue-300">
                         <tr>
-                            <th class="border w-20">
+                            <th class="border">
                                 Ngày
                             </th>
-                            <th class="border w-28">
+                            <th class="border">
                                 Chuyền
                             </th>
                             <th class="border">
@@ -74,7 +84,10 @@
                             <th class="border bg-red-200">
                                 TL lỗi
                             </th>
-                            <th class="border w-32">
+                            <th class="border">
+                                Vốn
+                            </th>
+                            <th class="border">
                                 Vướng mắc
                             </th>
 
@@ -140,6 +153,10 @@
                                     @endif
                                 </td>
                                 <td class="border">
+                                    @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
+                                    {{ round($von, 1) }}
+                                </td>
+                                <td class="border" style="min-width: 200px">
                                     {{ $kc->chitietloi }}
                                 </td>
                             </tr>

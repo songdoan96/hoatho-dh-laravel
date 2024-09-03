@@ -62,6 +62,9 @@
                                 Tác nghiệp
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Thực hiện
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Mức vốn
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -104,6 +107,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $plan->sltacnghiep }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $plan->thuchien }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $plan->mucvon }}

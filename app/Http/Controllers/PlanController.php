@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Factory;
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PlanController extends Controller
 {
@@ -58,5 +59,26 @@ class PlanController extends Controller
         $plan->ngayxong = date('Y-m-d H:i:s');
         $plan->save();
         return redirect()->back()->with('success', 'Đơn hàng đã kết thúc');
+    }
+
+    public function editLogo(Plan $plan)
+    {
+        $files = Storage::files('public/images/logo');
+        return view('plan.update-logo', compact('plan', 'files'));
+    }
+    public function storeLogo(Plan $plan, Request $request)
+    {
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $path = $file->store('images/logo', 'public');
+            $plan->logo = $path;
+            $plan->save();
+            return redirect()->route('kcs.line', $plan->chuyen)->with('success', 'Thêm logo thành công');
+        }
+        if ($request->newImage) {
+            $plan->logo = $request->newImage;
+            $plan->save();
+            return redirect()->route('kcs.line', $plan->chuyen)->with('success', 'Thêm logo thành công');
+        }
     }
 }

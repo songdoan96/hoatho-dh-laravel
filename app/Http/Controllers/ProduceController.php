@@ -31,7 +31,7 @@ class ProduceController extends Controller
     public function editWarehouse(Plan $plan)
     {
 
-        return view('produce.editwarehouse', compact('plan'));
+        return view('produce.edit-warehouse', compact('plan'));
     }
 
     public function editWarehouseUpdate(Plan $plan, Request $request)
@@ -44,6 +44,21 @@ class ProduceController extends Controller
             $plan->nhaphoanthanh = $request->nhaphoanthanh;
             $plan->save();
         }
-        return redirect()->route('produce.finish')->with('success', 'Cập nhật thành công');
+        return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
+    }
+
+
+    public function editBtp(Plan $plan)
+    {
+
+        return view('produce.edit-btp', compact('plan'));
+    }
+
+    public function editBtpUpdate(Plan $plan, Request $request)
+    {
+
+        $plan->btpcap += $request->btpNew;
+        $plan->save();
+        return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
     }
 }

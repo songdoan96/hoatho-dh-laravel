@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('meta')
-    <meta http-equiv="refresh" content="120">
+    <meta http-equiv="refresh" content="300">
 @endpush
 @section('content')
     <div class="min-h-screen flex flex-col">
@@ -27,7 +27,7 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @foreach ($plans as $plan)
                         <a href="{{ route('kcs.line', $plan->chuyen) }}"
-                            class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition">
+                            class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition rounded">
                             <div class="flex gap-1 text-xl font-bold">
                                 <div class="w-1/2 bg-blue-600 flex items-center justify-center">
                                     <p class="text-3xl">{{ $plan->chuyen }}</p>
