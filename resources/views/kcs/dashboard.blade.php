@@ -66,7 +66,7 @@
                             <th class="border">
                                 LK nhập hoàn thành
                             </th>
-                            <th class="border bg-red-200">
+                            <th class="border bg-red-500">
                                 Nhập thiếu
                             </th>
                             <th class="border">
@@ -75,13 +75,13 @@
                             <th class="border">
                                 SL đạt
                             </th>
-                            <th class="border bg-red-200">
+                            <th class="border bg-red-500">
                                 TL thực hiện
                             </th>
                             <th class="border">
                                 SL lỗi
                             </th>
-                            <th class="border bg-red-200">
+                            <th class="border bg-red-500">
                                 TL lỗi
                             </th>
                             <th class="border">
@@ -126,7 +126,7 @@
                                 <td class="border">
                                     {{ formatNumber($kc->plans->nhaphoanthanh) }}
                                 </td>
-                                <td class="border bg-red-200">
+                                <td class="border bg-red-300">
                                     {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
                                 </td>
                                 <td class="border">
@@ -137,7 +137,7 @@
                                         {{ $kc->sldat }}
                                     </a>
                                 </td>
-                                <td class="border bg-red-200">
+                                <td class="border bg-red-300">
                                     {{ round(($kc->sldat / $kc->chitieungay) * 100, 2) }}%
                                 </td>
                                 <td class="border">
@@ -145,7 +145,7 @@
                                         {{ $kc->slloi }}
                                     </a>
                                 </td>
-                                <td class="border bg-red-200">
+                                <td class="border bg-red-300">
                                     @if ($kc->sldat == 0 && $kc->slloi == 0)
                                         0%
                                     @else
