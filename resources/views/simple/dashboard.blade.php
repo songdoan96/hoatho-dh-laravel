@@ -19,10 +19,10 @@
                 <div class="text-2xl uppercase font-bold flex items-center justify-center gap-4">
                     <h2>Báo cáo theo dõi mẫu {{ $simples[0]->tuan }}</h2>
                     <a href="{{ route('simple.add') }}" title="Thêm mẫu" class="w-8">
-                        <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+                        <img src="{{ asset('images/plus.png') }}" alt="Thêm">
                     </a>
                     <a href="{{ route('simple.download', ['tuan' => $simples[0]->tuan]) }}" class="w-8">
-                        <img src="{{ asset('images/file.png') }}" alt="Xóa">
+                        <img src="{{ asset('images/file.png') }}" alt="download">
                     </a>
                 </div>
             @else

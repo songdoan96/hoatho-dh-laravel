@@ -40,12 +40,10 @@ class SimplesExport implements FromCollection, WithHeadings
             "Kết quả",
             "Tuần",
             "Biên bản",
-
             "Ngày comment",
             "Ngày gửi lại",
             "Thay đổi khi may",
             "Size, màu trả lại",
-
             "Ghi chú",
         ];
     }

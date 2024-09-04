@@ -120,7 +120,7 @@
                                 <td class="px-6 py-4">
                                     @if ($plan->daraichuyen)
                                         <div class="flex items-center justify-between">
-                                            <img src="{{ asset('images/check-box.png') }}" alt="Xóa"
+                                            <img src="{{ asset('images/check-box.png') }}" alt="Rải chuyền"
                                                 width="20"></i>
                                             <form class="hidden group-hover:block"
                                                 action="{{ route('plan.planDone', $plan) }}" method="POST">
@@ -137,7 +137,7 @@
                                             @csrf
                                             <button type="submit" title="Rải chuyền"
                                                 onclick="return confirm('Rải chuyền cho đơn hàng này')">
-                                                <img src="{{ asset('images/check-box-empty.png') }}" alt="Xóa"
+                                                <img src="{{ asset('images/check-box-empty.png') }}" alt="Rải chuyền"
                                                     width="20"></i>
                                             </button>
                                         </form>

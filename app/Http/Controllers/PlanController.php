@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PlansExport;
 use App\Models\Factory;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PlanController extends Controller
 {
@@ -80,5 +82,10 @@ class PlanController extends Controller
             $plan->save();
             return redirect()->route('kcs.line', $plan->chuyen)->with('success', 'Thêm logo thành công');
         }
+    }
+
+    public function download()
+    {
+        return Excel::download(new PlansExport, "baocao-" . date("d-m-Y") . ".xlsx");
     }
 }

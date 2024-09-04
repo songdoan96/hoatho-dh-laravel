@@ -53,7 +53,6 @@ class SimpleController extends Controller
     }
     public function download($tuan)
     {
-
         return $tuan === "all" ?  Excel::download(new SimplesExport(Simple::all()), 'maymau.xlsx') : Excel::download(new SimplesExport(Simple::where("tuan", "LIKE", "%" . $tuan . "%")->get()), 'maymau.xlsx');
     }
 }

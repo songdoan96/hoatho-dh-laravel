@@ -25,6 +25,11 @@
                         <img src="{{ asset('images/xn2.png') }}" alt="xn2" width="40">
                     </a>
                 @endif
+                @if (after17h())
+                    <a href="{{ route('plan.download') }}" title="File báo cáo" class="w-8">
+                        <img src="{{ asset('images/file.png') }}" alt="Xóa">
+                    </a>
+                @endif
             </div>
             <div class="text-black">
                 <form class="max-w-[8rem]">
