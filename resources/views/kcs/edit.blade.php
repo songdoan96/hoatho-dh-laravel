@@ -4,7 +4,7 @@
 @endpush
 @section('content')
     <div class="flex justify-center items-center w-screen min-h-screen bg-black text-white overflow-x-hidden">
-        <div class="w-full h-full md:w-1/2 p-4">
+        <div class="w-full h-full md:w-2/3 p-4">
             <a href="{{ route('kcs.dashboard') }}" class="flex items-center justify-center">
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
             </a>
@@ -33,26 +33,26 @@
                 </div>
 
             </div>
-            <div class="flex flex-col text-5xl font-bold">
-                <div class="flex bg-green-500 p-3 items-center min-h-28">
+            <div class="flex flex-col gap-8 text-5xl font-bold">
+                <div class="flex w-full bg-green-500 p-3 items-center min-h-28">
                     <div class="w-1/3 text-left">ĐẠT</div>
                     <div class="w-2/3 font-bold flex justify-between items-center">
                         <span class="text-7xl font-extrabold">{{ $kcs->sldat }}</span>
                         <form action="{{ route('kcs.passed', $kcs) }}" method="post">
                             @csrf
-                            <button type="submit" title="Thêm sp đạt" class="bg-blue-700 text-white p-2 w-20 rounded">
+                            <button type="submit" title="Thêm sp đạt" class="bg-blue-700 text-white p-2 w-32 h-32 rounded">
                                 +1
                             </button>
                         </form>
                     </div>
                 </div>
-                <div class="flex bg-red-500 p-3 items-center min-h-28">
+                <div class="flex w-full bg-red-500 p-3 items-center min-h-28">
                     <div class="w-1/3 text-left">LỖI</div>
                     <div class="w-2/3 flex justify-between items-center">
                         <span class="text-7xl font-extrabold ">{{ $kcs->slloi }}</span>
                         <form action="{{ route('kcs.failed', $kcs) }}" method="post">
                             @csrf
-                            <button type="submit" title="Thêm sp lỗi" class="bg-blue-700 text-white p-2 w-20 rounded">
+                            <button type="submit" title="Thêm sp lỗi" class="bg-blue-700 text-white p-2 w-32 h-32 rounded">
                                 +1
                             </button>
                         </form>

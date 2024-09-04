@@ -84,8 +84,8 @@ class PlanController extends Controller
         }
     }
 
-    public function download()
+    public function download($date)
     {
-        return Excel::download(new PlansExport, "baocao-" . date("d-m-Y") . ".xlsx");
+        return Excel::download(new PlansExport($date), "baocao-" . date($date) . ".xlsx");
     }
 }

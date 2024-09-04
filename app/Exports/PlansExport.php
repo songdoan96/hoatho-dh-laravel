@@ -12,6 +12,11 @@ class PlansExport implements FromCollection, WithHeadings, WithMapping
     /**
      * @return \Illuminate\Support\Collection
      */
+    public $date;
+    public function __construct($date)
+    {
+        $this->date = $date;
+    }
     public function headings(): array
     {
         return [
@@ -51,7 +56,7 @@ class PlansExport implements FromCollection, WithHeadings, WithMapping
             $kcs->sldat,
             round(($kcs->sldat / $kcs->chitieungay) * 100, 1),
             $kcs->slloi,
-            round(($kcs->slloi / ($kcs->sldat + $kcs->slloi)) * 100, 1),
+            $kcs->sldat == 0 && $kcs->slloi == 0 ? 0 : round(($kcs->slloi / ($kcs->sldat + $kcs->slloi)) * 100, 1),
             round(abs(($kcs->plans->btpcap - $kcs->plans->nhaphoanthanh) / $kcs->chitieungay), 1),
             $kcs->chitietloi,
 
@@ -59,6 +64,6 @@ class PlansExport implements FromCollection, WithHeadings, WithMapping
     }
     public function collection()
     {
-        return KCS::where('ngaytao', date('Y-m-d'))->with('plans')->get()->sortBy('plans.chuyen');
+        return KCS::where('ngaytao', date($this->date))->with('plans')->get()->sortBy('plans.chuyen');
     }
 }

@@ -94,7 +94,7 @@ Route::prefix('kehoach')->name('plan.')->middleware('authLogged')->group(functio
     Route::get('/sua-logo/{plan}', [PlanController::class, 'editLogo'])->name('editLogo');
     Route::post('/sua-logo/{plan}', [PlanController::class, 'storeLogo'])->name('storeLogo');
 
-    Route::get('/download', [PlanController::class, 'download'])->name('download');
+    Route::get('/download/{date}', [PlanController::class, 'download'])->name('download');
 });
 
 
