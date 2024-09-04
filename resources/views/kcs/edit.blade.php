@@ -66,9 +66,9 @@
                     <textarea name="chitietloi" class="w-full border border-black bg-white text-black p-2" rows="3">{{ $kcs->chitietloi }}</textarea>
                     <div class="flex justify-center w-full gap-4 my-2">
                         <a href="{{ route('kcs.dashboard') }}"
-                            class="text-white bg-red-500 hover:bg-red-860 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Hủy</a>
+                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">Hủy</a>
                         <button type="submit"
-                            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">
                             Cập nhật
                         </button>
                     </div>
