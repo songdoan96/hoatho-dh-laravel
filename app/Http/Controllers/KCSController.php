@@ -13,9 +13,9 @@ class KCSController extends Controller
     public function dashboard(Request $request)
     {
         if ($request->ngay) {
-            $kcsData = KCS::where('ngaytao', $request->ngay)->orderBy('id', "DESC")->with("plans")->get();
+            $kcsData = KCS::where('ngaytao', $request->ngay)->with("plans")->get()->sortBy('plans.chuyen');
         } else {
-            $kcsData = KCS::where('ngaytao', date('Y-m-d'))->orderBy('id', "DESC")->with("plans")->get();
+            $kcsData = KCS::where('ngaytao', date('Y-m-d'))->with("plans")->get()->sortBy('plans.chuyen');
         }
         return view("kcs.dashboard", compact('kcsData'));
     }

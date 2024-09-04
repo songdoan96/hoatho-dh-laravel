@@ -63,7 +63,8 @@
                 <h2 class="uppercase font-bold text-xl py-2">Vướng mắc</h2>
                 <form method="post" action="{{ route('kcs.updateErrorInfo', $kcs) }}" class="flex flex-col w-full">
                     @csrf
-                    <textarea name="chitietloi" class="w-full border border-black bg-white text-black p-2" rows="3">{{ $kcs->chitietloi }}</textarea>
+                    <textarea name="chitietloi" class="w-full border-blue-500 border p-2 text-xl"
+                        style="background-color: #d6e6f6 !important;color: #0c0c0c !important;" rows="3">{{ $kcs->chitietloi }}</textarea>
                     <div class="flex justify-center w-full gap-4 my-2">
                         <a href="{{ route('kcs.dashboard') }}"
                             class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">Hủy</a>
