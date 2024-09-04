@@ -37,7 +37,7 @@
         @if (count($kcsData))
             <div class="relative overflow-x-auto">
                 <table class="w-full text-base text-center text-black border">
-                    <thead class=" font-bold text-gray-700 uppercase bg-blue-300">
+                    <thead class=" font-bold uppercase bg-blue-500 text-white">
                         <tr>
                             <th class="border">
                                 Ngày
