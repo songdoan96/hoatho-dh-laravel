@@ -66,7 +66,7 @@
                             <th class="border">
                                 LK nhập hoàn thành
                             </th>
-                            <th class="border bg-red-500">
+                            <th class="border">
                                 Nhập thiếu
                             </th>
                             <th class="border">
@@ -75,13 +75,13 @@
                             <th class="border">
                                 SL đạt
                             </th>
-                            <th class="border bg-red-500">
+                            <th class="border">
                                 TL thực hiện
                             </th>
                             <th class="border">
                                 SL lỗi
                             </th>
-                            <th class="border bg-red-500">
+                            <th class="border">
                                 TL lỗi
                             </th>
                             <th class="border">
@@ -126,9 +126,16 @@
                                 <td class="border">
                                     {{ formatNumber($kc->plans->nhaphoanthanh) }}
                                 </td>
-                                <td class="border bg-red-300">
-                                    {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
-                                </td>
+                                @if ($kc->plans->thuchien - $kc->plans->nhaphoanthanh > 0)
+                                    <td class="border bg-red-300">
+                                        {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
+                                    </td>
+                                @else
+                                    <td class="border bg-green-300">
+                                        {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
+                                    </td>
+                                @endif
+
                                 <td class="border">
                                     {{ $kc->chitieungay }}
                                 </td>
@@ -137,21 +144,33 @@
                                         {{ $kc->sldat }}
                                     </a>
                                 </td>
-                                <td class="border bg-red-300">
-                                    {{ round(($kc->sldat / $kc->chitieungay) * 100, 2) }}%
-                                </td>
+                                @php
+                                    $tlthuchien = ($kc->sldat / $kc->chitieungay) * 100;
+                                @endphp
+                                @if ($tlthuchien > 95)
+                                    <td class="border bg-green-500">
+                                        {{ round($tlthuchien, 2) }}%
+                                    </td>
+                                @else
+                                    <td class="border bg-red-300">
+                                        {{ round($tlthuchien, 2) }}%
+                                    </td>
+                                @endif
+
                                 <td class="border">
                                     <a class="underline" href="{{ route('kcs.editPassFail', $kc) }}">
                                         {{ $kc->slloi }}
                                     </a>
                                 </td>
-                                <td class="border bg-red-300">
-                                    @if ($kc->sldat == 0 && $kc->slloi == 0)
-                                        0%
-                                    @else
-                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 2) }}%
-                                    @endif
-                                </td>
+                                @if ($kc->sldat == 0 && $kc->slloi == 0)
+                                    <td class="border bg-red-300">0%</td>
+                                @elseif(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100 > 10)
+                                    <td class="border bg-red-300">
+                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 2) }}%</td>
+                                @else
+                                    <td class="border bg-green-500">
+                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 2) }}%</td>
+                                @endif
                                 <td class="border">
                                     @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
                                     {{ round($von, 1) }}

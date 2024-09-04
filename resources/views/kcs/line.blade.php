@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('meta')
-    <meta http-equiv="refresh" content="120">
+    {{-- <meta http-equiv="refresh" content="120"> --}}
+    <meta http-equiv="refresh" content="60;url=http://172.17.0.30:8080/hoathodh/sanxuatdh/lineinfo.php?chuyen=07" />
 @endpush
 @push('styles')
     <style>
