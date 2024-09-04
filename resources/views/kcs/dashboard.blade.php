@@ -5,7 +5,7 @@
 @push('styles')
     <style>
         tr td {
-            width: calc(100% / 16);
+            min-width: 54px;
         }
     </style>
 @endpush
@@ -17,7 +17,7 @@
             </a>
             <div class="flex items-center justify-center w-full gap-4">
                 <h1 class="text-2xl uppercase font-bold">BÁO CÁO CHẤT LƯỢNG HÀNG NGÀY</h1>
-                @if (before8h())
+                @if (!after8h())
                     <a href="{{ route('kcs.add', ['xn' => 1]) }}">
                         <img src="{{ asset('images/xn1.png') }}" alt="xn1" width="40">
                     </a>
@@ -149,11 +149,11 @@
                                 @endphp
                                 @if ($tlthuchien > 95)
                                     <td class="border bg-green-500">
-                                        {{ round($tlthuchien, 2) }}%
+                                        {{ round($tlthuchien, 1) }}%
                                     </td>
                                 @else
                                     <td class="border bg-red-300">
-                                        {{ round($tlthuchien, 2) }}%
+                                        {{ round($tlthuchien, 1) }}%
                                     </td>
                                 @endif
 
@@ -166,16 +166,16 @@
                                     <td class="border bg-red-300">0%</td>
                                 @elseif(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100 > 10)
                                     <td class="border bg-red-300">
-                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 2) }}%</td>
+                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                 @else
                                     <td class="border bg-green-500">
-                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 2) }}%</td>
+                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                 @endif
                                 <td class="border">
                                     @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
                                     {{ round($von, 1) }}
                                 </td>
-                                <td class="border" style="min-width: 200px">
+                                <td class="border text-left" style="min-width: 200px">
                                     {{ $kc->chitietloi }}
                                 </td>
                             </tr>

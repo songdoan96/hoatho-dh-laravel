@@ -24,7 +24,7 @@ if (!function_exists('after8h')) {
     function after8h()
     {
         $currentTime = date("H:i:s");
-        $time8h = date("08:00:00");
+        $time8h = date("08:30:00");
         if ($currentTime >= $time8h) {
             return true;
         }
