@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('meta')
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 @endpush
 @section('content')
     <div class="flex justify-center items-center w-screen min-h-screen bg-black text-white overflow-x-hidden">
