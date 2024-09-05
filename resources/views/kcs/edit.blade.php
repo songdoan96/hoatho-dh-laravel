@@ -3,7 +3,8 @@
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 @endpush
 @section('content')
-    <div class="flex justify-center items-center w-screen min-h-screen bg-black text-white overflow-x-hidden">
+    <div
+        class="flex justify-center items-center w-screen min-h-screen bg-black text-white overflow-x-hidden overflow-y-scroll">
         <div class="w-full h-full md:w-2/3 p-4">
             <a href="{{ route('kcs.dashboard') }}" class="flex items-center justify-center">
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
