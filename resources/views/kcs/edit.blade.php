@@ -64,7 +64,7 @@
             </div>
             <div class="flex flex-col justify-center items-center my-2">
                 <h2 class="uppercase font-bold text-2xl py-2">Vướng mắc</h2>
-                <h2 class="font-bold py-1 text-red-400 p-2">3 lỗi cao nhất phân cách bằng dấu phẩy ','</h2>
+                <h2 class="font-bold py-1 text-red-400 p-2">3 lỗi cao nhất phân cách bằng dấu phẩy</h2>
                 <form method="post" action="{{ route('kcs.updateErrorInfo', $kcs) }}" class="flex flex-col w-full">
                     @csrf
                     <textarea name="chitietloi" class="w-full border-blue-500 border p-2 text-xl"
