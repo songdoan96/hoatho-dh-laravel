@@ -4,7 +4,7 @@
 @endpush
 @section('content')
     <div
-        class="flex justify-center items-center w-screen min-h-screen bg-black text-white overflow-x-hidden overflow-y-scroll">
+        class="flex justify-center items-center w-screen min-h-screen bg-black text-white overflow-x-hidden overflow-y-scroll pb-36">
         <div class="w-full h-full md:w-2/3 p-4">
             <a href="{{ route('kcs.dashboard') }}" class="flex items-center justify-center">
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
