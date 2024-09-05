@@ -25,7 +25,7 @@
                         <img src="{{ asset('images/xn2.png') }}" alt="xn2" width="40">
                     </a>
                 @endif
-                @if (Auth::check())
+                @if (Auth::check() && after8h())
                     <a href="{{ route('plan.download', Request::get('ngay') ?? date('Y-m-d')) }}" title="File báo cáo"
                         class="w-8">
                         <img src="{{ asset('images/file.png') }}" alt="Xóa">
