@@ -10,7 +10,7 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen flex flex-col pt-10 xl:p-0">
+    <div class="min-h-screen flex flex-col pt-10 lg:p-0">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('produce.dashboard') }}" class="w-10">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
@@ -32,7 +32,7 @@
                     </a>
                 @endif
             </div>
-            <div class="text-black">
+            <div class="text-black hidden lg:block">
                 <form class="max-w-[8rem]">
                     <input name="ngay" onchange="this.form.submit()" type="date" id="date"
                         class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
