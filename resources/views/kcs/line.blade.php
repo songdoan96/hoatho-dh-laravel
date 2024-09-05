@@ -116,7 +116,8 @@
                 </div>
                 <div class="flex flex-col justify-between items-center border-2 p-2 gap-2">
                     <p>VỐN</p>
-                    <a href="{{ route('produce.editBtp', $plan) }}" class="text-8xl number">
+                    <a href="{{ route('produce.editBtp', $plan) }}"
+                        class="text-8xl number @if (isset($von) && $von > $plan->mucvon) animate-blink text-red-200 @endif">
                         {{ isset($von) ? round($von, 1) : '--' }}
                     </a>
                 </div>
@@ -132,15 +133,21 @@
                         {{ $plan->thuchien - $plan->nhaphoanthanh }}
                     </a>
                 </div>
-                <div class="flex flex-col items-center border-2 gap-2 p-2 col-span-2">
-                    <span>3 lỗi cao nhất</span>
-                    @if (count($errors) > 0 && $errors[0] != '')
-                        <span class="text-2xl text-left w-full">
-                            @foreach ($errors as $index => $error)
-                                <p>{{ $index + 1 }}. {{ $error }}</p>
-                            @endforeach
-                        </span>
-                    @endif
+                <div class="flex flex-col justify-between border-2 col-span-2">
+                    <div class="flex flex-col items-center gap-2 px-2 pt-2">
+                        <span>3 lỗi cao nhất</span>
+                        @if (count($errors) > 0 && $errors[0] != '')
+                            <span class="text-2xl text-left w-full">
+                                @foreach ($errors as $index => $error)
+                                    <p class="line-clamp-1">{{ $index + 1 }}. {{ $error }}</p>
+                                @endforeach
+                            </span>
+                        @endif
+                    </div>
+                    <div class="flex justify-between text-xl w-full px-2">
+                        <p>Date: {{ date('m-d-Y') }}</p>
+                        <p id="time">Time: {{ date('H:i:s') }}</p>
+                    </div>
                 </div>
             </div>
         @else
@@ -150,3 +157,17 @@
         @endif
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function getTime() {
+            const now = new Date();
+            const h = now.getHours();
+            const m = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+            const s = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+            document.getElementById("time").innerText = "Time: " + `${h}:${m}:${s}`;
+        }
+        setInterval(() => {
+            getTime();
+        }, 1000);
+    </script>
+@endpush
