@@ -82,7 +82,7 @@
         </div>
     </div>
 @endsection
-@push('scripts')
+{{-- @push('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const allBtnSubmit = document.querySelectorAll('button[type="submit"]');
@@ -94,4 +94,4 @@
             })
         });
     </script>
-@endpush
+@endpush --}}
