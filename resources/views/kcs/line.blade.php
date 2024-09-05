@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Năng suất ' . ($plan->chuyen ?? ''))
+
 @push('meta')
     <meta http-equiv="refresh" content="120">
 @endpush
@@ -19,9 +21,6 @@
 @section('content')
     <div class="bg-black text-white h-screen w-screen">
         @if ($plan)
-            @php
-                $chuyen = explode('_', $plan->chuyen);
-            @endphp
             <div
                 class="h-screen w-screen overflow-hidden bg-blue-800 text-white text-4xl font-bold uppercase grid grid-cols-4 grid-rows-4 gap-1">
                 <div class="flex border-2 p-2 flex-col justify-between">
@@ -99,13 +98,13 @@
                 </div>
                 <div class="flex flex-col justify-between items-center border-2 p-2 gap-2">
                     <p>TÁC NGHIỆP</p>
-                    <a href="{{ route('produce.editWarehouseUpdate', $plan) }}" class="text-8xl number">
+                    <a href="{{ route('plan.editPlan', $plan) }}" class="text-8xl number">
                         {{ $plan->sltacnghiep }}
                     </a>
                 </div>
                 <div class="flex flex-col justify-between items-center border-2 p-2 gap-2">
                     <p>ĐÃ THỰC HIỆN</p>
-                    <a href="{{ route('produce.editWarehouseUpdate', $plan) }}" class="text-8xl number">
+                    <a href="{{ route('plan.editPlan', $plan) }}" class="text-8xl number">
                         {{ $plan->thuchien }}
                     </a>
                 </div>
@@ -123,13 +122,13 @@
                 </div>
                 <div class="flex flex-col justify-between items-center border-2 p-2 gap-2">
                     <p>NHẬP KHO</p>
-                    <a href="{{ route('produce.editWarehouseUpdate', $plan) }}" class="text-8xl number">
+                    <a href="{{ route('plan.editPlan', $plan) }}" class="text-8xl number">
                         {{ $plan->nhaphoanthanh }}
                     </a>
                 </div>
                 <div class="flex flex-col justify-between items-center border-2 p-2 gap-2">
                     <p>NHẬP THIẾU</p>
-                    <a href="{{ route('produce.editWarehouseUpdate', $plan) }}" class="text-8xl number">
+                    <a href="{{ route('plan.editPlan', $plan) }}" class="text-8xl number">
                         {{ $plan->thuchien - $plan->nhaphoanthanh }}
                     </a>
                 </div>

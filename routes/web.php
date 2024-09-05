@@ -57,8 +57,6 @@ Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store')
 Route::prefix('/sanxuat')->name('produce.')->group(function () {
     Route::get('/', [ProduceController::class, 'dashboard'])->name('dashboard');
     Route::get('/ket-thuc', [ProduceController::class, 'finish'])->name('finish');
-    Route::get('/sua-ke-hoach/{plan}', [ProduceController::class, 'editWarehouse'])->name('editWarehouse')->middleware('authLogged');
-    Route::post('/sua-ke-hoach/{plan}', [ProduceController::class, 'editWarehouseUpdate'])->name('editWarehouseUpdate')->middleware('authLogged');
 
     Route::get('/sua-btp/{plan}', [ProduceController::class, 'editBtp'])->name('editBtp');
     Route::post('/sua-btp/{plan}', [ProduceController::class, 'editBtpUpdate'])->name('editBtpUpdate');
@@ -87,12 +85,18 @@ Route::prefix('kcs')->name('kcs.')->group(function () {
 Route::prefix('kehoach')->name('plan.')->middleware('authLogged')->group(function () {
     Route::get('/', [PlanController::class, 'dashboard'])->name('dashboard');
     Route::post('/store', [PlanController::class, 'store'])->name('store');
+
     Route::post('/planUp/{plan}', [PlanController::class, 'planUp'])->name('planUp');
     Route::delete('/planDelete/{plan}', [PlanController::class, 'planDelete'])->name('planDelete');
     Route::post('/planDone/{plan}', [PlanController::class, 'planDone'])->name('planDone');
 
     Route::get('/sua-logo/{plan}', [PlanController::class, 'editLogo'])->name('editLogo');
     Route::post('/sua-logo/{plan}', [PlanController::class, 'storeLogo'])->name('storeLogo');
+
+    // Route::get('/sua-ke-hoach/{plan}', [PlanController::class, 'editPlan'])->name('editPlan');
+    Route::get('/sua-kehoach/{plan}', [PlanController::class, 'editPlan'])->name('editPlan')->middleware('authLogged');
+    Route::post('/sua-kehoach/{plan}', [PlanController::class, 'editPlanUpdate'])->name('editPlanUpdate')->middleware('authLogged');
+
 
     Route::get('/download/{date}', [PlanController::class, 'download'])->name('download');
 });

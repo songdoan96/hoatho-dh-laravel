@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Đăng nhập')
+
 @section('content')
     <div class="h-screen w-full flex flex-col gap-4 p-4 items-center justify-center">
         <a href="{{ route('produce.dashboard') }}">

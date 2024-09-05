@@ -28,26 +28,6 @@ class ProduceController extends Controller
         return view('produce.finish', compact('plans'));
     }
 
-    public function editWarehouse(Plan $plan)
-    {
-
-        return view('produce.edit-warehouse', compact('plan'));
-    }
-
-    public function editWarehouseUpdate(Plan $plan, Request $request)
-    {
-        if ($request->tacnghiepmoi) {
-            $plan->sltacnghiep += $request->tacnghiepmoi;
-            $plan->save();
-        }
-        if ($request->nhaphoanthanh) {
-            $plan->nhaphoanthanh = $request->nhaphoanthanh;
-            $plan->save();
-        }
-        return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
-    }
-
-
     public function editBtp(Plan $plan)
     {
 

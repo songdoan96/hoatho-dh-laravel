@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', 'Đơn hàng chờ sản xuất')
+
+
 @section('content')
     <div class="min-h-screen flex flex-col">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
@@ -43,7 +46,7 @@
 
         @if (count($plans))
             <div class="relative overflow-x-auto p-4">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
+                <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -106,13 +109,17 @@
                                     {{ formatDate($plan->ngaydukien, 'd-m-Y') }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $plan->sltacnghiep }}
+                                    <a class="underline" href="{{ route('plan.editPlan', $plan) }}">
+                                        {{ formatNumber($plan->sltacnghiep) }}
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $plan->thuchien }}
+                                    {{ formatNumber($plan->thuchien) }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $plan->mucvon }}
+                                    <a class="underline" href="{{ route('plan.editPlan', $plan) }}">
+                                        {{ $plan->mucvon }}
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $plan->ghichu }}

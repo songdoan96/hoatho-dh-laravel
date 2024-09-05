@@ -86,6 +86,28 @@ class PlanController extends Controller
 
     public function download($date)
     {
-        return Excel::download(new PlansExport($date), "baocao-" . date($date) . ".xlsx");
+        return Excel::download(new PlansExport($date), "baocao-" . date("d-m-Y", strtotime($date)) . ".xlsx");
+    }
+
+
+    public function editPlan(Plan $plan)
+    {
+
+        return view('plan.edit', compact('plan'));
+    }
+
+    public function editPlanUpdate(Plan $plan, Request $request)
+    {
+        if ($request->tacnghiepmoi) {
+            $plan->sltacnghiep += $request->tacnghiepmoi;
+        }
+        if ($request->mucvon) {
+            $plan->mucvon = (float)$request->mucvon;
+        }
+        if ($request->nhaphoanthanh) {
+            $plan->nhaphoanthanh = $request->nhaphoanthanh;
+        }
+        $plan->save();
+        return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
     }
 }

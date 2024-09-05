@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @push('meta')
     <meta http-equiv="refresh" content="300">
 @endpush
@@ -40,7 +41,7 @@
                             <div class="bg-blue-600 p-2 flex flex-col">
                                 <div class="flex justify-between">
                                     <span>Tác nghiệp</span>
-                                    <span>{{ formatNumber($plan->sltacnghiep) }} <span class="text-sm">pcs</span></span>
+                                    <span>{{ formatNumber($plan->sltacnghiep) }} </span>
                                 </div>
                                 @php
                                     $thuchienPercent = round(($plan->thuchien / $plan->sltacnghiep) * 100, 1);
@@ -48,7 +49,7 @@
                                 <div class="flex justify-between">
                                     <span>LK thực hiện</span>
                                     <span class="flex items-center gap-1">
-                                        <span>{{ formatNumber($plan->thuchien) }}<span class="text-sm"> pcs</span>
+                                        <span>{{ formatNumber($plan->thuchien) }}<span class="text-sm"> </span>
                                             @if ($thuchienPercent > 95)
                                                 <form action="{{ route('plan.planDone', $plan) }}" method="post"
                                                     class="inline-flex items-center justify-center">
@@ -75,12 +76,12 @@
                                 <div class="flex justify-between">
                                     <span>SL còn lại</span>
                                     <span>{{ formatNumber($plan->sltacnghiep - $plan->thuchien) }} <span
-                                            class="text-sm">pcs</span></span>
+                                            class="text-sm"></span></span>
                                 </div>
 
                                 <div class="flex justify-between">
                                     <span>Nhập hoàn thành</span>
-                                    <span>{{ formatNumber($plan->nhaphoanthanh) }} <span class="text-sm">pcs</span></span>
+                                    <span>{{ formatNumber($plan->nhaphoanthanh) }} </span>
                                 </div>
 
 
@@ -91,12 +92,12 @@
                             <div class="bg-blue-600 p-2">
                                 <div class="flex justify-between">
                                     <span>Chỉ tiêu ngày</span>
-                                    <span>{{ $kcs->chitieungay ?? '--' }} <span class="text-sm">pcs</span></span>
+                                    <span>{{ $kcs->chitieungay ?? '--' }} </span>
                                 </div>
 
                                 <div class="flex justify-between">
                                     <span>SP đạt / TL đạt</span>
-                                    <span>{{ $kcs->sldat ?? '--' }} <span class="text-sm">pcs</span> /
+                                    <span>{{ $kcs->sldat ?? '--' }}<span class="text-sm">pcs</span> /
                                         {{ $kcs ? round(($kcs->sldat / $kcs->chitieungay) * 100, 2) : '--' }} %</span>
                                 </div>
                                 <div class="flex justify-between">
@@ -114,9 +115,9 @@
                                             }
                                         }
                                     @endphp
-                                    <span>{{ $kcs->slloi ?? '--' }} <span class="text-sm">pcs</span> /
+                                    <span>{{ $kcs->slloi ?? '--' }}<span class="text-sm">pcs</span> /
                                         {{ $loiPercent ?? '--' }}
-                                        %</span>
+                                        <span class="text-sm">%</span></span>
                                 </div>
 
                             </div>

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Báo cáo chất lượng hàng ngày')
 @push('meta')
     <meta http-equiv="refresh" content="300">
 @endpush
@@ -76,6 +77,9 @@
                                 Nhập thiếu
                             </th>
                             <th class="border">
+                                Vốn
+                            </th>
+                            <th class="border">
                                 Chỉ tiêu ngày
                             </th>
                             <th class="border">
@@ -90,9 +94,7 @@
                             <th class="border">
                                 TL lỗi
                             </th>
-                            <th class="border">
-                                Vốn
-                            </th>
+
                             <th class="border">
                                 Vướng mắc
                             </th>
@@ -141,7 +143,10 @@
                                         {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
                                     </td>
                                 @endif
-
+                                <td class="border">
+                                    @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
+                                    {{ round($von, 1) }}
+                                </td>
                                 <td class="border">
                                     {{ $kc->chitieungay }}
                                 </td>
@@ -170,17 +175,14 @@
                                 </td>
                                 @if ($kc->sldat == 0 && $kc->slloi == 0)
                                     <td class="border bg-red-300">0%</td>
-                                @elseif(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100 > 10)
+                                @elseif(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100 >= 10)
                                     <td class="border bg-red-300">
                                         {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                 @else
                                     <td class="border bg-green-500">
                                         {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                 @endif
-                                <td class="border">
-                                    @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
-                                    {{ round($von, 1) }}
-                                </td>
+
                                 <td class="border text-left" style="min-width: 200px">
                                     {{ $kc->chitietloi }}
                                 </td>
