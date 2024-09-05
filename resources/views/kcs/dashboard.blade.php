@@ -10,7 +10,7 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col pt-4">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('produce.dashboard') }}" class="w-10">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
