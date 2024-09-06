@@ -26,6 +26,16 @@ class KCSController extends Controller
         if (after17h()) {
             return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
         }
+
+        $currentTime = date("H:i:s");
+        $time11h30 = date("11:31:00");
+
+        if ($currentTime > $time11h30) {
+            return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
+        }
+
+
+
         return view("kcs.edit", compact('kcs'));
     }
 

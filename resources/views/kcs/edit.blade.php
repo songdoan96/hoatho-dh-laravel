@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Báo cáo KCS')
-
 @push('meta')
     <meta name="viewport" content="width=device-width, initial-scale=1">
 @endpush
