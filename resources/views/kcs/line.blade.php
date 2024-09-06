@@ -117,7 +117,7 @@
                 <div class="flex flex-col justify-between items-center border-2 p-2 gap-2">
                     <p>VỐN</p>
                     <a href="{{ route('produce.editBtp', $plan) }}"
-                        class="text-8xl number @if (isset($von) && $von > $plan->mucvon) animate-blink text-red-200 @endif">
+                        class="text-8xl number @if (isset($von) && $von > $plan->mucvon) animate-blink text-red-500 @endif">
                         {{ isset($von) ? round($von, 1) : '--' }}
                     </a>
                 </div>
@@ -161,7 +161,7 @@
     <script>
         function getTime() {
             const now = new Date();
-            const h = now.getHours();
+            const h = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
             const m = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
             const s = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
             document.getElementById("time").innerText = "Time: " + `${h}:${m}:${s}`;

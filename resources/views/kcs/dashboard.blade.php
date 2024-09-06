@@ -174,7 +174,7 @@
                                     </a>
                                 </td>
                                 @if ($kc->sldat == 0 && $kc->slloi == 0)
-                                    <td class="border bg-red-300">0%</td>
+                                    <td class="border bg-green-500">0%</td>
                                 @elseif(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100 >= 10)
                                     <td class="border bg-red-300">
                                         {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
