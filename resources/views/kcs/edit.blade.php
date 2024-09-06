@@ -8,9 +8,9 @@
     <div
         class="flex justify-center items-center w-screen bg-black text-white overflow-x-hidden min-h-screen overflow-y-scroll pb-72">
         <div class="w-full h-full md:w-2/3 p-4">
-            <a href="{{ route('kcs.dashboard') }}" class="flex items-center justify-center">
+            <h1 class="flex items-center justify-center">
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
-            </a>
+            </h1>
             <h2 class="bg-blue-500 text-center text-3xl font-bold py-1 my-2">BÁO CÁO KCS {{ $kcs->plans->chuyen }}</h2>
             <h2 class="font-bold text-center text-2xl">{{ formatDate($kcs->ngaytao, 'd/m/Y') }}
                 - {{ $kcs->plans->khachhang }}
