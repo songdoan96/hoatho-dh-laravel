@@ -52,7 +52,7 @@
                                         {{ $document->bophan }}
                                         @auth
 
-                                            <a href="{{ route('internal.documentEdit', $document) }}"
+                                            <a title="Chỉnh sửa" href="{{ route('internal.documentEdit', $document) }}"
                                                 class="text-xl text-blue-500 ml-2 hidden group-hover:inline-flex">&raquo;</a>
                                         @endauth
                                     </td>

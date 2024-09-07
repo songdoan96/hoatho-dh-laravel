@@ -145,7 +145,7 @@
                         @endif
                     </div>
                     <div class="flex justify-between text-xl w-full px-2">
-                        <p>Date: {{ date('m-d-Y') }}</p>
+                        <p>Date: {{ date('d-m-Y') }}</p>
                         <p id="time">Time: {{ date('H:i:s') }}</p>
                     </div>
                 </div>
