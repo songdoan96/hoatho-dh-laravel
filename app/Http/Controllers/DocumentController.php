@@ -14,6 +14,23 @@ class DocumentController extends Controller
         $documents = Document::orderby('bophan')->get();
         return view("internal.document.index", compact('documents'));
     }
+    public function documentEdit(Document $document)
+    {
+        return view("internal.document.edit", compact("document"));
+    }
+    public function documentUpdate(Document $document, Request $request)
+    {
+
+        if ($request->hasFile('file')) {
+            Storage::disk('public')->delete($document->link);
+            $file = $request->file('file');
+            $path = $file->store('files', 'public');
+            $document->update([...$request->all(), 'link' => $path]);
+            return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
+        }
+        $document->update($request->all());
+        return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
+    }
     public function documentAdd()
     {
         return view("internal.document.add");

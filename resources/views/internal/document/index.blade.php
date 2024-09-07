@@ -16,7 +16,7 @@
             <div class="text-2xl uppercase font-bold flex flex-1 items-center justify-center gap-4">
                 <h2>DANH MỤC TÀI LIỆU BAN HÀNH</h2>
                 <a href="{{ route('internal.documentAdd') }}" title="Thêm tài liệu" class="w-8">
-                    <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+                    <img src="{{ asset('images/plus.png') }}" alt="Thêm">
                 </a>
             </div>
         </div>
@@ -40,15 +40,20 @@
                             @foreach ($documents as $document)
                                 <tr class="border-b border-gray-700">
                                     <td class="group">
-                                        {{ $document->bophan }}
                                         @auth
                                             <form action="{{ route('internal.documentDelete', $document) }}" method="post"
                                                 class="hidden text-red-500 group-hover:inline-flex">
                                                 @csrf
                                                 @method('delete')
-                                                <button onclick="return confirm('Xóa tài liệu này?')"
+                                                <button class="text-xl" onclick="return confirm('Xóa tài liệu này?')"
                                                     type="submit">&times;</button>
                                             </form>
+                                        @endauth
+                                        {{ $document->bophan }}
+                                        @auth
+
+                                            <a href="{{ route('internal.documentEdit', $document) }}"
+                                                class="text-xl text-blue-500 ml-2 hidden group-hover:inline-flex">&raquo;</a>
                                         @endauth
                                     </td>
                                     <td>
