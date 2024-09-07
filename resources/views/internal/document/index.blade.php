@@ -79,7 +79,7 @@
                         </tbody>
                     </table>
                 @else
-                    <h1 class="text-center mt-4 uppercase font-bold">Không tìm tài liệu</h1>
+                    <h1 class="text-center mt-4 uppercase font-bold">Không tìm thấy tài liệu</h1>
                 @endif
             </div>
         </div>
