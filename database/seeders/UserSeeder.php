@@ -50,5 +50,9 @@ class UserSeeder extends Seeder
             "username" => "chuyenmay",
             "password" => Hash::make("htdh123")
         ]);
+        User::create([
+            "username" => "noibo",
+            "password" => Hash::make("noibo@#")
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\KCSController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProduceController;
@@ -116,4 +117,14 @@ Route::prefix("maymau")->name('simple.')->group(function () {
 
     Route::delete('/{simple}', [SimpleController::class, 'destroy'])->name('destroy')->middleware('authLogged');
     Route::get('/{tuan}', [SimpleController::class, 'download'])->name('download')->middleware('authLogged');
+});
+
+
+Route::prefix("noibo")->name('internal.')->group(function () {
+
+    Route::get('/tailieu', [DocumentController::class, 'document'])->name('document');
+    Route::get('/tailieu/them', [DocumentController::class, 'documentAdd'])->name('documentAdd')->middleware('authLogged');
+    Route::post('/tailieu/them', [DocumentController::class, 'documentStore'])->name('documentStore')->middleware('authLogged');
+    Route::get('/tailieu/download/{document}', [DocumentController::class, 'documentDownload'])->name('documentDownload');
+    Route::delete('/tailieu/{document}', [DocumentController::class, 'documentDelete'])->name('documentDelete');
 });

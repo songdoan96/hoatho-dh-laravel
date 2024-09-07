@@ -90,7 +90,7 @@
                         </thead>
                         <tbody>
                             @foreach ($simples as $simple)
-                                <tr $wire:key="{{ $simple->id }}" class="border-b bg-primary border-gray-700">
+                                <tr class="border-b bg-primary border-gray-700">
                                     <td class="group">
                                         {{ $loop->index + 1 }}.{{ $simple->khachhang }}
                                         <form method="post" action="{{ route('simple.destroy', $simple) }}"

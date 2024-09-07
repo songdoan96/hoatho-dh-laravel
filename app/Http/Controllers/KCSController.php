@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\PlansExport;
 use App\Models\KCS;
 use App\Models\Plan;
 use Illuminate\Http\Request;
@@ -26,10 +25,6 @@ class KCSController extends Controller
         if (after17h()) {
             return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
         }
-
-
-
-
         return view("kcs.edit", compact('kcs'));
     }
 
