@@ -139,7 +139,9 @@
                         @if (count($errors) > 0 && $errors[0] != '')
                             <span class="text-2xl text-left w-full">
                                 @foreach ($errors as $index => $error)
-                                    <p class="line-clamp-1">{{ $index + 1 }}. {{ $error }}</p>
+                                    @if (strlen($error) && $index < 3)
+                                        <p class="line-clamp-1">{{ $index + 1 }}. {{ $error }}</p>
+                                    @endif
                                 @endforeach
                             </span>
                         @endif
