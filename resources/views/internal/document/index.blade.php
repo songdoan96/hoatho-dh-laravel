@@ -68,7 +68,8 @@
                                         {{ $document->ghichu }}
                                     </td>
                                     <td class="py-4">
-                                        <a class="bg-blue-500 text-white underline p-2 rounded"
+                                        <a title="{{ $document->link }}"
+                                            class="bg-blue-500 text-white underline p-2 rounded"
                                             href="{{ route('internal.documentDownload', $document) }}">
                                             Tải xuống
                                         </a>

@@ -14,23 +14,7 @@ class DocumentController extends Controller
         $documents = Document::orderby('bophan')->get();
         return view("internal.document.index", compact('documents'));
     }
-    public function documentEdit(Document $document)
-    {
-        return view("internal.document.edit", compact("document"));
-    }
-    public function documentUpdate(Document $document, Request $request)
-    {
 
-        if ($request->hasFile('file')) {
-            Storage::disk('public')->delete($document->link);
-            $file = $request->file('file');
-            $path = $file->store('files', 'public');
-            $document->update([...$request->all(), 'link' => $path]);
-            return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
-        }
-        $document->update($request->all());
-        return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
-    }
     public function documentAdd()
     {
         return view("internal.document.add");
@@ -39,7 +23,11 @@ class DocumentController extends Controller
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('files', 'public');
+            $fileName = $file->getClientOriginalName();
+            if (Storage::disk("public")->exists("files/" . $fileName)) {
+                return redirect()->back()->with('danger', 'File đã tồn tại');
+            };
+            $path = $file->storeAs('files', $fileName, 'public');
             Document::create(
                 [...$request->all(), 'link' => $path]
             );
@@ -47,6 +35,28 @@ class DocumentController extends Controller
         }
         return redirect()->route('internal.document');
     }
+    public function documentEdit(Document $document)
+    {
+        return view("internal.document.edit", compact("document"));
+    }
+    public function documentUpdate(Document $document, Request $request)
+    {
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            if (Storage::disk("public")->exists("files/" . $fileName)) {
+                return redirect()->back()->with('danger', 'File đã tồn tại');
+            };
+            Storage::disk('public')->delete($document->link);
+            $path = $file->storeAs('files', $fileName, 'public');
+            $document->update([...$request->all(), 'link' => $path]);
+            return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
+        }
+        $document->update($request->all());
+        return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
+    }
+
     public function documentDownload(Document $document)
     {
         return Response::download(public_path("storage/" . $document->link));
