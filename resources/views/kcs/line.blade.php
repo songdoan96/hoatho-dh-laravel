@@ -183,7 +183,7 @@
                                 @isset($kcs)
                                     <a href="{{ route('kcs.editWorker', $kcs) }}">{{ formatNumber($kcs->chitieungay) }}</a>
                                 @else
-                                    --
+                                    <a href="{{ route('kcs.editWorker', $kcs) }}">--</a>
                                 @endisset
                             </p>
                         </div>
