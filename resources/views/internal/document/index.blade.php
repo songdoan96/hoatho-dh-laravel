@@ -4,8 +4,7 @@
     <style>
         tbody td {
             border: 1px solid #787f99;
-            text-align: center;
-            min-width: 45px;
+            padding-left: 4px;
         }
     </style>
 @endpush
@@ -23,13 +22,20 @@
         <div id="dashboard">
             <div class="relative overflow-x-auto">
                 @if (count($documents))
-                    <table class="w-full text-sm text-left rtl:text-right text-black">
-                        <thead class="text-xs uppercase bg-red-700 text-white text-center">
+                    <table class="w-full text-sm text-black">
+                        <thead class="text-xs uppercase bg-red-700 text-white">
                             <tr>
                                 <th class="border border-black py-2">BỘ PHẬN</th>
                                 <th class="border border-black py-2">STT TỪNG BỘ PHẬN</th>
                                 <th class="border border-black py-2">VĂN BẢN SỐ</th>
                                 <th class="border border-black py-2">DANH MỤC</th>
+                                <th class="border border-black py-2">Phân loại</th>
+                                <th class="border border-black py-2">NGÀY BAN HÀNH LẦN ĐẦU</th>
+                                <th class="border border-black py-2">NGÀY SĐ/ CẬP NHẬT</th>
+                                <th class="border border-black py-2">LẦN SỬA ĐỔI</th>
+                                <th class="border border-black py-2">THỜI GIAN LƯU TRỮ</th>
+                                <th class="border border-black py-2">NƠI LƯU TRỮ HỒ SƠ</th>
+
                                 <th class="border border-black py-2">GHI CHÚ</th>
                                 <th class="border border-black py-2"></th>
                             </tr>
@@ -38,8 +44,8 @@
                         </thead>
                         <tbody>
                             @foreach ($documents as $document)
-                                <tr class="border-b border-gray-700">
-                                    <td class="group">
+                                <tr class="border-b border-gray-700 text-left">
+                                    <td class="group w-32">
                                         @auth
                                             <form action="{{ route('internal.documentDelete', $document) }}" method="post"
                                                 class="hidden text-red-500 group-hover:inline-flex">
@@ -55,24 +61,49 @@
                                                 class="text-xl text-blue-500 ml-2 hidden group-hover:inline-flex">&raquo;</a>
                                         @endauth
                                     </td>
-                                    <td>
-                                        {{ $document->stt }}
+                                    <td class="w-12">
+                                        {{ $document->sttbophan }}
                                     </td>
-                                    <td>
+                                    <td class="w-20">
                                         {{ $document->vanbanso }}
                                     </td>
-                                    <td>
+                                    <td class="w-72">
                                         {{ $document->danhmuc }}
+                                    </td>
+                                    <td class="w-20">
+                                        {{ $document->phanloai }}
+                                    </td>
+                                    <td class="w-20">
+                                        {{ $document->ngaybanhanh }}
+                                    </td>
+                                    <td class="w-20">
+                                        {{ $document->ngaysuadoi }}
+                                    </td>
+                                    <td class="w-12">
+                                        {{ $document->lansuadoi }}
+                                    </td>
+                                    <td class="w-12">
+                                        {{ $document->thoigianluu }}
+                                    </td>
+                                    <td class="w-28">
+                                        {{ $document->noiluutru }}
                                     </td>
                                     <td>
                                         {{ $document->ghichu }}
                                     </td>
-                                    <td class="py-4">
-                                        <a title="{{ $document->link }}"
-                                            class="bg-blue-500 text-white underline p-2 rounded"
-                                            href="{{ route('internal.documentDownload', $document) }}">
-                                            Tải xuống
-                                        </a>
+                                    <td class="w-28">
+                                        @if ($document->link)
+                                            <a title="{{ $document->link }}" class="underline p-2 rounded"
+                                                href="{{ route('internal.documentDownload', $document) }}">
+                                                Tải xuống
+                                            </a>
+                                        @else
+                                            <a title="{{ $document->link }}" class="underline p-2 rounded"
+                                                href="{{ route('internal.documentDownload', $document) }}">
+                                                Tải xuống
+                                            </a>
+                                        @endif
+
                                     </td>
 
                                 </tr>

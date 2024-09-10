@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="flex h-48">
-                    <div class="flex flex-1 text-center py-2">
+                    <div class="flex flex-1 text-center py-2 border-r-2">
                         <div class="w-1/4 flex flex-col">
                             <p class="yellow">Tác nghiệp</p>
                             <p class="text-2xl">Order qty</p>

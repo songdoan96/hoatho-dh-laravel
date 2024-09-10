@@ -7,6 +7,7 @@ use App\Http\Controllers\KCSController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\SimpleController;
+use App\Imports\DocumentsImport;
 use App\Models\Factory;
 use App\Models\KCS;
 use App\Models\Plan;
@@ -44,6 +45,12 @@ Route::get('/', function () {
 
 
 Route::get('/test', function () {
+
+    // // Excel::import(new DocumentsImport, 'file.xlsx');
+
+    // dd(1);
+    // return;
+
     $line = "XN1_01";
     $plan = Plan::where('chuyen', $line)
         ->where('daraichuyen', 1)

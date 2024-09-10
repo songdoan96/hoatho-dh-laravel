@@ -11,7 +11,7 @@ class DocumentController extends Controller
 {
     public function document()
     {
-        $documents = Document::orderby('bophan')->get();
+        $documents = Document::all();
         return view("internal.document.index", compact('documents'));
     }
 
