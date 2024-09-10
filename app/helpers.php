@@ -55,10 +55,11 @@ if (!function_exists('after17h')) {
     }
 }
 if (!function_exists('formatNumber')) {
-    function formatNumber($number)
+    function formatNumber($number, $decimals = 0)
     {
+
         if (isset($number)) {
-            return number_format($number, 0, ',', '.');
+            return number_format($number, $decimals, ",", ".");
         }
     }
 }

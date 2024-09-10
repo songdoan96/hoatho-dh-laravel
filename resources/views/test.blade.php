@@ -29,7 +29,7 @@
     <div class="bg-black text-white h-screen w-screen">
         @if ($plan)
             <div class=" flex flex-col h-screen w-screen overflow-hidden bg-black text-white text-4xl font-bold uppercase">
-                <div class="bg-blue-900 flex items-center h-24 text-2xl">
+                <div class="bg-blue-900 flex items-center h-32 text-2xl">
                     <div class="w-1/6 flex flex-col justify-between h-full py-2 px-1">
                         <p>
                             <span class="yellow font-bold">Date:</span>
@@ -98,7 +98,7 @@
                             <p class="text-2xl">Order qty</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a href="{{ route('plan.editPlan', $plan) }}">
-                                    {{ number_format($plan->sltacnghiep, 0, ',', ' ') }}
+                                    {{ formatNumber($plan->sltacnghiep) }}
                                 </a>
 
                             </p>
@@ -108,7 +108,7 @@
                             <p class="text-2xl">Finished</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a href="{{ route('plan.editPlan', $plan) }}">
-                                    {{ number_format($plan->thuchien, 0, ',', ' ') }}
+                                    {{ formatNumber($plan->thuchien) }}
 
                                 </a>
                             </p>
@@ -118,7 +118,7 @@
                             <p class="text-2xl">Stored</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a href="{{ route('plan.editPlan', $plan) }}">
-                                    {{ number_format($plan->nhaphoanthanh, 0, ',', ' ') }}
+                                    {{ formatNumber($plan->nhaphoanthanh) }}
 
                                 </a>
                             </p>
@@ -128,7 +128,7 @@
                             <p class="text-2xl">remaining qty</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a href="{{ route('plan.editPlan', $plan) }}">
-                                    {{ number_format($plan->thuchien - $plan->nhaphoanthanh, 0, ',', ' ') }}
+                                    {{ formatNumber($plan->thuchien - $plan->nhaphoanthanh) }}
                                 </a>
                             </p>
                         </div>
@@ -144,15 +144,15 @@
                         @endif
                     </div>
                 </div>
-                <div class="flex-1 grid grid-cols-2 grid-rows-4 gap-8 pb-2">
+                <div class="flex-1 grid grid-cols-2 grid-rows-4 gap-8 pb-2 border-2 p-2">
                     <div class="flex items-center">
                         <div class="flex flex-col justify-between w-1/2">
                             <p class="yellow">BTP CẤP</p>
                             <p>semi-finished</p>
                         </div>
-                        <p class="number flex-1 text-right">
+                        <p class="number flex-1 text-left">
                             <a href="{{ route('produce.editBtp', $plan) }}">
-                                {{ number_format($plan->btpcap, 0, ',', ' ') }}
+                                {{ formatNumber($plan->btpcap) }}
                             </a>
                         </p>
                     </div>
@@ -161,10 +161,10 @@
                             <p class="yellow">TỶ LỆ vỐN</p>
                             <p>Remaining rate</p>
                         </div>
-                        <p class="number flex-1 text-right">
+                        <p class="number flex-1 text-left">
                             <a href="{{ route('produce.editBtp', $plan) }}"
                                 class="@if (isset($von) && $von > $plan->mucvon) animate-blink red @endif">
-                                {{ isset($von) ? round($von, 1) : '--' }}
+                                {{ isset($von) ? formatNumber($von, 1) : '--' }}
                             </a>
                         </p>
                     </div>
@@ -173,9 +173,9 @@
                             <p class="yellow">Chỉ tiêu/Ngày</p>
                             <p>Target/day</p>
                         </div>
-                        <p class="number flex-1 text-right">
+                        <p class="number flex-1 text-left">
                             @isset($kcs)
-                                <a href="{{ route('kcs.editWorker', $kcs) }}">{{ $kcs->chitieungay }}</a>
+                                <a href="{{ route('kcs.editWorker', $kcs) }}">{{ formatNumber($kcs->chitieungay) }}</a>
                             @else
                                 --
                             @endisset
@@ -186,23 +186,23 @@
                             <p class="yellow">Chỉ tiêu hiện tại</p>
                             <p>Target now</p>
                         </div>
-                        <p class="number flex-1 text-right">{{ $dmhientai ?? 0 }}</p>
+                        <p class="number flex-1 text-left">{{ $dmhientai ?? 0 }}</p>
                     </div>
                     <div class="flex items-center">
                         <div class="flex flex-col justify-between w-1/2">
                             <p class="yellow">Sản phẩm đạt</p>
                             <p>Pass product</p>
                         </div>
-                        <p class="number flex-1 text-right">{{ $kcs->sldat ?? '--' }}</p>
+                        <p class="number flex-1 text-left">{{ $kcs->sldat ?? '--' }}</p>
                     </div>
                     <div class="flex items-center">
                         <div class="flex flex-col justify-between w-1/2">
                             <p class="yellow">Tỷ lệ đạt</p>
                             <p>Achieve rate</p>
                         </div>
-                        <p class="number flex-1 text-right">
-                            @isset($tyleloi)
-                                {{ round($tyledat, 1) }}<span class="text-5xl">%</span>
+                        <p class="number flex-1 text-left">
+                            @isset($tyledat)
+                                {{ formatNumber($tyledat, 1) }}<span class="text-5xl">%</span>
                             @else
                                 --
                             @endisset
@@ -213,16 +213,16 @@
                             <p class="yellow">Sản phẩm lỗi</p>
                             <p>Defect product</p>
                         </div>
-                        <p class="number flex-1 text-right red">{{ $kcs->slloi ?? '--' }}</p>
+                        <p class="number flex-1 text-left red">{{ $kcs->slloi ?? '--' }}</p>
                     </div>
                     <div class="flex items-center">
                         <div class="flex flex-col justify-between w-1/2">
                             <p class="yellow">Tỷ lệ lỗi</p>
                             <p>Defect rate</p>
                         </div>
-                        <p class="number flex-1 text-right red">
+                        <p class="number flex-1 text-left red">
                             @isset($tyleloi)
-                                {{ round($tyleloi, 1) }}<span class="text-5xl">%</span>
+                                {{ formatNumber($tyleloi, 1) }}<span class="text-5xl">%</span>
                             @else
                                 --
                             @endisset
