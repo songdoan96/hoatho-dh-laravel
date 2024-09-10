@@ -134,100 +134,115 @@
                         </div>
                     </div>
                     <div class="w-4/12 p-2">
-                        <p class="text-left text-3xl mb-2 red">3 lỗi cao nhất / Top 3 errors</p>
+                        <p class="text-center text-2xl mb-2 red">3 lỗi cao nhất / Top 3 errors</p>
                         @if (count($errors) > 0 && $errors[0] != '')
-                            <span class="text-xl text-left w-full">
+                            <span class="text-2xl text-left w-full">
                                 @foreach ($errors as $index => $error)
-                                    <p class="line-clamp-1">{{ $index + 1 }}. {{ $error }}</p>
+                                    @if (strlen($error) && $index < 3)
+                                        <p class="line-clamp-1">{{ $index + 1 }}. {{ $error }}</p>
+                                    @endif
                                 @endforeach
                             </span>
                         @endif
                     </div>
                 </div>
-                <div class="flex-1 grid grid-cols-2 grid-rows-4 gap-8 pb-2 border-2 p-2">
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">BTP CẤP</p>
-                            <p>semi-finished</p>
+                <div class="flex-1 grid grid-cols-1 grid-rows-4 gap-1 pb-2">
+                    <div class="flex border-2 px-2">
+
+                        <div class="w-1/2 flex items-center">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">BTP CẤP</p>
+                                <p>semi-finished</p>
+                            </div>
+                            <p class="number flex-1 text-left">
+                                <a href="{{ route('produce.editBtp', $plan) }}">
+                                    {{ formatNumber($plan->btpcap) }}
+                                </a>
+                            </p>
                         </div>
-                        <p class="number flex-1 text-left">
-                            <a href="{{ route('produce.editBtp', $plan) }}">
-                                {{ formatNumber($plan->btpcap) }}
-                            </a>
-                        </p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">TỶ LỆ vỐN</p>
-                            <p>Remaining rate</p>
+                        <div class="w-1/2 flex items-center">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">TỶ LỆ vỐN</p>
+                                <p>Remaining rate</p>
+                            </div>
+                            <p class="number flex-1 text-left">
+                                <a href="{{ route('produce.editBtp', $plan) }}"
+                                    class="@if (isset($von) && $von > $plan->mucvon) animate-blink red @endif">
+                                    {{ isset($von) ? formatNumber($von, 1) : '--' }}
+                                </a>
+                            </p>
                         </div>
-                        <p class="number flex-1 text-left">
-                            <a href="{{ route('produce.editBtp', $plan) }}"
-                                class="@if (isset($von) && $von > $plan->mucvon) animate-blink red @endif">
-                                {{ isset($von) ? formatNumber($von, 1) : '--' }}
-                            </a>
-                        </p>
                     </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">Chỉ tiêu/Ngày</p>
-                            <p>Target/day</p>
+                    <div class="flex border-2 px-2">
+                        <div class="w-1/2 flex items-center ">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">Chỉ tiêu/Ngày</p>
+                                <p>Target/day</p>
+                            </div>
+                            <p class="number flex-1 text-left">
+                                @isset($kcs)
+                                    <a href="{{ route('kcs.editWorker', $kcs) }}">{{ formatNumber($kcs->chitieungay) }}</a>
+                                @else
+                                    --
+                                @endisset
+                            </p>
                         </div>
-                        <p class="number flex-1 text-left">
-                            @isset($kcs)
-                                <a href="{{ route('kcs.editWorker', $kcs) }}">{{ formatNumber($kcs->chitieungay) }}</a>
-                            @else
-                                --
-                            @endisset
-                        </p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">Chỉ tiêu hiện tại</p>
-                            <p>Target now</p>
+                        <div class="w-1/2 flex items-center ">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">Chỉ tiêu hiện tại</p>
+                                <p>Target now</p>
+                            </div>
+                            <p class="number flex-1 text-left">{{ $dmhientai ?? 0 }}</p>
                         </div>
-                        <p class="number flex-1 text-left">{{ $dmhientai ?? 0 }}</p>
                     </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">Sản phẩm đạt</p>
-                            <p>Pass product</p>
+                    <div class="flex border-2 px-2">
+                        <div class="w-1/2 flex items-center ">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">Sản phẩm đạt</p>
+                                <p>Pass product</p>
+                            </div>
+                            <p class="number flex-1 text-left">{{ $kcs->sldat ?? '--' }}</p>
                         </div>
-                        <p class="number flex-1 text-left">{{ $kcs->sldat ?? '--' }}</p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">Tỷ lệ đạt</p>
-                            <p>Achieve rate</p>
+                        <div class="w-1/2 flex items-center ">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">Tỷ lệ đạt</p>
+                                <p>Achieve rate</p>
+                            </div>
+                            <p class="number flex-1 text-left">
+                                @isset($tyledat)
+                                    {{ formatNumber($tyledat, 1) }}<span class="text-5xl">%</span>
+                                @else
+                                    --
+                                @endisset
+                            </p>
                         </div>
-                        <p class="number flex-1 text-left">
-                            @isset($tyledat)
-                                {{ formatNumber($tyledat, 1) }}<span class="text-5xl">%</span>
-                            @else
-                                --
-                            @endisset
-                        </p>
                     </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">Sản phẩm lỗi</p>
-                            <p>Defect product</p>
+                    <div class="flex border-2 px-2">
+                        <div class="w-1/2 flex items-center ">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">Sản phẩm lỗi</p>
+                                <p>Defect product</p>
+                            </div>
+                            <p class="number flex-1 text-left red">{{ $kcs->slloi ?? '--' }}</p>
                         </div>
-                        <p class="number flex-1 text-left red">{{ $kcs->slloi ?? '--' }}</p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="flex flex-col justify-between w-1/2">
-                            <p class="yellow">Tỷ lệ lỗi</p>
-                            <p>Defect rate</p>
+                        <div class="w-1/2 flex items-center ">
+                            <div class="flex flex-col justify-between w-1/2">
+                                <p class="yellow">Tỷ lệ lỗi</p>
+                                <p>Defect rate</p>
+                            </div>
+                            <p class="number flex-1 text-left red">
+                                @isset($tyleloi)
+                                    {{ formatNumber($tyleloi, 1) }}<span class="text-5xl">%</span>
+                                @else
+                                    --
+                                @endisset
+                            </p>
                         </div>
-                        <p class="number flex-1 text-left red">
-                            @isset($tyleloi)
-                                {{ formatNumber($tyleloi, 1) }}<span class="text-5xl">%</span>
-                            @else
-                                --
-                            @endisset
-                        </p>
                     </div>
+
+
+
+
 
 
                 </div>
