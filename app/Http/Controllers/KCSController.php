@@ -30,9 +30,9 @@ class KCSController extends Controller
 
     public function add(Request $request)
     {
-        if (after8h()) {
-            return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
-        }
+        // if (after8h()) {
+        //     return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
+        // }
         if ($request->xn) {
             $xn = "XN" . $request->xn;
             $plans = Plan::where("daxong", 0)
