@@ -77,6 +77,9 @@
                                 Nhập thiếu
                             </th>
                             <th class="border">
+                                BTP cấp
+                            </th>
+                            <th class="border">
                                 Vốn
                             </th>
                             <th class="border">
@@ -129,23 +132,26 @@
                                     {{ formatNumber($kc->plans->sltacnghiep) }}
                                 </td>
                                 <td class="border">
-                                    {{ formatNumber($kc->plans->thuchien) }}
+                                    {{ formatNumber($kc->thuchien) }}
                                 </td>
                                 <td class="border">
-                                    {{ formatNumber($kc->plans->nhaphoanthanh) }}
+                                    {{ formatNumber($kc->nhaphoanthanh) }}
                                 </td>
-                                @if ($kc->plans->thuchien - $kc->plans->nhaphoanthanh > 0)
+                                @if ($kc->thuchien - $kc->nhaphoanthanh > 0)
                                     <td class="border bg-red-300">
-                                        {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
+                                        {{ formatNumber($kc->thuchien - $kc->nhaphoanthanh) }}
                                     </td>
                                 @else
                                     <td class="border bg-green-300">
-                                        {{ formatNumber($kc->plans->thuchien - $kc->plans->nhaphoanthanh) }}
+                                        {{ formatNumber($kc->thuchien - $kc->nhaphoanthanh) }}
                                     </td>
                                 @endif
                                 <td class="border">
+                                    {{ formatNumber($kc->btpcap) }}
+                                </td>
+                                <td class="border">
                                     @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
-                                    {{ round($von, 1) }}
+                                    {{ formatNumber($von, 1) }}
                                 </td>
                                 <td class="border">
                                     {{ $kc->chitieungay }}
@@ -160,11 +166,11 @@
                                 @endphp
                                 @if ($tlthuchien > 95)
                                     <td class="border bg-green-500">
-                                        {{ round($tlthuchien, 1) }}%
+                                        {{ formatNumber($tlthuchien, 1) }}%
                                     </td>
                                 @else
                                     <td class="border bg-red-300">
-                                        {{ round($tlthuchien, 1) }}%
+                                        {{ formatNumber($tlthuchien, 1) }}%
                                     </td>
                                 @endif
 
@@ -177,10 +183,11 @@
                                     <td class="border bg-green-500">0%</td>
                                 @elseif(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100 >= 10)
                                     <td class="border bg-red-300">
-                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
+                                        {{ formatNumber(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                 @else
                                     <td class="border bg-green-500">
-                                        {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
+                                        {{-- {{ round(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td> --}}
+                                        {{ formatNumber(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                 @endif
 
                                 <td class="border text-left" style="min-width: 200px">

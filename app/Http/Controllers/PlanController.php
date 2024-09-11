@@ -98,16 +98,25 @@ class PlanController extends Controller
 
     public function editPlanUpdate(Plan $plan, Request $request)
     {
-        if ($request->tacnghiepmoi) {
-            $plan->sltacnghiep += $request->tacnghiepmoi;
-        }
-        if ($request->mucvon) {
-            $plan->mucvon = (float)$request->mucvon;
-        }
         if ($request->nhaphoanthanh) {
+            $kcs = $plan->kcs->where("ngaytao", date("Y-m-d"))->first();
+            if (before8h() || !$kcs) {
+                return redirect()->back()->with('danger', 'Chưa tới thời gian cập nhật, thử lại sau 8h');
+            }
             $plan->nhaphoanthanh = $request->nhaphoanthanh;
+            $plan->save();
+            $kcs->nhaphoanthanh = $request->nhaphoanthanh;
+            $kcs->save();
+        } else {
+            if ($request->tacnghiepmoi) {
+                $plan->sltacnghiep += $request->tacnghiepmoi;
+            }
+            if ($request->mucvon) {
+                $plan->mucvon = (float)$request->mucvon;
+            }
+            $plan->save();
         }
-        $plan->save();
+
         return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
     }
 }

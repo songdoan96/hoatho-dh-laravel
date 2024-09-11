@@ -11,7 +11,7 @@ class KCS extends Model
 {
     use HasFactory;
 
-//    const UPDATED_AT = null;
+    //    const UPDATED_AT = null;
     protected $table = "kcs";
     public $timestamps = false;
     protected $fillable = [
@@ -23,9 +23,12 @@ class KCS extends Model
         "sldat",
         "slloi",
         "chitietloi",
+        "thuchien",
+        "nhaphoanthanh",
+        "btpcap",
     ];
     public function plans(): BelongsTo
     {
-        return $this->belongsTo(Plan::class,"plan_id","id");
+        return $this->belongsTo(Plan::class, "plan_id", "id");
     }
 }

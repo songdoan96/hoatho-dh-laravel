@@ -62,7 +62,7 @@
                                 </td>
                                 @php $slthieu=$plan->sltacnghiep-$plan->nhaphoanthanh; @endphp
                                 <td class="border p-2 flex justify-center">
-                                    <a href="{{ route('plan.editPlan', $plan) }}" class="mr-2 underline">
+                                    <a href="{{ route('produce.supplementWarehouse', $plan) }}" class="mr-2 underline">
                                         <span>{{ $plan->nhaphoanthanh }}</span>
                                     </a>
                                     <div class="w-6">

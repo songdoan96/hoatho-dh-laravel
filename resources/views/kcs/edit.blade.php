@@ -35,6 +35,23 @@
                 </div>
 
             </div>
+            <div class="flex flex-col justify-center items-center my-2 border">
+                <h2 class="uppercase font-bold text-3xl py-2 text-red-400">Vướng mắc</h2>
+                {{-- <h2 class="font-bold py-1 text-red-400 p-2">3 lỗi cao nhất phân cách bằng dấu phẩy</h2> --}}
+                <form method="post" action="{{ route('kcs.updateErrorInfo', $kcs) }}" class="flex flex-col w-full">
+                    @csrf
+                    <textarea name="chitietloi" class="w-full border-blue-500 border p-2 text-xl"
+                        style="background-color: #d6e6f6 !important;color: #0c0c0c !important;" rows="3">{{ $kcs->chitietloi }}</textarea>
+                    <div class="flex justify-center w-full gap-4 my-2">
+                        <a href="{{ route('kcs.dashboard') }}"
+                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">Hủy</a>
+                        <button type="submit"
+                            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">
+                            Cập nhật
+                        </button>
+                    </div>
+                </form>
+            </div>
             <div class="flex flex-col gap-8 text-5xl font-bold">
                 <div class="flex w-full bg-green-500 p-3 items-center min-h-28">
                     <div class="w-1/3 text-left">ĐẠT</div>
@@ -61,23 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col justify-center items-center my-2">
-                <h2 class="uppercase font-bold text-2xl py-2">Vướng mắc</h2>
-                <h2 class="font-bold py-1 text-red-400 p-2">3 lỗi cao nhất phân cách bằng dấu phẩy</h2>
-                <form method="post" action="{{ route('kcs.updateErrorInfo', $kcs) }}" class="flex flex-col w-full">
-                    @csrf
-                    <textarea name="chitietloi" class="w-full border-blue-500 border p-2 text-xl"
-                        style="background-color: #d6e6f6 !important;color: #0c0c0c !important;" rows="3">{{ $kcs->chitietloi }}</textarea>
-                    <div class="flex justify-center w-full gap-4 my-2">
-                        <a href="{{ route('kcs.dashboard') }}"
-                            class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">Hủy</a>
-                        <button type="submit"
-                            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl w-48 px-5 py-2.5 text-center">
-                            Cập nhật
-                        </button>
-                    </div>
-                </form>
-            </div>
+
         </div>
     </div>
 @endsection

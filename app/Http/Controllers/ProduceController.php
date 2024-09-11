@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KCS;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -30,15 +31,42 @@ class ProduceController extends Controller
 
     public function editBtp(Plan $plan)
     {
-
+        if (before8h()) {
+            return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+        }
         return view('produce.edit-btp', compact('plan'));
     }
 
     public function editBtpUpdate(Plan $plan, Request $request)
     {
+        if (before8h()) {
+            return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+        }
+        $btpNew = $plan->btpcap + $request->btpNew;
+        $kcs = KCS::where('plan_id', $plan->id)
+            ->where("ngaytao", date("Y-m-d"))->first();
+        if ($kcs) {
+            $plan->btpcap = $btpNew;
+            $kcs->btpcap = $btpNew;
+            $plan->save();
+            $kcs->save();
+            return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+    }
 
-        $plan->btpcap += $request->btpNew;
-        $plan->save();
-        return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
+
+    public function supplementWarehouse(Plan $plan)
+    {
+        return view('produce.supplement-warehouse', compact('plan'));
+    }
+    public function supplementWarehouseUpdate(Plan $plan, Request $request)
+    {
+        if ($request->nhaphoanthanh) {
+            $plan->nhaphoanthanh = $request->nhaphoanthanh;
+            $plan->save();
+        }
+
+        return redirect()->route('produce.finish')->with('success', 'Cập nhật thành công');
     }
 }

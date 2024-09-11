@@ -118,6 +118,9 @@ Route::prefix('/sanxuat')->name('produce.')->group(function () {
 
     Route::get('/sua-btp/{plan}', [ProduceController::class, 'editBtp'])->name('editBtp');
     Route::post('/sua-btp/{plan}', [ProduceController::class, 'editBtpUpdate'])->name('editBtpUpdate');
+
+    Route::get('/nhap-bo-sung/{plan}', [ProduceController::class, 'supplementWarehouse'])->name('supplementWarehouse');
+    Route::post('/nhap-bo-sung/{plan}', [ProduceController::class, 'supplementWarehouseUpdate'])->name('supplementWarehouseUpdate');
 });
 
 Route::prefix('kcs')->name('kcs.')->group(function () {

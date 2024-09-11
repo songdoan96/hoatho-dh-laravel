@@ -30,9 +30,6 @@ class KCSController extends Controller
 
     public function add(Request $request)
     {
-        // if (after8h()) {
-        //     return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
-        // }
         if ($request->xn) {
             $xn = "XN" . $request->xn;
             $plans = Plan::where("daxong", 0)
@@ -51,7 +48,13 @@ class KCSController extends Controller
         if ($hasPlan) {
             return redirect()->route('kcs.dashboard')->with('danger', "Thêm không thành công, do đã thêm chỉ tiêu cho hôm nay");
         } else {
-            $kcs = KCS::create($request->all());
+            $kcsBefore = KCS::where('plan_id', $request->plan_id)->orderBy("ngaytao", "DESC")->first();
+            $kcs = KCS::create([
+                ...$request->all(),
+                "thuchien" => $kcsBefore->thuchien,
+                "nhaphoanthanh" => $kcsBefore->nhaphoanthanh,
+                "btpcap" => $kcsBefore->btpcap,
+            ]);
             return redirect()->route('kcs.edit', $kcs)->with('success', "Thêm chỉ tiêu thành công");
         }
     }
@@ -67,7 +70,9 @@ class KCSController extends Controller
             return redirect()->back()->with('danger', "HẾT HÀNG - THÔNG BÁO KẾ HOẠCH LÊN ĐƠN HÀNG MỚI");
         }
         $plan->save();
+
         $kcs->sldat += 1;
+        $kcs->thuchien += 1;
         $kcs->save();
         return redirect()->back()->with('success', "+1 sản phẩm đạt");
     }
@@ -154,12 +159,14 @@ class KCSController extends Controller
     }
     public function updatePassFail(KCS $kcs, Request $request)
     {
+        $thuchien = $kcs->thuchien + $request->sldat;
         $kcs->update([
             "sldat" => $kcs->sldat + $request->sldat,
             "slloi" => $kcs->slloi + $request->slloi,
+            "thuchien" => $thuchien
         ]);
         $kcs->plans->update([
-            "thuchien" => $kcs->plans->thuchien + $request->sldat
+            "thuchien" => $thuchien
         ]);
         return redirect()->route('kcs.dashboard')->with('success', "Cập nhật thành công");
     }
