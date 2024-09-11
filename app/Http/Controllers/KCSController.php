@@ -34,7 +34,9 @@ class KCSController extends Controller
             $xn = "XN" . $request->xn;
             $plans = Plan::where("daxong", 0)
                 ->where("chuyen", "LIKE", $xn . "%")
-                ->where("daraichuyen", 1)->get();
+                ->where("daraichuyen", 1)
+                ->orderBy("chuyen")
+                ->get();
             if (count($plans)) {
                 return view("kcs.add", compact('plans', 'xn'));
             }

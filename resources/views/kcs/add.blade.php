@@ -21,7 +21,7 @@
                 <li class="list-disc">Kiểm tra thông tin chuyền trước khi thêm</li>
                 <li class="list-disc font-bold text-red-500">Thêm chỉ tiêu trước 08h00 sáng hàng ngày</li>
                 <li class="list-disc font-bold text-red-500">3 lỗi cao nhất phân cách bằng dấu phẩy <strong
-                        class="font-black">','</strong></li>
+                        class="font-black">,</strong></li>
             </ul>
         </div>
         <div class="flex justify-center flex-col items-center">

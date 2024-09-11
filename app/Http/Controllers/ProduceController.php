@@ -21,6 +21,7 @@ class ProduceController extends Controller
         return view('produce.dashboard', compact('plans', 'plansWaiting'));
     }
 
+
     public function finish()
     {
         $plans = Plan::where('daxong', 1)
@@ -31,28 +32,28 @@ class ProduceController extends Controller
 
     public function editBtp(Plan $plan)
     {
-        if (before8h()) {
-            return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+        // if (before8h()) {
+        //     return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+        // }
+        $kcs = $plan->kcs->where("ngaytao", date("Y-m-d"))->first();
+        if (!$kcs) {
+            return redirect()->back()->with('danger', 'Vui lòng thử lại sau khi KCS nhập chỉ tiêu ngày');
         }
         return view('produce.edit-btp', compact('plan'));
     }
 
     public function editBtpUpdate(Plan $plan, Request $request)
     {
-        if (before8h()) {
-            return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+        $kcs = $plan->kcs->where("ngaytao", date("Y-m-d"))->first();
+        if (!$kcs) {
+            return redirect()->back()->with('danger', 'Vui lòng thử lại sau khi KCS nhập chỉ tiêu ngày');
         }
         $btpNew = $plan->btpcap + $request->btpNew;
-        $kcs = KCS::where('plan_id', $plan->id)
-            ->where("ngaytao", date("Y-m-d"))->first();
-        if ($kcs) {
-            $plan->btpcap = $btpNew;
-            $kcs->btpcap = $btpNew;
-            $plan->save();
-            $kcs->save();
-            return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
-        }
-        return redirect()->back()->with('danger', "Chưa đến thời gian truy cập");
+        $plan->btpcap = $btpNew;
+        $kcs->btpcap = $btpNew;
+        $plan->save();
+        $kcs->save();
+        return redirect()->route('produce.dashboard')->with('success', 'Cập nhật thành công');
     }
 
 

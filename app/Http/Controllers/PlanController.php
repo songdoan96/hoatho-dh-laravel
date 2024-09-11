@@ -100,8 +100,8 @@ class PlanController extends Controller
     {
         if ($request->nhaphoanthanh) {
             $kcs = $plan->kcs->where("ngaytao", date("Y-m-d"))->first();
-            if (before8h() || !$kcs) {
-                return redirect()->back()->with('danger', 'Chưa tới thời gian cập nhật, thử lại sau 8h');
+            if (!$kcs) {
+                return redirect()->back()->with('danger', 'Vui lòng thử lại sau khi KCS nhập chỉ tiêu ngày');
             }
             $plan->nhaphoanthanh = $request->nhaphoanthanh;
             $plan->save();

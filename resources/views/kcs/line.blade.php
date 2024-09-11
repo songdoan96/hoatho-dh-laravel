@@ -146,7 +146,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="flex-1 grid grid-cols-1 grid-rows-4 gap-1 pb-2">
+                <div class="flex-1 grid grid-cols-1 grid-rows-4 gap-1 pb-1">
                     <div class="flex border-2 px-2">
 
                         <div class="w-1/2 flex items-center">
