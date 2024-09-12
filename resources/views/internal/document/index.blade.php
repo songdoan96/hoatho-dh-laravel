@@ -93,9 +93,11 @@
                                     </td>
                                     <td class="w-28">
                                         @if ($document->link)
-                                            <a title="{{ $document->link }}" class="underline p-2 rounded"
+                                            <a title="{{ $document->link }}"
+                                                class="underline p-2 rounded text-green-700 flex justify-center items-center"
                                                 href="{{ route('internal.documentDownload', $document) }}">
-                                                Tải xuống
+                                                <img width="25" src="{{ asset('images/download.png') }}"
+                                                    alt="">
                                             </a>
                                         @else
                                             @if (Auth::check())
