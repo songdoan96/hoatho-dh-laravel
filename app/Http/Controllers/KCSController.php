@@ -102,6 +102,10 @@ class KCSController extends Controller
 
     public function line($line)
     {
+        if (lunchTime()) {
+            return redirect()->route('freeTime', compact('line'));
+        }
+
         $plan = Plan::where('chuyen', $line)
             ->where('daraichuyen', 1)
             ->where('daxong', 0)

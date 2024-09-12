@@ -107,6 +107,14 @@ Route::get('/welcome', function () {
     $schedules = Schedule::where('done', 0)->get();
     return view('welcome', compact('images', "schedules"));
 })->name('welcome');
+
+Route::get('/free-time/{line}', function ($line) {
+    if (!lunchTime()) {
+        return redirect()->route("kcs.line", compact('line'));
+    }
+    return view("free-time");
+})->name('freeTime');
+
 // Login
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
 Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store');
