@@ -101,7 +101,8 @@
                                             </a>
                                         @else
                                             @if (Auth::check())
-                                                <a title="{{ $document->link }}" class="underline p-2 rounded"
+                                                <a title="{{ $document->link }}"
+                                                    class="underline p-2 rounded flex justify-center items-center"
                                                     href="{{ route('internal.documentEdit', $document) }}">
                                                     Upload
                                                 </a>
