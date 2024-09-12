@@ -33,17 +33,17 @@
                 </div>
                 <div class="mb-1">
                     <label for="phanloai" class="block mb-2 text-sm font-medium">Phân loại</label>
-                    <input type="text" id="phanloai" name="phanloai" value="{{ $document->phanloai }}"required
+                    <input type="text" id="phanloai" name="phanloai" value="{{ $document->phanloai }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="ngaybanhanh" class="block mb-2 text-sm font-medium">NGÀY BAN HÀNH LẦN ĐẦU</label>
-                    <input type="text" id="ngaybanhanh" name="ngaybanhanh" value="{{ $document->ngaybanhanh }}"required
+                    <input type="text" id="ngaybanhanh" name="ngaybanhanh" value="{{ $document->ngaybanhanh }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="ngaysuadoi" class="block mb-2 text-sm font-medium">NGÀY SĐ/ CẬP NHẬT</label>
-                    <input type="text" id="ngaysuadoi" name="ngaysuadoi" value="{{ $document->ngaysuadoi }}"required
+                    <input type="text" id="ngaysuadoi" name="ngaysuadoi" value="{{ $document->ngaysuadoi }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">

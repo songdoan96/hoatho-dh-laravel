@@ -39,17 +39,17 @@
                 </div>
                 <div class="mb-1">
                     <label for="ngaybanhanh" class="block mb-2 text-sm font-medium">NGÀY BAN HÀNH LẦN ĐẦU</label>
-                    <input type="text" id="ngaybanhanh" name="ngaybanhanh" required
+                    <input type="text" id="ngaybanhanh" name="ngaybanhanh"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="ngaysuadoi" class="block mb-2 text-sm font-medium">NGÀY SĐ/ CẬP NHẬT</label>
-                    <input type="text" id="ngaysuadoi" name="ngaysuadoi" required
+                    <input type="text" id="ngaysuadoi" name="ngaysuadoi"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="lansuadoi" class="block mb-2 text-sm font-medium">LẦN SỬA ĐỔI</label>
-                    <input type="number" min="0" id="lansuadoi" name="lansuadoi" required
+                    <input type="number" min="0" id="lansuadoi" name="lansuadoi"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
