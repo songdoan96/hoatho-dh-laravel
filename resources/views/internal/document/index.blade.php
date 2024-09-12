@@ -9,7 +9,7 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen bg-gray-200">
+    <div class="min-h-screen bg-white">
         <div id="header" class="px-2 py-1 flex items-center bg-blue-500 text-white justify-between shadow-lg">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             <div class="text-2xl uppercase font-bold flex flex-1 items-center justify-center gap-4">
@@ -44,7 +44,7 @@
                         </thead>
                         <tbody>
                             @foreach ($documents as $document)
-                                <tr class="border-b border-gray-700 text-left">
+                                <tr class="border-b border-gray-700 text-left hover:bg-gray-200">
                                     <td class="group w-32">
                                         @auth
                                             <form action="{{ route('internal.documentDelete', $document) }}" method="post"
