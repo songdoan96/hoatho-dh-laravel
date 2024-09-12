@@ -13,22 +13,22 @@
                 @csrf
                 <div class="mb-1">
                     <label for="bophan" class="block mb-2 text-sm font-medium">Bộ phận</label>
-                    <input type="text" id="bophan" name="bophan" value="{{ $document->bophan }}" required
+                    <input type="text" id="bophan" name="bophan" value="{{ $document->bophan }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="stt" class="block mb-2 text-sm font-medium">STT bộ phận</label>
-                    <input type="text" id="stt" name="stt" value="{{ $document->sttbophan }}" required
+                    <input type="text" id="stt" name="stt" value="{{ $document->sttbophan }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="vanbanso" class="block mb-2 text-sm font-medium">Văn bản số</label>
-                    <input type="text" id="vanbanso" name="vanbanso" value="{{ $document->vanbanso }}" required
+                    <input type="text" id="vanbanso" name="vanbanso" value="{{ $document->vanbanso }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="danhmuc" class="block mb-2 text-sm font-medium">Danh mục</label>
-                    <input type="text" id="danhmuc" name="danhmuc" value="{{ $document->danhmuc }}"required
+                    <input type="text" id="danhmuc" name="danhmuc" value="{{ $document->danhmuc }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
@@ -48,8 +48,7 @@
                 </div>
                 <div class="mb-1">
                     <label for="lansuadoi" class="block mb-2 text-sm font-medium">LẦN SỬA ĐỔI</label>
-                    <input type="number" min="0" id="lansuadoi" name="lansuadoi"
-                        value="{{ $document->lansuadoi }}"required
+                    <input type="number" min="0" id="lansuadoi" name="lansuadoi" value="{{ $document->lansuadoi }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">

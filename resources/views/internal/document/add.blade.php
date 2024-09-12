@@ -18,23 +18,23 @@
                 </div>
                 <div class="mb-1">
                     <label for="stt" class="block mb-2 text-sm font-medium">STT bộ phận</label>
-                    <input type="text" id="stt" name="stt" required
+                    <input type="text" id="stt" name="stt"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="vanbanso" class="block mb-2 text-sm font-medium">Văn bản số</label>
-                    <input type="text" id="vanbanso" name="vanbanso" required
+                    <input type="text" id="vanbanso" name="vanbanso"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
                     <label for="danhmuc" class="block mb-2 text-sm font-medium">Danh mục</label>
-                    <input type="text" id="danhmuc" name="danhmuc" required
+                    <input type="text" id="danhmuc" name="danhmuc"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
 
                 <div class="mb-1">
                     <label for="phanloai" class="block mb-2 text-sm font-medium">Phân loại</label>
-                    <input type="text" id="phanloai" name="phanloai" required
+                    <input type="text" id="phanloai" name="phanloai"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
@@ -70,7 +70,7 @@
                 </div>
                 <div class="mb-1">
                     <label for="file" class="block mb-2 text-sm font-medium">File</label>
-                    <input type="file" id="file" name="file" required
+                    <input type="file" id="file" name="file"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="flex justify-start items-end mb-1">
