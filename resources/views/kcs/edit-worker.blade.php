@@ -26,7 +26,7 @@
                 @csrf
                 <div class="my-5 flex items-center gap-8">
                     <label for="laodong" class="font-medium w-1/3">LAO ĐỘNG</label>
-                    <input type="number" id="laodong" name="laodong" value="{{ $kcs->laodong }}" min="1" required
+                    <input type="number" id="laodong" name="laodong" value="{{ $kcs->laodong }}" min="0" required
                         class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" />
                 </div>
                 <div class="my-5 flex items-center gap-8">

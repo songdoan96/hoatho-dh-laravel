@@ -47,49 +47,6 @@ Route::get('/', function () {
 Route::get('/test', function () {
 
     return;
-    Excel::import(new DocumentsImport, 'file.xlsx');
-    $line = "XN1_01";
-    $plan = Plan::where('chuyen', $line)
-        ->where('daraichuyen', 1)
-        ->where('daxong', 0)
-        ->orderBy('created_at', 'desc')
-        ->first();
-    if ($plan) {
-        $kcs = KCS::where('plan_id', $plan->id)->where('ngaytao', date("Y-m-d"))->first();
-        if (isset($kcs)) {
-            $tyledat = ($kcs->sldat / $kcs->chitieungay) * 100;
-            $tyleloi = 0;
-            if ($kcs->sldat != 0 || $kcs->slloi != 0) {
-                $tyleloi = ($kcs->slloi / ($kcs->sldat + $kcs->slloi)) * 100;
-            }
-            $von = abs(($plan->btpcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
-            $errors = explode(",", $kcs->chitietloi);
-
-
-            $totalHour = 8.5;
-            $current_time = strtotime(date("Y-m-d H:i:s"));
-            $morning_start = strtotime(date('Y-m-d 07:30:00'));
-            $lunch_start = strtotime(date('Y-m-d 11:30:00'));
-            $lunch_end = strtotime(date('Y-m-d 12:30:00'));
-            $afternoon_start = strtotime(date('Y-m-d 17:00:00'));
-
-            if ($current_time < $morning_start) {
-                $totalSecond = 0;
-            } elseif ($current_time >= $morning_start && $current_time <= $lunch_start) {
-                $totalSecond = $current_time - $morning_start;
-            } elseif ($current_time > $lunch_start && $current_time <= $lunch_end) {
-                $totalSecond = 4 * 60 * 60;
-            } elseif ($current_time > $lunch_end && $current_time <= $afternoon_start) {
-                $totalSecond = $current_time - $morning_start - 3600;
-            } elseif ($current_time > $afternoon_start) {
-                $totalSecond = 8.5 * 60 * 60;
-            }
-            $ndsx = $totalHour * 3600 / $kcs->chitieungay;
-            $dmhientai = ceil($totalSecond / $ndsx);
-
-            return view('test', compact('plan', 'kcs', 'von', 'tyledat', 'tyleloi', 'errors', 'dmhientai'));
-        }
-    }
     return view('test', compact('plan'));
 });
 

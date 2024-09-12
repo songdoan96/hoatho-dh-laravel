@@ -25,6 +25,9 @@ class KCSController extends Controller
         if (after17h()) {
             return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
         }
+        if ($kcs->plans->daxong == 1) {
+            return redirect()->route('kcs.dashboard')->with('danger', "Đơn hàng đã kết thúc vui, vui lòng chọn đơn hàng mới");
+        };
         return view("kcs.edit", compact('kcs'));
     }
 
@@ -46,16 +49,17 @@ class KCSController extends Controller
 
     public function store(Request $request)
     {
-        $hasPlan = KCS::where("ngaytao", date("Y-m-d"))->where('plan_id', $request->plan_id)->first();
+        $hasPlan = KCS::where("ngaytao", date("Y-m-d"))
+            ->where('plan_id', $request->plan_id)->first();
         if ($hasPlan) {
             return redirect()->route('kcs.dashboard')->with('danger', "Thêm không thành công, do đã thêm chỉ tiêu cho hôm nay");
         } else {
             $kcsBefore = KCS::where('plan_id', $request->plan_id)->orderBy("ngaytao", "DESC")->first();
             $kcs = KCS::create([
                 ...$request->all(),
-                "thuchien" => $kcsBefore->thuchien,
-                "nhaphoanthanh" => $kcsBefore->nhaphoanthanh,
-                "btpcap" => $kcsBefore->btpcap,
+                "thuchien" => $kcsBefore->thuchien ?? 0,
+                "nhaphoanthanh" => $kcsBefore->nhaphoanthanh ?? 0,
+                "btpcap" => $kcsBefore->btpcap ?? 0,
             ]);
             return redirect()->route('kcs.edit', $kcs)->with('success', "Thêm chỉ tiêu thành công");
         }
