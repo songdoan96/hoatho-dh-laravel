@@ -7,7 +7,7 @@
             </a>
             <h1 class="text-center text-2xl uppercase font-bold w-full">Thêm tài liệu</h1>
         </div>
-        <div id="form" class="w-full p-2 md:w-1/2 mx-auto">
+        <div id="form" class="w-full p-2 md:w-2/3 mx-auto">
             <form method="POST" action="{{ route('internal.documentStore') }}" enctype="multipart/form-data"
                 class="mx-auto text-black bg-gray-50 shadow-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-2">
                 @csrf
@@ -31,6 +31,38 @@
                     <input type="text" id="danhmuc" name="danhmuc" required
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
+
+                <div class="mb-1">
+                    <label for="phanloai" class="block mb-2 text-sm font-medium">Phân loại</label>
+                    <input type="text" id="phanloai" name="phanloai" required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="ngaybanhanh" class="block mb-2 text-sm font-medium">NGÀY BAN HÀNH LẦN ĐẦU</label>
+                    <input type="text" id="ngaybanhanh" name="ngaybanhanh" required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="ngaysuadoi" class="block mb-2 text-sm font-medium">NGÀY SĐ/ CẬP NHẬT</label>
+                    <input type="text" id="ngaysuadoi" name="ngaysuadoi" required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="lansuadoi" class="block mb-2 text-sm font-medium">LẦN SỬA ĐỔI</label>
+                    <input type="number" min="0" id="lansuadoi" name="lansuadoi" required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="thoigianluu" class="block mb-2 text-sm font-medium">THỜI GIAN LƯU TRỮ</label>
+                    <input type="text" id="thoigianluu" name="thoigianluu"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="noiluutru" class="block mb-2 text-sm font-medium">NƠI LƯU TRỮ HỒ SƠ</label>
+                    <input type="text" id="noiluutru" name="noiluutru"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+
                 <div class="mb-1">
                     <label for="ghichu" class="block mb-2 text-sm font-medium">Ghi chú</label>
                     <input type="text" id="ghichu" name="ghichu"

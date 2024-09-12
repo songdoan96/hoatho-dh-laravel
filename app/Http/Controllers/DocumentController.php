@@ -48,7 +48,9 @@ class DocumentController extends Controller
             if (Storage::disk("public")->exists("files/" . $fileName)) {
                 return redirect()->back()->with('danger', 'File đã tồn tại');
             };
-            Storage::disk('public')->delete($document->link);
+            if ($document->link) {
+                Storage::disk('public')->delete($document->link);
+            }
             $path = $file->storeAs('files', $fileName, 'public');
             $document->update([...$request->all(), 'link' => $path]);
             return redirect()->route('internal.document')->with('success', 'Cập nhật thành công.');
@@ -63,7 +65,9 @@ class DocumentController extends Controller
     }
     public function  documentDelete(Document $document)
     {
-        Storage::disk('public')->delete($document->link);
+        if ($document->link) {
+            Storage::disk('public')->delete($document->link);
+        }
         $document->delete();
         return redirect()->route('internal.document')->with('success', "Xóa thành công.");
     }

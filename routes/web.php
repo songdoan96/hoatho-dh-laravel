@@ -46,10 +46,10 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
 
-    // // Excel::import(new DocumentsImport, 'file.xlsx');
+    Excel::import(new DocumentsImport, 'file.xlsx');
 
-    // dd(1);
-    // return;
+    dd(1);
+    return;
 
     $line = "XN1_01";
     $plan = Plan::where('chuyen', $line)

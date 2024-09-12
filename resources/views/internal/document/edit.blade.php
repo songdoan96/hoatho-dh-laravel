@@ -7,9 +7,9 @@
             </a>
             <h1 class="text-center text-2xl uppercase font-bold w-full">Thêm tài liệu</h1>
         </div>
-        <div id="form" class="w-full p-2 md:w-1/2 mx-auto">
+        <div id="form" class="w-full p-2 md:w-2/3 mx-auto">
             <form method="POST" action="{{ route('internal.documentUpdate', $document) }}" enctype="multipart/form-data"
-                class="mx-auto text-black bg-gray-50 shadow-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-2">
+                class="uppercase mx-auto text-black bg-gray-50 shadow-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-2">
                 @csrf
                 <div class="mb-1">
                     <label for="bophan" class="block mb-2 text-sm font-medium">Bộ phận</label>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-1">
                     <label for="stt" class="block mb-2 text-sm font-medium">STT bộ phận</label>
-                    <input type="text" id="stt" name="stt" value="{{ $document->stt }}" required
+                    <input type="text" id="stt" name="stt" value="{{ $document->sttbophan }}" required
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">
@@ -29,6 +29,37 @@
                 <div class="mb-1">
                     <label for="danhmuc" class="block mb-2 text-sm font-medium">Danh mục</label>
                     <input type="text" id="danhmuc" name="danhmuc" value="{{ $document->danhmuc }}"required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="phanloai" class="block mb-2 text-sm font-medium">Phân loại</label>
+                    <input type="text" id="phanloai" name="phanloai" value="{{ $document->phanloai }}"required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="ngaybanhanh" class="block mb-2 text-sm font-medium">NGÀY BAN HÀNH LẦN ĐẦU</label>
+                    <input type="text" id="ngaybanhanh" name="ngaybanhanh" value="{{ $document->ngaybanhanh }}"required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="ngaysuadoi" class="block mb-2 text-sm font-medium">NGÀY SĐ/ CẬP NHẬT</label>
+                    <input type="text" id="ngaysuadoi" name="ngaysuadoi" value="{{ $document->ngaysuadoi }}"required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="lansuadoi" class="block mb-2 text-sm font-medium">LẦN SỬA ĐỔI</label>
+                    <input type="number" min="0" id="lansuadoi" name="lansuadoi"
+                        value="{{ $document->lansuadoi }}"required
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="thoigianluu" class="block mb-2 text-sm font-medium">THỜI GIAN LƯU TRỮ</label>
+                    <input type="text" id="thoigianluu" name="thoigianluu" value="{{ $document->thoigianluu }}"
+                        class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
+                </div>
+                <div class="mb-1">
+                    <label for="noiluutru" class="block mb-2 text-sm font-medium">NƠI LƯU TRỮ HỒ SƠ</label>
+                    <input type="text" id="noiluutru" name="noiluutru" value="{{ $document->noiluutru }}"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-200" />
                 </div>
                 <div class="mb-1">

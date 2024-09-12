@@ -98,10 +98,12 @@
                                                 Tải xuống
                                             </a>
                                         @else
-                                            <a title="{{ $document->link }}" class="underline p-2 rounded"
-                                                href="{{ route('internal.documentDownload', $document) }}">
-                                                Tải xuống
-                                            </a>
+                                            @if (Auth::check())
+                                                <a title="{{ $document->link }}" class="underline p-2 rounded"
+                                                    href="{{ route('internal.documentEdit', $document) }}">
+                                                    Upload
+                                                </a>
+                                            @endif
                                         @endif
 
                                     </td>
