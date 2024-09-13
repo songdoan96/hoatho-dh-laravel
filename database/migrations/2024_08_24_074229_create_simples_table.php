@@ -28,7 +28,7 @@ return new class extends Migration
             $table->date('ngaymay')->nullable();
             $table->date('ngayhen')->nullable();
             $table->date('ngaygui')->nullable();
-            $table->enum('tinhtrang', ['dangmay', 'dagui'])->default('dangmay');
+            $table->enum('tinhtrang', ['dangmay', 'dagui', 'chomay'])->default('chomay');
             $table->enum('ketqua', ['pending', 'failed', 'passed'])->default('pending');
             $table->string('tuan', 10)->nullable();
             $table->boolean('bienban')->default(false);

@@ -94,6 +94,7 @@
                     <select name="tinhtrang"
                         class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">--Tình trạng--</option>
+                        <option value="chomay">Chờ may</option>
                         <option value="dangmay">Đang may</option>
                         <option value="dagui">Đã gửi</option>
                     </select>
