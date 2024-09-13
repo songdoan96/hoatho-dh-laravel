@@ -98,6 +98,9 @@
                                     @endphp
                                     @if ($simple->tinhtrang === 'dagui')
                                         <p class="min-w-16 py-1 font-bold rounded-sm bg-green-500 text-white">Đã gửi</p>
+                                    @elseif($simple->tinhtrang === 'chomay')
+                                        <p class="min-w-16 py-1 font-bold rounded-sm bg-orange-500 text-white">Chờ may
+                                        </p>
                                     @elseif($today >= $henGuiDate)
                                         <p class="min-w-20 py-1 font-bold rounded-sm bg-red-500 text-white">Đang may</p>
                                     @else

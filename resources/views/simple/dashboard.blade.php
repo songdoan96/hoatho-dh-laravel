@@ -165,7 +165,7 @@
                                     <td>
                                         @php
                                             $today = date('Y-m-d');
-                                            $henGuiDate = date($simple->ngayhen);
+                                            $henGuiDate = $simple->ngayhen;
                                         @endphp
                                         @if ($simple->tinhtrang === 'dagui')
                                             <p class="min-w-16 py-1 font-bold rounded-sm bg-green-500 text-white">Đã gửi
