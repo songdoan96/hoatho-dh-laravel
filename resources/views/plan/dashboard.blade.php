@@ -1,7 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Đơn hàng chờ sản xuất')
-
-
 @section('content')
     <div class="min-h-screen flex flex-col">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
@@ -27,6 +25,7 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 <input type="date" id="ngaydukien" name="ngaydukien" title="Ngày dự kiến rải chuyền"
+                    min="{{ date('Y-m-d') }}"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 <input type="number" id="sltacnghiep" name="sltacnghiep" min="1" placeholder="SL tác nghiệp"

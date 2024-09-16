@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\KCSController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\SimpleController;
@@ -43,6 +44,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/show/{type?}', [MainController::class, "show"])->name('show');
 
 Route::get('/test', function () {
 

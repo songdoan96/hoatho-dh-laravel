@@ -7,7 +7,7 @@
         tbody td {
             border: 1px solid #787f99;
             text-align: center;
-            min-width: 45px;
+            min-width: 70px;
         }
     </style>
 @endpush
@@ -19,10 +19,10 @@
                     alt="Logo" class="w-16"></a>
             <h1 class="text-center text-4xl uppercase font-bold w-full">Theo dõi kế hoạch may mẫu và đồng bộ NPL</h1>
         </div>
-        <div class="">
+        <div>
             <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-300">
-                    <thead class="text-xs uppercase bg-red-700 text-white text-center">
+                <table class="w-full text-2xl text-left rtl:text-right text-gray-300">
+                    <thead class="text-base uppercase bg-red-700 text-white text-center">
                         <tr>
                             <th class="border border-black" rowspan="2">KHÁCH HÀNG</th>
                             <th class="border border-black" rowspan="2">MÃ HÀNG</th>
@@ -117,7 +117,7 @@
                                         <p class="flex items-center justify-center">--</p>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="w-16">
                                     <p class="line-clamp-2" title="{{ $simple->ghichu }}">{{ $simple->ghichu }}</p>
                                 </td>
                             </tr>
