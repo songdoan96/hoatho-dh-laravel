@@ -21,12 +21,9 @@ class MainController extends Controller
                 ->orderBy('chuyen')
                 ->get();
             return view('show', compact('type', 'plans', 'plansWaiting'));
-        } elseif ($type === "kcs") {
+        } else {
             $kcsData = KCS::where('ngaytao', date('Y-m-d'))->with("plans")->get()->sortBy('plans.chuyen');
             return view("show", compact('type', 'kcsData'));
-        } else {
-            $simples = Simple::orderBy('created_at', 'desc')->limit(30)->get();
-            return view("show", compact('type', 'simples'));
         }
     }
 }
