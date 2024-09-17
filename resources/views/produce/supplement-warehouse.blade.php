@@ -27,10 +27,14 @@
             <form method="POST" action="{{ route('produce.supplementWarehouseUpdate', $plan) }}" class="p-4 border">
                 <h2 class="text-center font-bold text-xl uppercase">HOÀN THÀNH CẬP NHẬT LŨY KẾ</h2>
                 @csrf
-                <div class="my-5 flex items-center gap-8">
-                    <label for="nhaphoanthanh" class="font-medium">LK nhập kho</label>
-                    <input type="number" name="nhaphoanthanh" max="{{ $plan->thuchien }}"
-                        value="{{ $plan->nhaphoanthanh }}"
+                <div class="my-5 flex items-center gap-2">
+                    <label for="nhaphoanthanh" class="font-medium w-1/3">LK nhập kho</label>
+                    <input type="number" name="nhaphoanthanh" disabled value="{{ $plan->nhaphoanthanh }}"
+                        class="flex-1 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" />
+                </div>
+                <div class="my-5 flex items-center gap-2">
+                    <label for="nhaphoanthanhthem" class="font-medium w-1/3">SL nhập thêm</label>
+                    <input type="number" name="nhaphoanthanhthem" max="{{ $plan->thuchien - $plan->nhaphoanthanh }}"
                         class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" />
                 </div>
                 <div class="flex justify-center gap-2">

@@ -63,8 +63,8 @@ class ProduceController extends Controller
     }
     public function supplementWarehouseUpdate(Plan $plan, Request $request)
     {
-        if ($request->nhaphoanthanh) {
-            $plan->nhaphoanthanh = $request->nhaphoanthanh;
+        if ($request->nhaphoanthanhthem) {
+            $plan->nhaphoanthanh += $request->nhaphoanthanhthem;
             $plan->save();
         }
 

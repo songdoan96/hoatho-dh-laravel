@@ -98,14 +98,14 @@ class PlanController extends Controller
 
     public function editPlanUpdate(Plan $plan, Request $request)
     {
-        if ($request->nhaphoanthanh) {
+        if ($request->nhaphoanthanhthem) {
             $kcs = $plan->kcs->where("ngaytao", date("Y-m-d"))->first();
             if (!$kcs) {
                 return redirect()->back()->with('danger', 'Vui lòng thử lại sau khi KCS nhập chỉ tiêu ngày');
             }
-            $plan->nhaphoanthanh = $request->nhaphoanthanh;
+            $plan->nhaphoanthanh += $request->nhaphoanthanhthem;
             $plan->save();
-            $kcs->nhaphoanthanh = $request->nhaphoanthanh;
+            $kcs->nhaphoanthanh += $request->nhaphoanthanhthem;
             $kcs->save();
         } else {
             if ($request->tacnghiepmoi) {
