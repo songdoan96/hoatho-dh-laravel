@@ -23,7 +23,7 @@
                 <div class="p-4">
                     <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
                         @foreach ($plans as $plan)
-                            <a href="{{ route('kcs.line', $plan->chuyen) }}"
+                            <div
                                 class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition rounded">
                                 <div class="flex gap-1 text-xl font-bold">
                                     <div class="w-1/2 bg-blue-600 flex items-center justify-center">
@@ -43,7 +43,7 @@
                                         $thuchienPercent = round(($plan->thuchien / $plan->sltacnghiep) * 100, 1);
                                     @endphp
                                     <div class="flex justify-between">
-                                        <span>LK thực hiện</span>
+                                        <span>Thực hiện</span>
                                         <span class="flex items-center gap-1">
                                             <span>{{ formatNumber($plan->thuchien) }}<span class="text-sm"> </span>
                                                 @if ($thuchienPercent > 95)
@@ -117,7 +117,7 @@
                                     </div>
 
                                 </div>
-                            </a>
+                            </div>
                         @endforeach
                         @if (count($plansWaiting))
                             <div
@@ -139,29 +139,35 @@
 
         </div>
     @else
-        <div class="min-h-screen flex flex-col pt-10 lg:p-0">
+        <div class="min-h-screen flex flex-col">
             <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
                 <div class="w-10">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </div>
                 <div class="flex items-center justify-center w-full gap-4">
-                    <h1 class="text-2xl uppercase font-bold">BÁO CÁO CHẤT LƯỢNG HÀNG NGÀY</h1>
+                    <h1 class="text-2xl uppercase font-bold">BÁO CÁO CHẤT LƯỢNG NGÀY {{ date('d/m/Y') }}
+                    </h1>
                 </div>
 
             </div>
             @if (count($kcsData))
                 <style>
+                    #kcs tbody th {
+                        width: calc(100%/17);
+                        text-align: left;
+                    }
+
                     #kcs tbody td {
-                        min-width: 60px;
+                        min-width: 80px;
+                        text-align: center
                     }
                 </style>
                 <div class="relative overflow-x-auto">
-                    <table id="kcs" class="w-full text-base text-center text-black border">
-                        <thead class=" font-bold uppercase bg-blue-500 text-white">
+                    <!-- component -->
+
+                    <table id="kcs" class="w-full border">
+                        <thead class="font-bold uppercase bg-blue-500 text-white">
                             <tr>
-                                <th class="border">
-                                    Ngày
-                                </th>
                                 <th class="border">
                                     Chuyền
                                 </th>
@@ -178,13 +184,13 @@
                                     Dự phòng
                                 </th>
                                 <th class="border">
-                                    LK tác nghiệp
+                                    tác nghiệp
                                 </th>
                                 <th class="border">
-                                    LK thực hiện
+                                    thực hiện
                                 </th>
                                 <th class="border">
-                                    LK nhập hoàn thành
+                                    nhập hoàn thành
                                 </th>
                                 <th class="border">
                                     Nhập thiếu
@@ -219,18 +225,23 @@
                         </thead>
                         <tbody>
                             @foreach ($kcsData as $kc)
-                                <tr class="text-xl">
-                                    <td class="border">
-                                        {{ formatDate($kc->ngaytao, 'd-m') }}
-                                    </td>
+                                <tr class="text-xl h-20">
+
                                     <td class="p-1 border">
-                                        <a href="{{ route('kcs.edit', $kc) }}"
-                                            class="text-blue-600 text-2xl font-bold underline underline-offset-4">
+                                        <div class="text-blue-600 font-bold">
                                             {{ $kc->plans->chuyen }}
-                                        </a>
+                                        </div>
                                     </td>
                                     <td class="border">
-                                        {{ $kc->plans->khachhang }}
+                                        @if ($kc->plans->logo)
+                                            <div class="flex justify-center items-center">
+                                                <img src="{{ asset('storage/' . $kc->plans->logo) }}"
+                                                    alt="{{ $kc->plans->khachhang }}" class="bg-cover h-full w-20 ">
+                                            </div>
+                                        @else
+                                            {{ $kc->plans->khachhang }}
+                                        @endif
+
                                     </td>
                                     <td class="border">
                                         {{ $kc->plans->mahang }}
@@ -270,9 +281,9 @@
                                         {{ $kc->chitieungay }}
                                     </td>
                                     <td class="border">
-                                        <a class="underline" href="{{ route('kcs.editPassFail', $kc) }}">
+                                        <div>
                                             {{ $kc->sldat }}
-                                        </a>
+                                        </div>
                                     </td>
                                     @php
                                         $tlthuchien = ($kc->sldat / $kc->chitieungay) * 100;
@@ -288,9 +299,9 @@
                                     @endif
 
                                     <td class="border">
-                                        <a class="underline" href="{{ route('kcs.editPassFail', $kc) }}">
+                                        <div>
                                             {{ $kc->slloi }}
-                                        </a>
+                                        </div>
                                     </td>
                                     @if ($kc->sldat == 0 && $kc->slloi == 0)
                                         <td class="border bg-green-500">0%</td>
@@ -303,7 +314,7 @@
                                             {{ formatNumber(($kc->slloi / ($kc->sldat + $kc->slloi)) * 100, 1) }}%</td>
                                     @endif
 
-                                    <td class="border text-left" style="min-width: 200px">
+                                    <td class="border text-left" style="min-width: 200px;text-align: left">
                                         {{ $kc->chitietloi }}
                                     </td>
                                 </tr>
