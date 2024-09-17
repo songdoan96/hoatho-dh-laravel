@@ -225,7 +225,7 @@
                         </thead>
                         <tbody>
                             @foreach ($kcsData as $kc)
-                                <tr class="text-xl h-20">
+                                <tr class="text-2xl h-20 font-bold">
 
                                     <td class="p-1 border">
                                         <div class="text-blue-600 font-bold">
