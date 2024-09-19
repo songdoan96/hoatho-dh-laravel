@@ -4,7 +4,7 @@
     @if ($type === 'produce')
         <meta http-equiv="refresh" content="300;url={{ route('show', ['type' => 'kcs']) }}">
     @else
-        <meta http-equiv="refresh" content="300;url={{ route('show', ['type' => 'simple']) }}">
+        <meta http-equiv="refresh" content="300;url={{ route('show', ['type' => 'produce']) }}">
     @endif
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 @endpush
