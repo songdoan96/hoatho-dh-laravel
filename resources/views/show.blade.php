@@ -158,7 +158,7 @@
                     }
 
                     #kcs tbody td {
-                        min-width: 80px;
+                        min-width: 70px;
                         text-align: center
                     }
                 </style>
@@ -166,7 +166,7 @@
                     <!-- component -->
 
                     <table id="kcs" class="w-full border">
-                        <thead class="font-bold uppercase bg-blue-500 text-white">
+                        <thead class="font-medium uppercase bg-blue-500 text-white">
                             <tr>
                                 <th class="border">
                                     Chuyền
@@ -225,10 +225,9 @@
                         </thead>
                         <tbody>
                             @foreach ($kcsData as $kc)
-                                <tr class="text-2xl h-20 font-bold">
-
+                                <tr class="text-xl h-14 font-medium">
                                     <td class="p-1 border">
-                                        <div class="text-blue-600 font-bold">
+                                        <div class="text-blue-600">
                                             {{ $kc->plans->chuyen }}
                                         </div>
                                     </td>
@@ -236,12 +235,11 @@
                                         @if ($kc->plans->logo)
                                             <div class="flex justify-center items-center">
                                                 <img src="{{ asset('storage/' . $kc->plans->logo) }}"
-                                                    alt="{{ $kc->plans->khachhang }}" class="bg-cover h-full w-20 ">
+                                                    alt="{{ $kc->plans->khachhang }}" class="bg-cover h-full w-20">
                                             </div>
                                         @else
                                             {{ $kc->plans->khachhang }}
                                         @endif
-
                                     </td>
                                     <td class="border">
                                         {{ $kc->plans->mahang }}
@@ -315,7 +313,8 @@
                                     @endif
 
                                     <td class="border text-left" style="min-width: 200px;text-align: left">
-                                        {{ $kc->chitietloi }}
+                                        <span class="line-clamp-2"
+                                            title="{{ $kc->chitietloi }}">{{ $kc->chitietloi }}</span>
                                     </td>
                                 </tr>
                             @endforeach
