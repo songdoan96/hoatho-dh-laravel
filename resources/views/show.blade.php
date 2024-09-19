@@ -16,7 +16,7 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </div>
                 <div class="flex items-center gap-4 flex-1 justify-center">
-                    <h1 class="text-center text-2xl uppercase font-bold">THEO DÕI SẢN XUẤT</h1>
+                    <h1 class="text-center text-2xl uppercase font-bold">THEO DÕI TIẾN ĐỘ SẢN XUẤT CÁC CHUYỀN</h1>
                 </div>
             </div>
             @if (count($plans))
