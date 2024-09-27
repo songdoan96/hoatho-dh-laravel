@@ -15,7 +15,7 @@ class PlanController extends Controller
     {
         $factories = Factory::all();
         $plans = Plan::where('daxong', 0)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('daraichuyen', 'ASC')
             ->get();
         return view('plan.dashboard', compact('factories', 'plans'));
     }
