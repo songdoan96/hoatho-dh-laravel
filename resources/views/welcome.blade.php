@@ -37,7 +37,7 @@
         </ul>
     </article>
     @if (count($images))
-        <img id="image-show" class="w-full h-auto bg-cover object-cover" />
+        <img id="image-show" class="w-full h-screen bg-cover object-cover" />
     @else
         <img src="{{ asset('images/logo2.png') }}" id="image-show" width="100%" height="100%" />
     @endif

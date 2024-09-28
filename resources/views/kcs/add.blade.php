@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 @endpush
 @section('content')
-    <div class="min-h-screen flex flex-col ">
+    <div class="min-h-screen flex flex-col flex-wrap">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('kcs.dashboard') }}" class="w-10">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
