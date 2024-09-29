@@ -58,8 +58,27 @@ if (!function_exists('formatNumber')) {
     function formatNumber($number, $decimals = 0)
     {
 
-        if (isset($number)) {
-            return number_format($number, $decimals, ",", ".");
+        /*if (empty($number)) {
+        return 0;
+    }
+    if (fmod($number, 1) == 0) {
+        return number_format($number, 0, '.', ' ');
+    } else {
+        return number_format($number, 2, '.', ' ');
+    }*/
+
+        if (empty($number)) {
+            return 0;
         }
+        if (fmod($number, 1) == 0) {
+            return number_format($number, 0, ',', '.');
+        } else {
+            return number_format($number,  $decimals, ',', '.');
+        }
+
+
+        // if (isset($number)) {
+        //     return number_format($number, $decimals, ",", ".");
+        // }
     }
 }

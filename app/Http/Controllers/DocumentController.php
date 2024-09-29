@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
-use Response;
-use Storage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+// use Response;
+// use Storage;
 
 class DocumentController extends Controller
 {

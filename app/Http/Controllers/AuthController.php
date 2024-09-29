@@ -28,6 +28,9 @@ class AuthController extends Controller
             if ($request->username === "noibo") {
                 return redirect()->route('internal.document')->with('success', 'Đăng nhập thành công');
             }
+            if ($request->username === "phulieu") {
+                return redirect()->route('accessory.dashboard')->with('success', 'Đăng nhập thành công');
+            }
             return redirect()->route('produce.dashboard')->with('success', 'Đăng nhập thành công');
         } else {
             return redirect()->back()->with('danger', 'Tài khoản hoặc mật khẩu không chính xác');

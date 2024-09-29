@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DocumentController;
+use App\Models\Factory;
+use App\Models\Welcome;
+use App\Models\Schedule;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KCSController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PlanController;
-use App\Http\Controllers\ProduceController;
+use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SimpleController;
-use App\Imports\DocumentsImport;
-use App\Models\Factory;
-use App\Models\KCS;
-use App\Models\Plan;
-use App\Models\Schedule;
-use App\Models\Welcome;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProduceController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\AccessoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -157,4 +157,32 @@ Route::prefix("noibo")->name('internal.')->group(function () {
     Route::get('/tailieu/download/{document}', [DocumentController::class, 'documentDownload'])->name('documentDownload');
 
     Route::delete('/tailieu/{document}', [DocumentController::class, 'documentDelete'])->name('documentDelete');
+});
+
+
+Route::prefix('/phulieu')->name('accessory.')->group(function () {
+    Route::get('/', [AccessoryController::class, 'dashboard'])->name('dashboard');
+    Route::get('/show', [AccessoryController::class, 'show'])->name('show');
+    Route::get('/them/{id?}', [AccessoryController::class, 'add'])->name('add');
+    Route::post('/them', [AccessoryController::class, 'store'])->name('store');
+
+    Route::get('/xuat/{order_id}', [AccessoryController::class, 'order'])->name('order');
+    Route::post('/xuat/{id}', [AccessoryController::class, 'orderStore'])->name('orderStore');
+
+    // Route::delete('/delete/{order_id}', [AccessoryController::class, 'delete'])->name('delete');
+
+
+    Route::get('/day/{day}', [AccessoryController::class, 'row'])->name('row');
+    Route::post('/day/{day}', [AccessoryController::class, 'rowStore'])->name('rowStore');
+
+    Route::get('/mahang/{mahang}', [AccessoryController::class, 'style'])->name('style');
+    Route::get('/loai/{accessory}', [AccessoryController::class, 'type'])->name('type');
+
+
+    Route::get('/download-file', [AccessoryController::class, 'downloadFile'])->name('downloadFile');
+    Route::post('/upload', [AccessoryController::class, 'upload'])->name('upload');
+
+
+    // Route::get(uri: '/mahang/{mahang}', [AccessoryController::class, 'style'])->name('style');
+    Route::delete('/delete/{accessory}', [AccessoryController::class, 'delete'])->name('delete');
 });
