@@ -169,7 +169,8 @@ Route::prefix('/phulieu')->name('accessory.')->group(function () {
     Route::get('/xuat/{order_id}', [AccessoryController::class, 'order'])->name('order');
     Route::post('/xuat/{id}', [AccessoryController::class, 'orderStore'])->name('orderStore');
 
-    // Route::delete('/delete/{order_id}', [AccessoryController::class, 'delete'])->name('delete');
+    Route::get('/edit/{accessory}', [AccessoryController::class, 'edit'])->name('edit');
+    Route::post('/update/{accessory}', [AccessoryController::class, 'update'])->name('update');
 
 
     Route::get('/day/{day}', [AccessoryController::class, 'row'])->name('row');

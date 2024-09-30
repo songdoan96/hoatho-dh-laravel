@@ -14,8 +14,8 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
             <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP TỒN PHỤ LIỆU</h1>
-            <a href="{{ route('accessory.add') }}" title="Thêm mẫu" class="w-8">
-                <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+            <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
+                <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
         </div>
 
@@ -75,7 +75,6 @@
                                 <tr class="test-sm bg-gray-50 hover:bg-gray-200 border-b">
                                     <td title="id-{{ $accessory->id }}" class="border text-left py-2 px-1 border-black">
                                         <div class="w-6 inline-block">
-
                                             @if (!count($accessory->orders))
                                                 <form id="form-delete" method="POST"
                                                     action="{{ route('accessory.delete', $accessory) }}" method="post"

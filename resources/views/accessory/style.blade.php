@@ -10,8 +10,8 @@
             <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP MÃ HÀNG
                 {{ $mahang }}
             </h1>
-            <a href="{{ route('accessory.add') }}" title="Thêm mẫu" class="w-8">
-                <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+            <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
+                <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
         </div>
         <div class="relative overflow-x-auto">

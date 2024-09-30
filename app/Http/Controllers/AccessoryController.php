@@ -124,4 +124,15 @@ class AccessoryController extends Controller
     {
         return Response::download("phu-lieu.xlsx");
     }
+
+    public function edit(Accessory $accessory)
+    {
+        // $accessory = Accessory::find($id);
+        return view("accessory.edit", compact("accessory"));
+    }
+    public function update(Accessory $accessory, Request $request)
+    {
+        $accessory->update($request->all());
+        return redirect()->route("accessory.type", $accessory->id)->with("success", "Cập nhật thành công.");
+    }
 }

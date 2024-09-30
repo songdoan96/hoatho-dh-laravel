@@ -16,12 +16,10 @@
             <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP TỒN MÃ HÀNG
                 {{ $accessory->mahang }} - LOẠI
                 {{ $accessory->loai }}</h1>
-            <a href="{{ route('accessory.add') }}" title="Thêm mẫu" class="w-8">
-                <img src="{{ asset('images/plus.png') }}" alt="Xóa">
+            <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
+                <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
         </div>
-
-
         @if (count($accessories))
             <div class="relative overflow-x-auto">
                 <div class="flex flex-col p-2">
@@ -228,8 +226,8 @@
                                                     </svg>
                                                 </button>
                                             @endif
-                                            <a href="sua.php?id=283" title="Sửa phụ liệu"
-                                                class="hidden w-5 transform hover:text-green-500 transition hover:scale-125"
+                                            <a href="{{ route('accessory.edit', $accessory) }}" title="Sửa phụ liệu"
+                                                class="w-5 transform hover:text-green-500 transition hover:scale-125"
                                                 data-id="283">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke="currentColor">
