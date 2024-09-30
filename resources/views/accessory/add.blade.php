@@ -19,7 +19,7 @@
                 </div>
                 <form action="{{ route('accessory.upload') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="file" id="file"
+                    <input type="file" name="file" id="file" required
                         class="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                     <button type="submit" id="accessory-upload-btn"
                         class="text-white bg-white-700 bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
