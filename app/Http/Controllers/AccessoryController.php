@@ -67,13 +67,13 @@ class AccessoryController extends Controller
             $accessory->save();
             Accessory::create([
                 ...$request->all(),
-                "order_id" => $accessory->id,
+                "order_id" => $id,
                 "het" => true
             ]);
         } else {
             Accessory::create([
                 ...$request->all(),
-                "order_id" => $accessory->id
+                "order_id" => $id
             ]);
         }
 
