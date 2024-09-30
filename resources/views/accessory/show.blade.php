@@ -8,18 +8,71 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen flex flex-col bg-white">
+    <pre>
+    {{ print_r($result) }}
+</pre>
+    <div class="h-screen flex flex-col bg-gray-200">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('accessory.dashboard') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
-            <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP TỒN PHỤ LIỆU</h1>
+            <h1 class="text-center text-2xl uppercase font-bold w-full">THỐNG KÊ KHO PHỤ LIỆU</h1>
 
         </div>
 
-
         @if (count($accessories))
-            <div class="relative overflow-x-auto">
+            <div class="flex flex-1">
+                <div class="w-1/2 h-full flex flex-col p-4">
+                    {{-- <div class="h-12 flex items-center justify-center">
+                        <h6 class="font-bold text-2xl uppercase">Năng lực kho</h6>
+                    </div> --}}
+                    <div class="grid grid-cols-3 h-full gap-8">
+                        @foreach (range('A', 'L') as $day)
+                            <div class="border relative shadow bg-white">
+                                <div
+                                    class="absolute -right-4 -top-4 bg-green-500 text-white rounded-full h-8 w-8 flex items-center justify-center font-bold text-xl">
+                                    {{ $day }}
+                                </div>
+                                <div class="grid grid-cols-1">
+                                    <div class="flex">
+                                        <div class="w-1/2 flex gap-2">
+                                            <img class="w-4" src="{{ asset('images/brand.svg') }}" alt="Khách hàng">
+                                            <span>COSTCO</span>
+                                        </div>
+                                        <div class="w-1/2 flex gap-2">
+                                            <img class="w-4" src="{{ asset('images/shirt.svg') }}" alt="Khách hàng">
+                                            <span>#1340</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="w-1/3 flex">
+                                            <img class="w-4" src="{{ asset('images/brand.svg') }}" alt="Khách hàng">
+                                            <span>COSTCO</span>
+                                        </div>
+                                        <div class="w-1/3 flex">
+                                            <img class="w-4" src="{{ asset('images/shirt.svg') }}" alt="Khách hàng">
+                                            <span>#1340</span>
+                                        </div>
+                                        <div class="w-1/3 flex">
+                                            <img class="w-4" src="{{ asset('images/thread.svg') }}" alt="Khách hàng">
+                                            <span>Dây kéo</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    bieudo
+                </div>
+            </div>
+        @endif
+
+        @if (!count($accessories))
+            <div class="relative overflow-x-auto hidden">
                 <div class="relative overflow-x-auto shadow-md">
                     <table class="uppercase w-full text-base text-center">
                         <thead class="text-white uppercase bg-blue-500">

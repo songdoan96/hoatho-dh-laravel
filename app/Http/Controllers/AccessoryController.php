@@ -17,8 +17,23 @@ class AccessoryController extends Controller
     }
     public function show()
     {
-        $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
-        return view("accessory.show", compact("accessories"));
+
+        // $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
+        $accessories = Accessory::where("het", false)
+            ->groupBy("day", "mahang")
+            ->select("khachhang", "mahang", "day", "loai")
+            ->get()
+            ->toArray();
+        $result = [];
+        foreach ($accessories as $key => $accessory) {
+            $result[] = $accessory;
+            // if ($result["day"] == $accessory["day"]) {
+            //     $result[] = $accessory;
+            // } else {
+            // }
+        }
+        print_r($result);
+        return view("accessory.show", compact("accessories", "result"));
     }
     public function add($id = null)
     {
@@ -52,13 +67,13 @@ class AccessoryController extends Controller
             $accessory->save();
             Accessory::create([
                 ...$request->all(),
-                "order_id" => $id,
+                "order_id" => $accessory->id,
                 "het" => true
             ]);
         } else {
             Accessory::create([
                 ...$request->all(),
-                "order_id" => $id
+                "order_id" => $accessory->id
             ]);
         }
 
