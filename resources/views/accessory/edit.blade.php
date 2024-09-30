@@ -39,18 +39,18 @@
                     <select id="day" name="day" required
                         class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">Chọn dãy</option>
-                        <option {{ $accessory->day == '01' ? 'selected' : '' }} value="01">01</option>
-                        <option {{ $accessory->day == '02' ? 'selected' : '' }} value="02">02</option>
-                        <option {{ $accessory->day == '03' ? 'selected' : '' }} value="03">03</option>
-                        <option {{ $accessory->day == '04' ? 'selected' : '' }} value="04">04</option>
-                        <option {{ $accessory->day == '05' ? 'selected' : '' }} value="05">05</option>
-                        <option {{ $accessory->day == '06' ? 'selected' : '' }} value="06">06</option>
-                        <option {{ $accessory->day == '07' ? 'selected' : '' }} value="07">07</option>
-                        <option {{ $accessory->day == '08' ? 'selected' : '' }} value="08">08</option>
-                        <option {{ $accessory->day == '09' ? 'selected' : '' }} value="09">09</option>
-                        <option {{ $accessory->day == '10' ? 'selected' : '' }} value="10">10</option>
-                        <option {{ $accessory->day == '11' ? 'selected' : '' }} value="11">11</option>
-                        <option {{ $accessory->day == '12' ? 'selected' : '' }} value="12">12</option>
+                        <option {{ $accessory->day == 'A' ? 'selected' : '' }} value="A">A</option>
+                        <option {{ $accessory->day == 'B' ? 'selected' : '' }} value="B">B</option>
+                        <option {{ $accessory->day == 'C' ? 'selected' : '' }} value="C">C</option>
+                        <option {{ $accessory->day == 'D' ? 'selected' : '' }} value="D">D</option>
+                        <option {{ $accessory->day == 'E' ? 'selected' : '' }} value="E">E</option>
+                        <option {{ $accessory->day == 'F' ? 'selected' : '' }} value="F">F</option>
+                        <option {{ $accessory->day == 'G' ? 'selected' : '' }} value="G">G</option>
+                        <option {{ $accessory->day == 'H' ? 'selected' : '' }} value="H">H</option>
+                        <option {{ $accessory->day == 'I' ? 'selected' : '' }} value="I">I</option>
+                        <option {{ $accessory->day == 'J' ? 'selected' : '' }} value="J">J</option>
+                        <option {{ $accessory->day == 'K' ? 'selected' : '' }} value="K">K</option>
+                        <option {{ $accessory->day == 'L' ? 'selected' : '' }} value="L">L</option>
                     </select>
 
                 </div>

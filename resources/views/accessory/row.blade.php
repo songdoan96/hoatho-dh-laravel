@@ -17,13 +17,20 @@
                         <h3 class="text-center uppercase font-bold text-xl">Danh sách kệ</h3>
                     </div>
                     <div class="grid grid-cols-2">
-                        @for ($i = 1; $i <= 12; $i++)
+                        @foreach (range('A', 'L') as $item)
+                            <div class="flex items-center justify-center p-2">
+                                <a href="{{ route('accessory.row', $item) }}"
+                                    class="{{ $day == $item ? 'bg-blue-600 text-white' : 'bg-white text-black' }} h-10 w-full flex items-center justify-center font-bold hover:shadow-md hover:scale-110 transition-all">
+                                    {{ $item }}</a>
+                            </div>
+                        @endforeach
+                        {{-- @for ($i = 1; $i <= 12; $i++)
                             <div class="flex items-center justify-center p-2">
                                 <a href="{{ route('accessory.row', $i < 10 ? '0' . $i : $i) }}"
                                     class="{{ $day == $i ? 'bg-blue-600 text-white' : 'bg-white text-black' }} h-10 w-full flex items-center justify-center font-bold hover:shadow-md hover:scale-110 transition-all">
                                     {{ $i < 10 ? '0' . $i : $i }}</a>
                             </div>
-                        @endfor
+                        @endfor --}}
                     </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 flex-1 p-4 h-full">
