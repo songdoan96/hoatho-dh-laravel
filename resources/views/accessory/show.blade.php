@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="h-screen flex flex-col bg-gray-200">
-        <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
+        <div id="header" class="hidden tems-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('accessory.dashboard') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
@@ -19,12 +19,12 @@
         </div>
         @if (count($accessories))
             <div class="flex flex-1">
-                <div class="w-1/2 h-full flex flex-col p-4">
+                <div class="w-2/3 h-screen flex flex-col p-4">
                     {{-- <div class="h-12 flex items-center justify-center">
                         <h6 class="font-bold text-2xl uppercase">Năng lực kho</h6>
                     </div> --}}
 
-                    <div class="grid grid-cols-3 grid-rows-4 h-full gap-5">
+                    <div class="grid grid-cols-4 grid-rows-4 h-full gap-5">
                         @foreach (array_merge(range('A', 'L'), ['TTH']) as $day)
                             <div
                                 class="rounded border relative shadow  {{ in_array($day, array_keys($containers)) ? 'bg-green-100' : 'bg-gray-400' }}">
@@ -58,34 +58,26 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="w-1/2 flex flex-col p-4">
+                <div class="w-1/3 flex flex-col p-4 gap-4">
                     <div class="flex h-2/3 bg-white justify-center">
                         <canvas id="myChart"></canvas>
                     </div>
-                    <div class="flex h-1/3">
-                        <div class="w-1/2">
-                            <h6 class="text-center">Danh mục phụ liệu đặc biệt</h6>
-                            <div class="flex">
-                                <div class="w-1/2">
-                                    <h6>#Motives</h6>
-                                    <ul>
-                                        <li>Keo</li>
-                                        <li>Keo</li>
-                                        <li>Keo</li>
-                                    </ul>
-                                </div>
-                                <div class="w-1/2">
-                                    <h6>#FAM</h6>
-                                    <ul>
-                                        <li>Keo</li>
-                                        <li>Keo</li>
-                                        <li>Keo</li>
-                                    </ul>
-                                </div>
+                    <div class="flex h-1/3 gap-4">
+                        <div class="w-1/2 bg-white">
+                            <h6 class="text-center uppercase font-bold">Danh mục phụ liệu đặc biệt</h6>
+                            <div class="flex p-2">
+                                <li class="list-disc font-semibold">Motives : <span class="font-medium">Silicon</span></li>
                             </div>
                         </div>
-                        <div class="w-1/2">
-                            <h6 class="text-center">Phụ liệu tồn</h6>
+                        <div class="w-1/2 bg-white">
+                            <h6 class="text-center uppercase font-bold">Phụ liệu tồn</h6>
+                            <div class="flex flex-col p-2">
+                                <li class="list-disc font-semibold">Tồn 3 tháng : <span class="font-medium">Tongfan</span>
+                                </li>
+                                <li class="list-disc font-semibold">Tồn 6 tháng : <span class="font-medium">Motives</span>
+                                </li>
+                                <li class="list-disc font-semibold">Tồn 8 tháng : <span class="font-medium">DXL</span></li>
+                            </div>
                         </div>
                     </div>
                 </div>
