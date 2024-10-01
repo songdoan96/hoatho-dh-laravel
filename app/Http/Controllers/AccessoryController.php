@@ -133,9 +133,9 @@ class AccessoryController extends Controller
             ->where("mau", $accessory->mau)
             ->with("orders")
             ->get();
-        if (!count($accessories)) {
-            return redirect()->back()->with("danger", "Phụ liệu này đã hết");
-        }
+        // if (!count($accessories)) {
+        //     return redirect()->back()->with("danger", "Phụ liệu này đã hết");
+        // }
         return view("accessory.type", compact("accessories", "accessory"));
     }
 
