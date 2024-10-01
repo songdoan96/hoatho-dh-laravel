@@ -53,24 +53,44 @@
                                             </tbody>
                                         </table>
                                     @endif
-
-
                                 </div>
-
                             </div>
                         @endforeach
-
                     </div>
                 </div>
-                <div class="w-1/2">
-                    <div class="w-72">
+                <div class="w-1/2 flex flex-col p-4">
+                    <div class="flex h-2/3 bg-white justify-center">
                         <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="flex h-1/3">
+                        <div class="w-1/2">
+                            <h6 class="text-center">Danh mục phụ liệu đặc biệt</h6>
+                            <div class="flex">
+                                <div class="w-1/2">
+                                    <h6>#Motives</h6>
+                                    <ul>
+                                        <li>Keo</li>
+                                        <li>Keo</li>
+                                        <li>Keo</li>
+                                    </ul>
+                                </div>
+                                <div class="w-1/2">
+                                    <h6>#FAM</h6>
+                                    <ul>
+                                        <li>Keo</li>
+                                        <li>Keo</li>
+                                        <li>Keo</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <h6 class="text-center">Phụ liệu tồn</h6>
+                        </div>
                     </div>
                 </div>
             </div>
         @endif
-
-
 
 
     </div>
@@ -78,26 +98,72 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+
+        var countCustomers = {!! json_encode($countCustomers) !!};
+        let labels = [];
+        let getData = [];
+        let backgroundColor = [];
+        let empty = 13;
+
+        for (const [key, value] of Object.entries(countCustomers)) {
+            getData.push(value);
+            backgroundColor.push(getRandomColor());
+            labels.push(`${key}:${value}`);
+            empty -= value;
+        }
+        getData.push(empty)
+        backgroundColor.push("#9CA3AF");
+        labels.push(`Trống:${empty}`);
+
         const data = {
-            labels: [
-                'Chứa PL={{ count($containers) }}',
-                'Trống={{ 13 - count($containers) }}',
-            ],
+            labels,
             datasets: [{
                 label: 'SL',
-                data: [{{ count($containers) }}, {{ 13 - count($containers) }}],
-                backgroundColor: [
-                    'rgb(220, 252, 231)',
-                    'rgb(156, 163, 175)',
-                ],
+                data: getData,
+                backgroundColor,
                 hoverOffset: 4
-            }]
+            }],
+
         };
-        const config = {
-            type: 'pie',
-            data: data,
+        const config1 = {
+            type: 'doughnut',
+            data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'NĂNG LỰC KHO',
+                        padding: {
+                            bottom: 0,
+                            top: 4
+                        },
+                        font: {
+                            size: 30,
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'left',
+                        labels: {
+                            font: {
+                                size: 20
+                            }
+
+                        }
+                    },
+                }
+            },
         };
-        const ctx = document.getElementById('myChart');
-        new Chart(ctx, config)
+        const ctx1 = document.getElementById('myChart');
+        new Chart(ctx1, config1)
     </script>
 @endpush

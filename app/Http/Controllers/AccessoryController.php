@@ -32,8 +32,22 @@ class AccessoryController extends Controller
                 $containers[$value["day"]][] = [$value["khachhang"], $value["mahang"], $value["loai"]];
             }
         }
-
-        return view("accessory.show", compact("accessories", "containers"));
+        $dayAccessories = [];
+        foreach (array_merge(range('A', 'L'), ['TTH']) as $key => $value) {
+            $i = Accessory::where("het", false)->whereNull("order_id")->where("day", $value)->select("day", "khachhang")->first();
+            if ($i) {
+                $dayAccessories[] = $i;
+            }
+        }
+        $countCustomers = [];
+        foreach ($dayAccessories as $k => $v) {
+            if (in_array($v->khachhang, array_keys($countCustomers))) {
+                $countCustomers[$v->khachhang] = $countCustomers[$v->khachhang] + 1;
+            } else {
+                $countCustomers[$v->khachhang] = 1;
+            }
+        }
+        return view("accessory.show", compact("accessories", "containers", "countCustomers"));
     }
     public function add($id = null)
     {
