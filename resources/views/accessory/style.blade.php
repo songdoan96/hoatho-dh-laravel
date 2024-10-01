@@ -96,6 +96,9 @@
 
                                 <td
                                     class="w-20 underline text-sm bg-green-700 text-green-200 whitespace-nowrap border border-black">
+                                    @php
+                                        $totalInput = \App\Models\Accessory::where('het', false)->sum('soluong');
+                                    @endphp
                                     <a
                                         href="{{ route('accessory.add', $accessory->id) }}">{{ formatNumber($accessory->totalQtyWithStyle(), 2) }}</a>
                                 </td>
@@ -104,11 +107,16 @@
                                 <td class="w-20 text-sm border border-black  bg-red-700 text-red-200 whitespace-nowrap">
                                     {{-- <a class="underline"
                                         href="{{ route('accessory.order', $accessory->id) }}">{{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}</a> --}}
-                                    {{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}
+                                    @php
+                                        $totalOrders = \App\Models\Accessory::where('order_id', $accessory->id)
+                                            ->where('het', false)
+                                            ->sum('soluong');
+                                    @endphp
+                                    {{ formatNumber($totalOrders, 2) }}
                                 </td>
 
                                 <td class="w-20 text-sm border-r text-white bg-sky-700 py-2 px-1 whitespace-nowrap">
-                                    {{ formatNumber($accessory->totalQtyWithStyle() - $accessory->totalQtyOrderWithStyle(), 2) }}
+                                    {{ formatNumber($accessory->totalQtyWithStyle() - $totalOrders, 2) }}
                                 </td>
 
                             </tr>

@@ -12,7 +12,7 @@ class AccessoryController extends Controller
 {
     public function dashboard()
     {
-        $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
+        $accessories = Accessory::orderBy("created_at", "DESC")->get();
         return view("accessory.dashboard", compact("accessories"));
     }
     public function show()
