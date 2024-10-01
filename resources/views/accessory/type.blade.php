@@ -31,8 +31,7 @@
                             </div>
                             <div class="flex items-center gap-2">
                                 <img class="w-10" src="{{ asset('images/shirt.svg') }}" alt="">
-                                <a class="underline font-bold text-xl"
-                                    href="{{ route('accessory.style', $accessory->mahang) }}">
+                                <a class="underline font-bold text-xl" href="{{ route('accessory.style', $accessory) }}">
                                     #{{ $accessory->mahang }}
                                 </a>
                             </div>
@@ -58,7 +57,7 @@
                             <div class="flex flex-col items-center gap-2 ">
                                 <span>SL nhập</span>
                                 <span
-                                    class="min-w-28 text-center whitespace-nowrap bg-emerald-100 text-emerald-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyWithStyle()) }}<span
+                                    class="min-w-28 text-center whitespace-nowrap bg-emerald-100 text-emerald-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyWithStyle(), 2) }}<span
                                         class="text-sm"> {{ $accessory->donvi }}</span></span>
                             </div>
                             <div class="flex flex-col items-center gap-2 ">
@@ -161,7 +160,7 @@
                                         {{ $accessory->khachhang }}
                                     </td>
                                     <td class="border py-2 px-1 border-black">
-                                        <a class="underline" href="{{ route('accessory.style', $accessory->mahang) }}">
+                                        <a class="underline" href="{{ route('accessory.style', $accessory) }}">
                                             {{ $accessory->mahang }}
                                         </a>
                                     </td>
@@ -273,8 +272,7 @@
                                             <td class="border py-2 px-1 border-black">{{ $order->khachhang }}
                                             </td>
                                             <td class="border py-2 px-1 border-black">
-                                                <a class="underline"
-                                                    href="{{ route('accessory.style', $order->mahang) }}">
+                                                <a class="underline" href="{{ route('accessory.style', $order) }}">
                                                     {{ $order->mahang }}
                                                 </a>
                                             </td>

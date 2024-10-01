@@ -13,7 +13,7 @@
             <a href="{{ route('accessory.dashboard') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
-            <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP TỒN PHỤ LIỆU</h1>
+            <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP PHỤ LIỆU</h1>
             <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
                 <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
@@ -106,7 +106,7 @@
                                         {{ $accessory->khachhang }}
                                     </td>
                                     <td class="border py-2 px-1 border-black">
-                                        <a class="underline" href="{{ route('accessory.style', $accessory->mahang) }}">
+                                        <a class="underline" href="{{ route('accessory.style', $accessory) }}">
                                             {{ $accessory->mahang }}
                                         </a>
                                     </td>

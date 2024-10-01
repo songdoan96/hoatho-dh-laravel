@@ -20,20 +20,20 @@ class AccessoryController extends Controller
 
         // $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
         $accessories = Accessory::where("het", false)
-            ->groupBy("day", "mahang")
+            ->groupBy("day", "mahang", "loai")
             ->select("khachhang", "mahang", "day", "loai")
             ->get()
             ->toArray();
-        $result = [];
-        foreach ($accessories as $key => $accessory) {
-            $result[] = $accessory;
-            // if ($result["day"] == $accessory["day"]) {
-            //     $result[] = $accessory;
-            // } else {
-            // }
+        $containers = [];
+        foreach ($accessories as $key => $value) {
+            if (in_array($value["day"], array_keys($containers))) {
+                $containers[$value["day"]] = [...$containers[$value["day"]], [$value["khachhang"], $value["mahang"], $value["loai"]]];
+            } else {
+                $containers[$value["day"]][] = [$value["khachhang"], $value["mahang"], $value["loai"]];
+            }
         }
-        print_r($result);
-        return view("accessory.show", compact("accessories", "result"));
+
+        return view("accessory.show", compact("accessories", "containers"));
     }
     public function add($id = null)
     {
@@ -101,20 +101,26 @@ class AccessoryController extends Controller
 
     public function row($day)
     {
-        $accessories = Accessory::where("het", 0)
+        $accessories = Accessory::where("het", false)
             ->where("order_id", null)
             ->where("day", $day)
-            ->groupBy("loai", "mau", "size")
+            ->groupBy("mahang", "loai", "mau", "size")
             ->get();
         return view("accessory.row", compact("accessories", "day"));
     }
-    public function style($mahang)
+    public function style(Accessory $accessory)
     {
-        $accessories = Accessory::where("het", false)
-            ->where("mahang", $mahang)
-            ->where("order_id", null)
+        $accessories = Accessory::where("order_id", null)
+            ->where("het", false)
+            ->where("mahang", $accessory->mahang)
             ->groupBy("loai", "mau", "size")
             ->get();
+        // $accessories = Accessory::where("het", false)
+        //     ->where("mahang", $mahang)
+        //     ->where("order_id", null)
+        //     ->groupBy("loai", "mau", "size")
+        //     ->get();
+        $mahang = $accessory->mahang;
         return view("accessory.style", compact("accessories", "mahang"));
     }
     public function type(Accessory $accessory)
@@ -127,6 +133,9 @@ class AccessoryController extends Controller
             ->where("mau", $accessory->mau)
             ->with("orders")
             ->get();
+        if (!count($accessories)) {
+            return redirect()->back()->with("danger", "Phụ liệu này đã hết");
+        }
         return view("accessory.type", compact("accessories", "accessory"));
     }
 

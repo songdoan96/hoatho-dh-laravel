@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('khachhang');
             $table->string(column: 'mahang');
             $table->string('loai');
-            $table->string('mau')->nullable();
-            $table->string('size')->nullable();
+            $table->string('mau');
+            $table->string('size');
             $table->string('donvi');
             $table->string('po')->nullable();
             $table->unsignedDecimal("soluong", 10, 2);

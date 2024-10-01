@@ -17,7 +17,7 @@
                         <h3 class="text-center uppercase font-bold text-xl">Danh sách kệ</h3>
                     </div>
                     <div class="grid grid-cols-2">
-                        @foreach (range('A', 'L') as $item)
+                        @foreach (array_merge(range('A', 'L'), ['TTH']) as $item)
                             <div class="flex items-center justify-center p-2">
                                 <a href="{{ route('accessory.row', $item) }}"
                                     class="{{ $day == $item ? 'bg-blue-600 text-white' : 'bg-white text-black' }} h-10 w-full flex items-center justify-center font-bold hover:shadow-md hover:scale-110 transition-all">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="h-1/2 border-t py-1 flex flex-col items-center font-semibold text-sm">
                                     <img src="{{ asset('images/shirt.svg') }}" alt="Loại" class="w-8">
-                                    <a class="underline" href="{{ route('accessory.style', $accessory->mahang) }}">
+                                    <a class="underline" href="{{ route('accessory.style', $accessory) }}">
                                         #{{ $accessory->mahang }}
                                     </a>
                                 </div>
@@ -114,7 +114,7 @@
                 </div>
 
             </div>
-            <table class="hidden uppercase w-full text-base text-center">
+            {{-- <table class="hidden uppercase w-full text-base text-center">
                 <thead class="text-white uppercase bg-blue-500">
                     <tr>
                         <th class="border">
@@ -170,7 +170,7 @@
                                 {{ $accessory->khachhang }}
                             </td>
                             <td class="border py-2 px-1 border-black">
-                                <a class="underline" href="{{ route('accessory.style', $accessory->mahang) }}">
+                                <a class="underline" href="{{ route('accessory.style', $accessory) }}">
                                     {{ $accessory->mahang }}
                                 </a>
                             </td>
@@ -213,7 +213,7 @@
 
 
                 </tbody>
-            </table>
+            </table> --}}
 
         </div>
     @endsection

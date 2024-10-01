@@ -176,7 +176,7 @@ Route::prefix('/phulieu')->name('accessory.')->group(function () {
     Route::get('/day/{day}', [AccessoryController::class, 'row'])->name('row');
     Route::post('/day/{day}', [AccessoryController::class, 'rowStore'])->name('rowStore');
 
-    Route::get('/mahang/{mahang}', [AccessoryController::class, 'style'])->name('style');
+    Route::get('/mahang/{accessory}', [AccessoryController::class, 'style'])->name('style');
     Route::get('/loai/{accessory}', [AccessoryController::class, 'type'])->name('type');
 
 

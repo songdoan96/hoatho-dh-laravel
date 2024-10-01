@@ -72,7 +72,7 @@
                                     {{ $accessory->khachhang }}
                                 </td>
                                 <td class="border py-2 px-1 border-black">
-                                    <a class="underline" href="{{ route('accessory.style', $accessory->mahang) }}">
+                                    <a class="underline" href="{{ route('accessory.style', $accessory) }}">
                                         {{ $accessory->mahang }}
                                     </a>
                                 </td>
