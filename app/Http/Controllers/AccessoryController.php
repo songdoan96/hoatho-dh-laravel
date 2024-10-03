@@ -12,7 +12,7 @@ class AccessoryController extends Controller
 {
     public function dashboard()
     {
-        $accessories = Accessory::orderBy("created_at", "DESC")->get();
+        $accessories = Accessory::orderBy("created_at", "DESC")->limit(100)->get();
         return view("accessory.dashboard", compact("accessories"));
     }
     public function show()
@@ -129,11 +129,6 @@ class AccessoryController extends Controller
             ->where("mahang", $accessory->mahang)
             ->groupBy("loai", "mau", "size")
             ->get();
-        // $accessories = Accessory::where("het", false)
-        //     ->where("mahang", $mahang)
-        //     ->where("order_id", null)
-        //     ->groupBy("loai", "mau", "size")
-        //     ->get();
         $mahang = $accessory->mahang;
         return view("accessory.style", compact("accessories", "mahang"));
     }
