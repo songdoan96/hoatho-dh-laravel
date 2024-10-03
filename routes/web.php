@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\KCS;
+use App\Models\Plan;
 use App\Models\Factory;
 use App\Models\Welcome;
 use App\Models\Schedule;
@@ -15,6 +17,7 @@ use App\Http\Controllers\SimpleController;
 use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\AccessoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,8 +51,11 @@ Route::get('/show/{type?}', [MainController::class, "show"])->name('show');
 
 Route::get('/test', function () {
 
-    return;
-    return view('test', compact('plan'));
+    $plans = Plan::all();
+    $kcs = KCS::all();
+    return response()->json(
+        ["plans" => $plans, "kcs" => $kcs]
+    );
 });
 
 Route::get('/tv', function () {

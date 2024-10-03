@@ -37,16 +37,18 @@
                                         <table class="text-center w-full">
                                             <thead>
                                                 <tr>
-                                                    <th class="border">Mã hàng</th>
-                                                    <th class="border">Loại</th>
+                                                    <th class="border w-1/3">Mã hàng</th>
+                                                    <th class="border w-2/3">Loại</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($containers[$day] as $index => $item)
                                                     @if ($index < 4)
                                                         <tr class="text-left">
-                                                            <td class="border">#{{ $item[1] }}</td>
-                                                            <td class="border">{{ $item[2] }}</td>
+                                                            <td class="border"><span
+                                                                    class="line-clamp-1">#{{ $item[1] }}</span></td>
+                                                            <td class="border"><span
+                                                                    class="line-clamp-1">{{ $item[2] }}</span></td>
                                                         </tr>
                                                     @endif
                                                 @endforeach
@@ -59,7 +61,12 @@
                     </div>
                 </div>
                 <div class="w-1/3 flex flex-col p-4 gap-4">
-                    <div class="flex h-2/3 bg-white justify-center">
+                    <div class="flex h-2/3 bg-white justify-center relative">
+                        <div class="absolute left-1 top-1">
+                            <a href="{{ route('accessory.dashboard') }}">
+                                <img class="w-16" src="{{ asset('images/logo.png') }}" alt="">
+                            </a>
+                        </div>
                         <canvas id="myChart"></canvas>
                     </div>
                     <div class="flex h-1/3 gap-4">

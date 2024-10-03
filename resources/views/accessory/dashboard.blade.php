@@ -17,6 +17,9 @@
             <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
                 <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
+            <a href="{{ route('accessory.show') }}" title="TV" class="w-8 ml-2">
+                <img src="{{ asset('images/tv.svg') }}" alt="TV">
+            </a>
         </div>
 
 

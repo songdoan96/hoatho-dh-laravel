@@ -139,9 +139,11 @@ class AccessoryController extends Controller
     }
     public function type(Accessory $accessory)
     {
+
         $accessories = Accessory::where("het", false)
-            ->where("order_id", null)
+            ->whereNull("order_id")
             ->where("loai", $accessory->loai)
+            ->where("khachhang", $accessory->khachhang)
             ->where("mahang", $accessory->mahang)
             ->where("size", $accessory->size)
             ->where("mau", $accessory->mau)
