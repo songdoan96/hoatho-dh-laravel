@@ -19,16 +19,15 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-12">
             </a>
             <h1 class="text-center text-2xl uppercase font-bold w-full">@yield('header-title', 'QUẢN LÝ XUẤT NHẬP PHỤ LIỆU')</h1>
-
-            <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-10">
-                <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
+            <a href="{{ route('accessory.soldOut') }}" title="Phụ liệu hết"
+                class="ml-2 bg-yellow-300 text-red-700 px-1 rounded uppercase font-bold">
+                Hết
             </a>
             <a href="{{ route('accessory.show') }}" title="TV" class="w-10 ml-2">
                 <img src="{{ asset('images/tv.svg') }}" alt="TV">
             </a>
-            <a href="{{ route('accessory.soldOut') }}" title="Phụ liệu hết"
-                class="ml-2 bg-yellow-300 text-red-700 px-1 rounded uppercase font-bold">
-                Hết
+            <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-10 ml-2">
+                <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
             <form method="get" action="{{ route('accessory.dashboard') }}"
                 class="hidden md:block relative h-8 md:w-64 lg:w-96 rounded text-black ml-2">
