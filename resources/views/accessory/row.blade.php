@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="h-1/2 border-t py-1 flex flex-col items-center font-semibold text-sm">
                                     <img src="{{ asset('images/shirt.svg') }}" alt="Loại" class="w-8">
-                                    <a class="underline" href="{{ route('accessory.style', $accessory) }}">
+                                    <a class="underline line-clamp-1" href="{{ route('accessory.style', $accessory) }}">
                                         #{{ $accessory->mahang }}
                                     </a>
                                 </div>
@@ -81,7 +81,8 @@
                                 </div>
                                 <div class="flex justify-between p-2">
                                     <div class="w-1/3 flex justify-center font-semibold text-base items-end">
-                                        <img src="{{ asset('images/thread.svg') }}" alt="Loại" class="w-8">
+                                        <img src="{{ asset('images/thread.svg') }}" title="Loại" alt="Loại"
+                                            class="w-8">
                                         <a class="underline ml-2" href="{{ route('accessory.type', $accessory) }}">
                                             {{ $accessory->loai }}
                                         </a>
@@ -91,7 +92,8 @@
                                         <span class="ml-2">{{ $accessory->size }}</span>
                                     </div>
                                     <div class="w-1/3 flex justify-center font-semibold text-base items-end">
-                                        <img src="{{ asset('images/color.svg') }}" alt="Loại" class="w-8">
+                                        <img src="{{ asset('images/color.svg') }}" title="Màu" alt="Màu"
+                                            class="w-8">
                                         <span class="ml-2">{{ $accessory->mau }}</span>
                                     </div>
                                 </div>

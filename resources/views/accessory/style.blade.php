@@ -13,6 +13,13 @@
             <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
                 <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
+            <a href="{{ route('accessory.show') }}" title="TV" class="w-8 ml-2">
+                <img src="{{ asset('images/tv.svg') }}" alt="TV">
+            </a>
+            <a href="{{ route('accessory.soldOut') }}" title="Phụ liệu hết"
+                class="ml-2 bg-yellow-300 text-red-700 px-1 rounded uppercase font-bold">
+                Hết
+            </a>
         </div>
         <div class="relative overflow-x-auto">
             <div class="relative overflow-x-auto shadow-md">
@@ -96,9 +103,7 @@
 
                                 <td
                                     class="w-20 underline text-sm bg-green-700 text-green-200 whitespace-nowrap border border-black">
-                                    @php
-                                        $totalInput = \App\Models\Accessory::where('het', false)->sum('soluong');
-                                    @endphp
+
                                     <a
                                         href="{{ route('accessory.add', $accessory->id) }}">{{ formatNumber($accessory->totalQtyWithStyle(), 2) }}</a>
                                 </td>
@@ -107,16 +112,11 @@
                                 <td class="w-20 text-sm border border-black  bg-red-700 text-red-200 whitespace-nowrap">
                                     {{-- <a class="underline"
                                         href="{{ route('accessory.order', $accessory->id) }}">{{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}</a> --}}
-                                    @php
-                                        $totalOrders = \App\Models\Accessory::where('order_id', $accessory->id)
-                                            ->where('het', false)
-                                            ->sum('soluong');
-                                    @endphp
-                                    {{ formatNumber($totalOrders, 2) }}
+                                    {{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}
                                 </td>
 
                                 <td class="w-20 text-sm border-r text-white bg-sky-700 py-2 px-1 whitespace-nowrap">
-                                    {{ formatNumber($accessory->totalQtyWithStyle() - $totalOrders, 2) }}
+                                    {{ formatNumber($accessory->totalQtyWithStyle() - $accessory->totalQtyOrderWithStyle(), 2) }}
                                 </td>
 
                             </tr>

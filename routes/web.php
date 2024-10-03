@@ -192,4 +192,6 @@ Route::prefix('/phulieu')->name('accessory.')->group(function () {
 
     // Route::get(uri: '/mahang/{mahang}', [AccessoryController::class, 'style'])->name('style');
     Route::delete('/delete/{accessory}', [AccessoryController::class, 'delete'])->name('delete');
+
+    Route::get("het/{mahang?}/{accessory?}", [AccessoryController::class, 'soldOut'])->name("soldOut");
 });

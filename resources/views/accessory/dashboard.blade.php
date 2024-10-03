@@ -20,6 +20,10 @@
             <a href="{{ route('accessory.show') }}" title="TV" class="w-8 ml-2">
                 <img src="{{ asset('images/tv.svg') }}" alt="TV">
             </a>
+            <a href="{{ route('accessory.soldOut') }}" title="Phụ liệu hết"
+                class="ml-2 bg-yellow-300 text-red-700 px-1 rounded uppercase font-bold">
+                Hết
+            </a>
         </div>
 
 

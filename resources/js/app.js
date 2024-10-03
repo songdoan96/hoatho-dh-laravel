@@ -14,11 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 5000);
     }
 
-    // const allBtnSubmit = document.querySelectorAll('button[type="submit"]');
-    // allBtnSubmit.forEach(btn => {
-    //     btn.addEventListener("click", function (e) {
-    //         this.setAttribute('disabled', 'disabled');
-    //         this.form.submit();
-    //     })
-    // })
+    const btnShowOrder = document.querySelectorAll(".btn-show-order");
+    btnShowOrder.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const ordersChild = document.querySelectorAll(
+                ".order-child-" + this.dataset.id
+            );
+            if (btn.classList.contains("showing")) {
+                btn.classList.remove("showing");
+                ordersChild.forEach((element) => {
+                    element.classList.add("hidden");
+                });
+            } else {
+                btn.classList.add("showing");
+                ordersChild.forEach((element) => {
+                    element.classList.remove("hidden");
+                });
+            }
+        });
+    });
 });

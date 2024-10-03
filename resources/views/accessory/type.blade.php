@@ -19,6 +19,13 @@
             <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
                 <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
             </a>
+            <a href="{{ route('accessory.show') }}" title="TV" class="w-8 ml-2">
+                <img src="{{ asset('images/tv.svg') }}" alt="TV">
+            </a>
+            <a href="{{ route('accessory.soldOut') }}" title="Phụ liệu hết"
+                class="ml-2 bg-yellow-300 text-red-700 px-1 rounded uppercase font-bold">
+                Hết
+            </a>
         </div>
         @if (count($accessories))
             <div class="relative overflow-x-auto">
@@ -38,17 +45,17 @@
                         </div>
                         <div class="flex justify-center gap-2 lg:gap-8 bg-white p-2 rounded-lg w-5/12 lg:w-1/3 ">
                             <div class="flex items-center gap-2">
-                                <img class="w-10" src="{{ asset('images/thread.svg') }}" alt="">
+                                <img class="w-10" src="{{ asset('images/thread.svg') }}" title="Loại" alt="">
                                 <a class="underline font-bold text-xl" href="{{ route('accessory.type', $accessory) }}">
                                     {{ $accessory->loai }}
                                 </a>
                             </div>
                             <div class="flex items-center gap-2">
-                                <img class="w-10" src="{{ asset('images/size.svg') }}" alt="">
+                                <img class="w-10" src="{{ asset('images/size.svg') }}" title="Size" alt="Size">
                                 <span class="font-bold text-xl">{{ $accessory->size }}</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <img class="w-10" src="{{ asset('images/color.svg') }}" alt="">
+                                <img class="w-10" src="{{ asset('images/color.svg') }}" title="Màu" alt="Color">
                                 <span class="font-bold text-xl">{{ $accessory->mau }}</span>
                             </div>
                         </div>
@@ -348,26 +355,3 @@
 
     </div>
 @endsection
-@push('scripts')
-    <script>
-        const btnShowOrder = document.querySelectorAll(".btn-show-order");
-        btnShowOrder.forEach((btn) => {
-            btn.addEventListener("click", function() {
-                const ordersChild = document.querySelectorAll(
-                    ".order-child-" + this.dataset.id
-                );
-                if (btn.classList.contains("showing")) {
-                    btn.classList.remove("showing");
-                    ordersChild.forEach((element) => {
-                        element.classList.add("hidden");
-                    });
-                } else {
-                    btn.classList.add("showing");
-                    ordersChild.forEach((element) => {
-                        element.classList.remove("hidden");
-                    });
-                }
-            });
-        });
-    </script>
-@endpush

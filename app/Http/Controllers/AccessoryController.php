@@ -119,6 +119,9 @@ class AccessoryController extends Controller
             ->where("order_id", null)
             ->where("day", $day)
             ->groupBy("mahang", "loai", "mau", "size")
+            ->orderBy("loai")
+            ->orderBy("size")
+            ->orderBy("mau")
             ->get();
         return view("accessory.row", compact("accessories", "day"));
     }
@@ -169,5 +172,41 @@ class AccessoryController extends Controller
     {
         $accessory->update($request->all());
         return redirect()->route("accessory.type", $accessory->id)->with("success", "Cập nhật thành công.");
+    }
+    public function soldOut(Request $request, $mahang = null, Accessory $accessory = null)
+    {
+        if ($mahang && $accessory == null) {
+            $accessories = Accessory::where("het", true)
+                ->where("mahang", $mahang)
+                ->whereNull("order_id")
+                ->orderBy("mahang")
+                ->orderBy("loai")
+                ->orderBy("size")
+                ->orderBy("mau")
+                ->with("orders")
+                ->get();
+        } else if ($mahang && $accessory != null) {
+            $accessories = Accessory::where("het", true)
+                ->where("mahang", $mahang)
+                ->where("loai", $accessory->loai)
+                ->whereNull("order_id")
+                ->orderBy("mahang")
+
+                ->orderBy("loai")
+                ->orderBy("size")
+                ->orderBy("mau")
+                ->with("orders")
+                ->get();
+        } else {
+            $accessories = Accessory::where("het", true)
+                ->whereNull("order_id")
+                ->orderBy("mahang")
+                ->orderBy("loai")
+                ->orderBy("size")
+                ->orderBy("mau")
+                ->with("orders")
+                ->get();
+        }
+        return view("accessory.sold-out", compact("accessories"));
     }
 }
