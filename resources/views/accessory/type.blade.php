@@ -54,20 +54,14 @@
 
                             <div class="flex flex-col items-center gap-2 ">
                                 <span>SL xuất</span>
-                                @php
-                                    $totalOrders = \App\Models\Accessory::where('order_id', $accessory->id)
-                                        ->where('het', false)
-                                        ->sum('soluong');
-
-                                @endphp
                                 <span
-                                    class="min-w-28 text-center whitespace-nowrap bg-red-100 text-red-700 p-1 px-2 rounded-full">{{ formatNumber($totalOrders, 2) }}<span
+                                    class="min-w-28 text-center whitespace-nowrap bg-red-100 text-red-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}<span
                                         class="text-sm"> {{ $accessory->donvi }}</span></span>
                             </div>
                             <div class="flex flex-col items-center gap-2 ">
                                 <span>SL tồn</span>
                                 <span
-                                    class="min-w-28 text-center whitespace-nowrap bg-sky-100 text-sky-700 p-1 px-2 rounded-full">{{ formatNumber($accessories[0]->totalQtyWithStyle() - $totalOrders, 2) }}<span
+                                    class="min-w-28 text-center whitespace-nowrap bg-sky-100 text-sky-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyWithStyle() - $accessory->totalQtyOrderWithStyle(), 2) }}<span
                                         class="text-sm"> {{ $accessory->donvi }}</span></span>
                             </div>
 
