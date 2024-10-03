@@ -10,9 +10,18 @@ use Illuminate\Support\Facades\Response;
 
 class AccessoryController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        $accessories = Accessory::orderBy("created_at", "DESC")->limit(100)->get();
+        if ($request->search_value && $request->search_type == "type") {
+            $accessories = Accessory::where("het", false)->where("loai", "like", "%$request->search_value%")
+                ->get();
+        } elseif ($request->search_value && $request->search_type == "mahang") {
+            $accessories = Accessory::where("het", false)->where("mahang", "like", "%$request->search_value%")
+                ->get();
+        } else {
+
+            $accessories = Accessory::orderBy("created_at", "DESC")->limit(100)->get();
+        }
         return view("accessory.dashboard", compact("accessories"));
     }
     public function show()

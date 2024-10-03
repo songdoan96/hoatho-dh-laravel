@@ -1,5 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.accessory')
 @section('title', 'QUẢN LÝ XUẤT NHẬP TỒN PHỤ LIỆU')
+@section('title', "QUẢN LÝ XUẤT NHẬP TỒN MÃ HÀNG $accessory->mahang - LOẠI $accessory->loai")
 @push('styles')
     <style>
         table th {
@@ -8,25 +9,8 @@
     </style>
 @endpush
 @section('content')
-    <div class="min-h-screen flex flex-col bg-gray-200">
-        <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
-            <a href="{{ route('accessory.dashboard') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
-            </a>
-            <h1 class="text-center text-2xl uppercase font-bold w-full">QUẢN LÝ XUẤT NHẬP TỒN MÃ HÀNG
-                {{ $accessory->mahang }} - LOẠI
-                {{ $accessory->loai }}</h1>
-            <a href="{{ route('accessory.add') }}" title="Nhập kho" class="w-8">
-                <img src="{{ asset('images/plus.png') }}" alt="Nhập kho">
-            </a>
-            <a href="{{ route('accessory.show') }}" title="TV" class="w-8 ml-2">
-                <img src="{{ asset('images/tv.svg') }}" alt="TV">
-            </a>
-            <a href="{{ route('accessory.soldOut') }}" title="Phụ liệu hết"
-                class="ml-2 bg-yellow-300 text-red-700 px-1 rounded uppercase font-bold">
-                Hết
-            </a>
-        </div>
+    <div class="bg-gray-200">
+
         @if (count($accessories))
             <div class="relative overflow-x-auto">
                 <div class="flex flex-col p-2">
@@ -351,7 +335,6 @@
 
             </div>
         @endif
-
-
     </div>
+
 @endsection
