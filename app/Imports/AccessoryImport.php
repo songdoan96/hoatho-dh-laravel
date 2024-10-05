@@ -2,19 +2,23 @@
 
 namespace App\Imports;
 
-use App\Models\Accessory;
 use Carbon\Carbon;
+use App\Models\Accessory;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class AccessoryImport implements ToModel, WithHeadingRow
+class AccessoryImport implements ToModel, SkipsEmptyRows, WithHeadingRow, WithValidation
 {
     /**
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
+    use Importable;
     public function model(array $row)
     {
         if ($row["ngay"] != "") {
@@ -32,5 +36,18 @@ class AccessoryImport implements ToModel, WithHeadingRow
                 "ghichu" => (string)$row["ghi_chu"]
             ]);
         }
+    }
+
+    public function rules(): array
+    {
+        return [
+            "ngay" => 'required',
+            "khach_hang" => 'required',
+            "ma_hang" => 'required',
+            "loai" => 'required',
+            "day" => 'required',
+            "don_vi" => 'required',
+            "so_luong" => 'required',
+        ];
     }
 }

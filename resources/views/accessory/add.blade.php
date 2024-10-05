@@ -4,6 +4,16 @@
 @section('content')
 
     <div id="form" class="w-full p-2 md:w-2/3 mx-auto">
+        @if (session()->has('failures'))
+            <div class="flex">
+
+                @foreach (session()->get('failures') as $validation)
+                    <li class="text-red-500">
+                        Có lỗi ở hàng số {{ $validation->row() }} - cột {{ $validation->attribute() }}
+                    </li>
+                @endforeach
+            </div>
+        @endif
         <div class="bg-white flex justify-between mb-2 px-4 py-2">
             <div class="flex gap-2 items-end mb-2">
                 <img src="{{ asset('images/download.png') }}" alt="Download" width="40">
@@ -21,6 +31,7 @@
                 </button>
             </form>
         </div>
+
         <form method="POST" action="{{ route('accessory.store') }}" enctype="multipart/form-data"
             class="uppercase mx-auto text-black bg-gray-200 shadow-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-2">
             @csrf

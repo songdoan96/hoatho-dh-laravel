@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Imports\AccessoryImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class AccessoryController extends Controller
 {
@@ -56,7 +57,24 @@ class AccessoryController extends Controller
                 $countCustomers[$v->khachhang] = 1;
             }
         }
-        return view("accessory.show", compact("accessories", "containers", "countCustomers"));
+        $nAccessories = Accessory::where("het", false)
+            ->groupBy("day", "khachhang")
+            ->select("day", "khachhang", "mahang")
+            ->orderBy("khachhang")->get();
+        $newCount = [];
+        foreach ($nAccessories as  $v1) {
+            if (in_array($v1->khachhang, array_keys($newCount))) {
+                $newCount[(string)$v1->khachhang] = $newCount[(string)$v1->khachhang] + 1;
+            } else {
+                $newCount[(string)$v1->khachhang] = 1;
+            }
+        }
+        $newCount["Trống"] = 13 - count(Accessory::where("het", false)
+            ->groupBy("day")
+            ->orderBy("day")->get());
+
+        // dump($newCount);
+        return view("accessory.show", compact("accessories", "containers", "countCustomers", "newCount"));
     }
     public function add($id = null)
     {
@@ -164,8 +182,14 @@ class AccessoryController extends Controller
 
     public function upload(Request $request)
     {
-        Excel::import(new AccessoryImport, $request->file);
-        return redirect()->route('accessory.dashboard')->with('success', "Tải lên thành công");
+        try {
+            Excel::import(new AccessoryImport, $request->file);
+            return redirect()->route('accessory.dashboard')->with('success', "Tải lên thành công");
+        } catch (ValidationException $e) {
+            $failures = $e->failures();
+
+            return redirect()->back()->withFailures($failures);
+        }
     }
     public function downloadFile()
     {

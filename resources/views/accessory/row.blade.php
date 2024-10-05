@@ -3,7 +3,7 @@
 @section('header-title', "QUẢN LÝ XUẤT NHẬP TỒN KỆ $day")
 
 @section('content')
-    <div class="relative overflow-x-auto bg-gray-200 text-black">
+    <div class="relative overflow-x-auto bg-gray-200 h-full flex-1 text-black">
         <div class="relative overflow-x-auto flex">
             <div class="flex flex-col w-1/6 py-4">
                 <div class="flex flex-col lg:flex-row gap-2 px-2">
@@ -18,13 +18,7 @@
                                 {{ $item }}</a>
                         </div>
                     @endforeach
-                    {{-- @for ($i = 1; $i <= 12; $i++)
-                            <div class="flex items-center justify-center p-2">
-                                <a href="{{ route('accessory.row', $i < 10 ? '0' . $i : $i) }}"
-                                    class="{{ $day == $i ? 'bg-blue-600 text-white' : 'bg-white text-black' }} h-10 w-full flex items-center justify-center font-bold hover:shadow-md hover:scale-110 transition-all">
-                                    {{ $i < 10 ? '0' . $i : $i }}</a>
-                            </div>
-                        @endfor --}}
+
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 flex-1 p-4 h-full">
@@ -91,18 +85,7 @@
                                     <span class="ml-2">{{ $accessory->mau }}</span>
                                 </div>
                             </div>
-                            {{-- <div class="flex justify-between mt-2">
-                                    <div class="w-1/2 flex justify-center gap-2 font-semibold text-base items-end">
-                                        <img src="{{ asset('images/brand.svg') }}" alt="Loại" class="w-8">
-                                        <span>{{ $accessory->khachhang }}</span>
-                                    </div>
-                                    <div class="w-1/2 flex justify-center gap-2 font-semibold text-base items-end">
-                                        <img src="{{ asset('images/shirt.svg') }}" alt="Loại" class="w-8">
-                                        <a class="underline" href="{{ route('accessory.style', $accessory->mahang) }}">
-                                            #{{ $accessory->mahang }}
-                                        </a>
-                                    </div>
-                                </div> --}}
+
                         </div>
 
                     </div>
@@ -110,106 +93,5 @@
             </div>
 
         </div>
-        {{-- <table class="hidden uppercase w-full text-base text-center">
-                <thead class="text-white uppercase bg-blue-500">
-                    <tr>
-                        <th class="border">
-                            NGÀY NHẬP
-                        </th>
-                        <th class="border">
-                            DÃY
-                        </th>
-                        <th class="border">
-                            KHÁCH HÀNG
-                        </th>
-                        <th class="border">
-                            MÃ HÀNG
-                        </th>
-                        <th class="border">
-                            LOẠI PL
-                        </th>
-                        <th class="border">
-                            MÀU
-                        </th>
-                        <th class="border">
-                            SIZE
-                        </th>
-                        <th class="border">
-                            ĐƠN VỊ
-                        </th>
-                        <th class="border">
-                            PO
-                        </th>
-
-                        <th class="border">
-                            NHẬP
-                        </th>
-                        <th class="border">
-                            XUẤT
-                        </th>
-                        <th class="border">
-                            TỒN
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($accessories as $accessory)
-                        <tr class="test-sm bg-gray-50 hover:bg-gray-200 border-b">
-                            <td title="id-{{ $accessory->id }}" class="border py-2 px-1 border-black">
-                                {{ formatDate($accessory->ngay, 'd-m-Y') }}
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                <a class="underline"
-                                    href="{{ route('accessory.row', $accessory->day) }}">{{ $accessory->day }}</a>
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                {{ $accessory->khachhang }}
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                <a class="underline" href="{{ route('accessory.style', $accessory) }}">
-                                    {{ $accessory->mahang }}
-                                </a>
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                <a class="underline" href="{{ route('accessory.type', $accessory) }}">
-                                    {{ $accessory->loai }}
-                                </a>
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                {{ $accessory->mau }}
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                {{ $accessory->size }}
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                {{ $accessory->donvi }}
-                            </td>
-                            <td class="border py-2 px-1 border-black">
-                                {{ $accessory->po }}
-                            </td>
-
-                            <td
-                                class="w-20 underline text-sm bg-green-700 text-green-200 whitespace-nowrap border border-black">
-                                <a
-                                    href="{{ route('accessory.add', $accessory->id) }}">{{ formatNumber($accessory->soluong) }}</a>
-                            </td>
-
-
-                            <td class="w-20 text-sm border border-black  bg-red-700 text-red-200 whitespace-nowrap">
-                                <a class="underline"
-                                    href="{{ route('accessory.order', $accessory->id) }}">{{ formatNumber($accessory->ordersQty(), 2) }}</a>
-                            </td>
-
-                            <td class="w-20 text-sm border-r text-white bg-sky-700 py-2 px-1 whitespace-nowrap">
-                                {{ formatNumber($accessory->soluong - $accessory->ordersQty(), 2) }}
-                            </td>
-
-                        </tr>
-                    @endforeach
-
-
-                </tbody>
-            </table> --}}
-
     </div>
 @endsection

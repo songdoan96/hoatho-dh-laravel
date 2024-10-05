@@ -44,7 +44,7 @@
                                             <tbody>
                                                 @foreach ($containers[$day] as $index => $item)
                                                     @if ($index < 4)
-                                                        <tr class="text-left">
+                                                        <tr class="text-left" title="{{ $item[2] }}">
                                                             <td class="border"><span
                                                                     class="line-clamp-1">#{{ $item[1] }}</span></td>
                                                             <td class="border"><span
