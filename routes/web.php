@@ -49,7 +49,7 @@ Route::get('/', function () {
 
 Route::get('/show/{type?}', [MainController::class, "show"])->name('show');
 
-Route::get('/test', function () {
+Route::get('/seed/plan', function () {
 
     $plans = Plan::all();
     $kcs = KCS::all();

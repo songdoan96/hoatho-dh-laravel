@@ -61,13 +61,16 @@
                     </div>
                 </div>
                 <div class="w-1/3 flex flex-col p-4 gap-4">
-                    <div class="flex h-2/3 bg-white justify-center relative">
+                    <div class="flex flex-col h-2/3 bg-white justify-center relative p-4">
                         <div class="absolute left-1 top-1">
                             <a href="{{ route('accessory.dashboard') }}">
                                 <img class="w-16" src="{{ asset('images/logo.png') }}" alt="">
                             </a>
                         </div>
-                        <canvas id="myChart"></canvas>
+                        <h6 class="h-1/6 flex justify-center items-center text-center py-2 font-bold text-xl uppercase">Năng
+                            lực kho</h6>
+                        <canvas class="flex-1" id="myChart"></canvas>
+                        <h6 class="text-center font-bold text-base py-2">Trống {{ $countEmpty }}/13 dãy</h6>
                     </div>
                     <div class="flex h-1/3 gap-4">
                         <div class="w-1/2 bg-white">
@@ -107,62 +110,130 @@
         }
 
 
-        var countCustomers = {!! json_encode($countCustomers) !!};
-        let labels = [];
-        let getData = [];
-        let backgroundColor = [];
-        let empty = 13;
+        // var countCustomers = { json_encode($countCustomers) };
+        // let labels = [];
+        // let getData = [];
+        // let backgroundColor = [];
+        // let empty = 13;
 
-        for (const [key, value] of Object.entries(countCustomers)) {
-            getData.push(value);
-            backgroundColor.push(getRandomColor());
-            labels.push(`${key}:${value}`);
-            empty -= value;
+        // for (const [key, value] of Object.entries(countCustomers)) {
+        //     getData.push(value);
+        //     backgroundColor.push(getRandomColor());
+        //     labels.push(`${key}:${value}`);
+        //     empty -= value;
+        // }
+        // getData.push(empty)
+        // backgroundColor.push("#9CA3AF");
+        // labels.push(`Trống:${empty}`);
+
+        // const data = {
+        //     labels,
+        //     datasets: [{
+        //         label: 'SL',
+        //         data: getData,
+        //         backgroundColor,
+        //         hoverOffset: 4
+        //     }],
+
+        // };
+        // const config1 = {
+        //     type: 'doughnut',
+        //     data,
+        //     options: {
+        //         plugins: {
+        //             title: {
+        //                 display: true,
+        //                 text: 'NĂNG LỰC KHO',
+        //                 padding: {
+        //                     bottom: 0,
+        //                     top: 4
+        //                 },
+        //                 font: {
+        //                     size: 30,
+        //                 }
+        //             },
+        //             legend: {
+        //                 display: true,
+        //                 position: 'left',
+        //                 labels: {
+        //                     font: {
+        //                         size: 20
+        //                     }
+
+        //                 }
+        //             },
+        //         }
+        //     },
+        // };
+        // const ctx1 = document.getElementById('myChart');
+        // new Chart(ctx1, config1)
+
+        var labels = {!! json_encode(array_keys($newCount)) !!};
+        var data1 = {!! json_encode(array_values($newCount)) !!};
+        var colors = [];
+        for (let index = 0; index < labels.length; index++) {
+            colors.push(getRandomColor())
         }
-        getData.push(empty)
-        backgroundColor.push("#9CA3AF");
-        labels.push(`Trống:${empty}`);
-
         const data = {
-            labels,
+            labels: labels.concat(","),
             datasets: [{
-                label: 'SL',
-                data: getData,
-                backgroundColor,
-                hoverOffset: 4
-            }],
-
+                label: "Tổng số kệ",
+                data: data1,
+                backgroundColor: colors,
+                borderColor: "#000",
+                borderWidth: 1,
+            }, ],
         };
-        const config1 = {
-            type: 'doughnut',
-            data,
-            options: {
-                plugins: {
+        const options = {
+            scales: {
+                x: {
                     title: {
                         display: true,
-                        text: 'NĂNG LỰC KHO',
-                        padding: {
-                            bottom: 0,
-                            top: 4
-                        },
+                        text: "Khách hàng",
                         font: {
-                            size: 30,
-                        }
+                            weight: 600,
+                            style: "oblique",
+                        },
                     },
-                    legend: {
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 13,
+                    title: {
                         display: true,
-                        position: 'left',
-                        labels: {
-                            font: {
-                                size: 20
-                            }
-
-                        }
+                        text: "Số kệ",
+                        font: {
+                            weight: 600,
+                            style: "oblique",
+                        },
                     },
-                }
+
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+
+            },
+            animation: {
+                onComplete: function() {
+                    var chartInstance = this;
+                    const ctx = chartInstance.ctx;
+                    ctx.font = "bold 1rem sans-serif";
+                    const dataValue = chartInstance.data;
+                    this.getDatasetMeta(0).data.forEach((datapoint, index) => {
+                        ctx.fillText(data.datasets[0].data[index], datapoint.x - 5, datapoint.y - 5);
+                    })
+                },
             },
         };
+        const config = {
+            type: "bar",
+            data,
+            options
+        }
         const ctx1 = document.getElementById('myChart');
-        new Chart(ctx1, config1)
+        new Chart(ctx1, config)
     </script>
 @endpush

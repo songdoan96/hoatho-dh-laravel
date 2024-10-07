@@ -49,14 +49,14 @@ class AccessoryController extends Controller
                 $dayAccessories[] = $i;
             }
         }
-        $countCustomers = [];
-        foreach ($dayAccessories as $k => $v) {
-            if (in_array($v->khachhang, array_keys($countCustomers))) {
-                $countCustomers[$v->khachhang] = $countCustomers[$v->khachhang] + 1;
-            } else {
-                $countCustomers[$v->khachhang] = 1;
-            }
-        }
+        // $countCustomers = [];
+        // foreach ($dayAccessories as $k => $v) {
+        //     if (in_array($v->khachhang, array_keys($countCustomers))) {
+        //         $countCustomers[$v->khachhang] = $countCustomers[$v->khachhang] + 1;
+        //     } else {
+        //         $countCustomers[$v->khachhang] = 1;
+        //     }
+        // }
         $nAccessories = Accessory::where("het", false)
             ->groupBy("day", "khachhang")
             ->select("day", "khachhang", "mahang")
@@ -69,12 +69,14 @@ class AccessoryController extends Controller
                 $newCount[(string)$v1->khachhang] = 1;
             }
         }
-        $newCount["Trống"] = 13 - count(Accessory::where("het", false)
+        // $newCount["Trống"] = 13 - count(Accessory::where("het", false)
+        //     ->groupBy("day")
+        //     ->orderBy("day")->get());
+        $countEmpty = 13 - count(Accessory::where("het", false)
             ->groupBy("day")
             ->orderBy("day")->get());
 
-        // dump($newCount);
-        return view("accessory.show", compact("accessories", "containers", "countCustomers", "newCount"));
+        return view("accessory.show", compact("accessories", "containers", "newCount", "countEmpty"));
     }
     public function add($id = null)
     {

@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use Carbon\Carbon;
 use App\Models\Accessory;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToModel;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -24,8 +25,8 @@ class AccessoryImport implements ToModel, SkipsEmptyRows, WithHeadingRow, WithVa
         if ($row["ngay"] != "") {
             return new Accessory([
                 "ngay" => Carbon::instance(Date::excelToDateTimeObject($row["ngay"]))->format("Y-m-d"),
-                "khachhang" => (string)$row["khach_hang"],
-                "mahang" => (string)$row["ma_hang"],
+                "khachhang" => Str::upper($row["khach_hang"]),
+                "mahang" => Str::upper($row["ma_hang"]),
                 "loai" => (string)$row["loai"],
                 "day" => (string)$row["day"],
                 "mau" => (string)$row["mau"] ?: null,
