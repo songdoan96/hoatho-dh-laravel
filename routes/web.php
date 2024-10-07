@@ -110,6 +110,10 @@ Route::prefix('kcs')->name('kcs.')->group(function () {
 
     Route::get('/sp-dat-loi/{kcs}', [KCSController::class, 'editPassFail'])->name('editPassFail')->middleware('isAdmin');
     Route::post('/sp-dat-loi/{kcs}', [KCSController::class, 'updatePassFail'])->name('updatePassFail')->middleware('isAdmin');
+
+
+    Route::get('/sua-hom-truoc/{kcs}', [KCSController::class, 'editYesterday'])->name('editYesterday')->middleware('isAdmin');
+    Route::post('/sua-hom-truoc/{kcs}', [KCSController::class, 'editYesterdayUpdate'])->name('editYesterdayUpdate')->middleware('isAdmin');
 });
 
 // Ke hoach

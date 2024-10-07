@@ -180,4 +180,29 @@ class KCSController extends Controller
         ]);
         return redirect()->route('kcs.dashboard')->with('success', "Cập nhật thành công");
     }
+
+    public function editYesterday(KCS $kcs)
+    {
+        $kcsBefore = KCS::where('plan_id', $kcs->plan_id)->orderBy("ngaytao", "DESC")->limit(2)->get();
+        $kcsBefore = $kcsBefore[1];
+        return view("kcs.edit-yesterday", compact("kcs", "kcsBefore"));
+    }
+    public function editYesterdayUpdate(KCS $kcs, Request $request)
+    {
+        $thuchien = $request->qty_before + $kcs->sldat;
+        $plan = Plan::find($kcs->plan_id);
+        if ($thuchien > $plan->sltacnghiep) {
+            return redirect()->back()->with("danger", "Không thành công do vượt quá kế hoạch");
+        }
+        $plan->thuchien = $thuchien;
+        $plan->save();
+        $kcsBefore = KCS::find($request->id_before);
+        $kcsBefore->thuchien = $request->qty_before;
+        $kcsBefore->save();
+        $kcs->thuchien = $thuchien;
+        $kcs->save();
+
+
+        return redirect()->route("kcs.dashboard")->with("success", "Cập nhật thành công.");
+    }
 }

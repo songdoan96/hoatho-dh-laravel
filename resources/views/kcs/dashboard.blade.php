@@ -132,7 +132,9 @@
                                     {{ formatNumber($kc->plans->sltacnghiep) }}
                                 </td>
                                 <td class="border">
-                                    {{ formatNumber($kc->thuchien) }}
+                                    <a href="{{ route('kcs.editYesterday', $kc) }}">
+                                        {{ formatNumber($kc->thuchien) }}
+                                    </a>
                                 </td>
                                 <td class="border">
                                     {{ formatNumber($kc->nhaphoanthanh) }}
