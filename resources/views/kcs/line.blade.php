@@ -230,7 +230,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex border-2 border-black px-2 bg-[#C8615A]">
+                    <div class="flex border-2 border-black px-2 bg-[#fc8a82]">
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
                                 <p class="yellow1">Sản phẩm lỗi</p>
