@@ -80,13 +80,13 @@
                             </div>
                         </div>
                         <div class="w-1/2 bg-white">
-                            <h6 class="text-center uppercase font-bold">Phụ liệu tồn</h6>
-                            <div class="flex flex-col p-2">
-                                <li class="list-disc font-semibold">Tồn 3 tháng : <span class="font-medium">Tongfan</span>
-                                </li>
-                                <li class="list-disc font-semibold">Tồn 6 tháng : <span class="font-medium">Motives</span>
-                                </li>
-                                <li class="list-disc font-semibold">Tồn 8 tháng : <span class="font-medium">DXL</span></li>
+                            <h6 class="text-center uppercase font-bold">Phụ liệu chờ kiểm</h6>
+                            <div class="flex flex-col px-2">
+                                @foreach ($accWaiting as $acc)
+                                    <li class="list-disc font-semibold text-sm line-clamp-1" title="{{ $acc->loai }}">
+                                        #{{ $acc->mahang }}:{{ $acc->loai }}</li>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -185,6 +185,11 @@
             }, ],
         };
         const options = {
+            layout: {
+                padding: {
+                    top: 12
+                }
+            },
             scales: {
                 x: {
                     title: {
@@ -198,7 +203,7 @@
                 },
                 y: {
                     beginAtZero: true,
-                    max: 13,
+                    // max: 13,
                     title: {
                         display: true,
                         text: "Số kệ",
@@ -220,10 +225,10 @@
                 onComplete: function() {
                     var chartInstance = this;
                     const ctx = chartInstance.ctx;
-                    ctx.font = "bold 1rem sans-serif";
+                    ctx.font = "bold 0.7rem sans-serif";
                     const dataValue = chartInstance.data;
                     this.getDatasetMeta(0).data.forEach((datapoint, index) => {
-                        ctx.fillText(data.datasets[0].data[index], datapoint.x - 5, datapoint.y - 5);
+                        ctx.fillText(data.datasets[0].data[index], datapoint.x - 5, datapoint.y - 2);
                     })
                 },
             },

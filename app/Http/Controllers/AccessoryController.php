@@ -20,7 +20,6 @@ class AccessoryController extends Controller
             $accessories = Accessory::where("het", false)->where("mahang", "like", "%$request->search_value%")
                 ->get();
         } else {
-
             $accessories = Accessory::orderBy("created_at", "DESC")->limit(100)->get();
         }
         return view("accessory.dashboard", compact("accessories"));
@@ -29,6 +28,7 @@ class AccessoryController extends Controller
     {
 
         // $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
+        $accWaiting = Accessory::whereNull("order_id")->where("day", "CHOKIEM")->get();
         $accessories = Accessory::where("het", false)
             ->groupBy("day", "mahang", "loai")
             ->select("khachhang", "mahang", "day", "loai")
@@ -76,7 +76,7 @@ class AccessoryController extends Controller
             ->groupBy("day")
             ->orderBy("day")->get());
 
-        return view("accessory.show", compact("accessories", "containers", "newCount", "countEmpty"));
+        return view("accessory.show", compact("accessories", "containers", "newCount", "countEmpty", "accWaiting"));
     }
     public function add($id = null)
     {
