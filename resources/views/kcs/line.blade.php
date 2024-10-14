@@ -13,7 +13,7 @@
         .number {
             font-weight: 900;
             font-size: 5rem;
-            color: #0e4d09;
+            color: teal;
         }
 
         .red {
@@ -208,22 +208,23 @@
                             <p class="number flex-1 text-left">{{ $dmhientai ?? 0 }}</p>
                         </div>
                     </div>
-                    <div class="flex border-2 border-black px-2 bg-[#35aa3a]">
+                    <div class="flex border-2 border-black px-2 bg-[#42d649]">
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
                                 <p class="yellow1">Sản phẩm đạt</p>
                                 <p>Pass product</p>
                             </div>
-                            <p class="number flex-1 text-left">{{ $kcs->sldat ?? '--' }}</p>
+                            <p class="number flex-1 text-left " style="color: #0e4d09">
+                                {{ $kcs->sldat ?? '--' }}</p>
                         </div>
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
                                 <p class="yellow1">Tỷ lệ đạt</p>
                                 <p>Achieve rate</p>
                             </div>
-                            <p class="number flex-1 text-left">
+                            <p class="number flex-1 text-left " style="color: #0e4d09">
                                 @isset($tyledat)
-                                    {{ formatNumber($tyledat, 1) }}<span class="text-5xl">%</span>
+                                    {{ formatNumber($tyledat, 1) }}<span class="text-5xl " style="color: #0e4d09">%</span>
                                 @else
                                     --
                                 @endisset
