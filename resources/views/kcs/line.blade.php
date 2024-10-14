@@ -13,7 +13,7 @@
         .number {
             font-weight: 900;
             font-size: 5rem;
-            color: #00ff00;
+            color: #0e4d09;
         }
 
         .red {
@@ -23,12 +23,25 @@
         .yellow {
             color: yellow;
         }
+
+        .yellow1 {
+            color: #1E3A8A;
+        }
+
+
+        .bg-yellow {
+            background-color: yellow
+        }
+
+        .teal {
+            color: teal
+        }
     </style>
 @endpush
 @section('content')
-    <div class="bg-black text-white h-screen w-screen">
+    <div class="text-black h-screen w-screen bg-black ">
         @if ($plan)
-            <div class=" flex flex-col h-screen w-screen overflow-hidden bg-black text-white text-4xl font-bold uppercase">
+            <div class=" flex flex-col h-screen w-screen overflow-hidden text-white text-4xl font-bold uppercase">
                 <div class="bg-blue-900 flex items-center h-32 text-2xl">
                     <div class="w-1/6 flex flex-col justify-between h-full py-2 px-1">
                         <p>
@@ -91,43 +104,43 @@
 
                     </div>
                 </div>
-                <div class="flex h-48">
-                    <div class="flex flex-1 text-center py-2 border-r-2">
+                <div class="flex h-48 text-black bg-yellow">
+                    <div class="flex flex-1 text-center py-2 border-r-2 border-black">
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow">Tác nghiệp</p>
+                            <p class="yellow1">Tác nghiệp</p>
                             <p class="text-2xl">Order qty</p>
                             <p class="text-5xl font-bold mt-4">
-                                <a href="{{ route('plan.editPlan', $plan) }}">
+                                <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
                                     {{ formatNumber($plan->sltacnghiep) }}
                                 </a>
 
                             </p>
                         </div>
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow">Thực hiện</p>
+                            <p class="yellow1">Thực hiện</p>
                             <p class="text-2xl">Finished</p>
                             <p class="text-5xl font-bold mt-4">
-                                <a href="{{ route('plan.editPlan', $plan) }}">
+                                <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
                                     {{ formatNumber($plan->thuchien) }}
 
                                 </a>
                             </p>
                         </div>
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow">Nhập kho</p>
+                            <p class="yellow1">Nhập kho</p>
                             <p class="text-2xl">Stored</p>
                             <p class="text-5xl font-bold mt-4">
-                                <a href="{{ route('plan.editPlan', $plan) }}">
+                                <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
                                     {{ formatNumber($plan->nhaphoanthanh) }}
 
                                 </a>
                             </p>
                         </div>
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow">Nhập thiếu</p>
+                            <p class="yellow1">Nhập thiếu</p>
                             <p class="text-2xl">remaining qty</p>
                             <p class="text-5xl font-bold mt-4">
-                                <a href="{{ route('plan.editPlan', $plan) }}">
+                                <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
                                     {{ formatNumber($plan->thuchien - $plan->nhaphoanthanh) }}
                                 </a>
                             </p>
@@ -146,12 +159,12 @@
                         @endif
                     </div>
                 </div>
-                <div class="flex-1 grid grid-cols-1 grid-rows-4 gap-1 pb-1">
-                    <div class="flex border-2 px-2">
+                <div class="text-black flex-1 grid grid-cols-1 grid-rows-4 gap-1 pb-1">
+                    <div class="flex border-2 border-black px-2 bg-yellow">
 
                         <div class="w-1/2 flex items-center">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">BTP CẤP</p>
+                                <p class="yellow1">BTP CẤP</p>
                                 <p>semi-finished</p>
                             </div>
                             <p class="number flex-1 text-left">
@@ -162,7 +175,7 @@
                         </div>
                         <div class="w-1/2 flex items-center">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">TỶ LỆ vỐN</p>
+                                <p class="yellow1">TỶ LỆ vỐN</p>
                                 <p>Remaining rate</p>
                             </div>
                             <p class="number flex-1 text-left">
@@ -173,10 +186,10 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex border-2 px-2">
+                    <div class="flex border-2 border-black px-2 bg-yellow">
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">Chỉ tiêu/Ngày</p>
+                                <p class="yellow1">Chỉ tiêu/Ngày</p>
                                 <p>Target/day</p>
                             </div>
                             <p class="number flex-1 text-left">
@@ -189,23 +202,23 @@
                         </div>
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">Chỉ tiêu hiện tại</p>
+                                <p class="yellow1">Chỉ tiêu hiện tại</p>
                                 <p>Target now</p>
                             </div>
                             <p class="number flex-1 text-left">{{ $dmhientai ?? 0 }}</p>
                         </div>
                     </div>
-                    <div class="flex border-2 px-2">
+                    <div class="flex border-2 border-black px-2 bg-[#35aa3a]">
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">Sản phẩm đạt</p>
+                                <p class="yellow1">Sản phẩm đạt</p>
                                 <p>Pass product</p>
                             </div>
                             <p class="number flex-1 text-left">{{ $kcs->sldat ?? '--' }}</p>
                         </div>
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">Tỷ lệ đạt</p>
+                                <p class="yellow1">Tỷ lệ đạt</p>
                                 <p>Achieve rate</p>
                             </div>
                             <p class="number flex-1 text-left">
@@ -217,17 +230,17 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex border-2 px-2">
+                    <div class="flex border-2 border-black px-2 bg-[#C8615A]">
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">Sản phẩm lỗi</p>
+                                <p class="yellow1">Sản phẩm lỗi</p>
                                 <p>Defect product</p>
                             </div>
                             <p class="number flex-1 text-left red">{{ $kcs->slloi ?? '--' }}</p>
                         </div>
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
-                                <p class="yellow">Tỷ lệ lỗi</p>
+                                <p class="yellow1">Tỷ lệ lỗi</p>
                                 <p>Defect rate</p>
                             </div>
                             <p class="number flex-1 text-left red">
@@ -249,7 +262,7 @@
 
             </div>
         @else
-            <div class="w-full h-full flex justify-center items-center">
+            <div class="w-full h-full flex justify-center items-center bg-black text-white">
                 <h4 class="uppercase text-7xl font-bold">Chưa có thông tin sản xuất</h4>
             </div>
         @endif
