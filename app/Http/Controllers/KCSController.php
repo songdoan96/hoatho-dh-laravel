@@ -153,15 +153,15 @@ class KCSController extends Controller
         }
         return view('kcs.line', compact('plan'));
     }
-    public function editWorker(KCS $kcs)
+    public function editWorker()
     {
-
-        return view('kcs.edit-worker', compact('kcs'));
+        $kcsAll = KCS::where("ngaytao", date('Y-m-d'))->with('plans')->get()->sortBy('plans.chuyen');
+        return view('kcs.edit-worker', compact('kcsAll'));
     }
     public function updateWorker(KCS $kcs, Request $request)
     {
         $kcs->update($request->all());
-        return redirect()->route('produce.dashboard')->with('success', "Cập nhật thành công");
+        return redirect()->back()->with('success', "Cập nhật thành công");
     }
     public function editPassFail(KCS $kcs)
     {

@@ -87,11 +87,11 @@
                     </div>
                     <div class="w-1/6 flex flex-col justify-between h-full py-2 px-2">
                         @isset($kcs)
-                            <a href="{{ route('kcs.editWorker', $kcs) }}">
+                            <a href="{{ route('kcs.editWorker') }}">
                                 <span class="yellow font-bold">Lao động:</span>
                                 <span>{{ $kcs->laodong }}</span>
                             </a>
-                            <a href="{{ route('kcs.editWorker', $kcs) }}">
+                            <a href="{{ route('kcs.editWorker') }}">
                                 <span class="yellow font-bold">Dự phòng:</span>
                                 <span>{{ $kcs->duphong }}</span>
                             </a>
@@ -194,7 +194,7 @@
                             </div>
                             <p class="number flex-1 text-left">
                                 @isset($kcs)
-                                    <a href="{{ route('kcs.editWorker', $kcs) }}">{{ formatNumber($kcs->chitieungay) }}</a>
+                                    <a href="{{ route('kcs.editWorker') }}">{{ formatNumber($kcs->chitieungay) }}</a>
                                 @else
                                     --
                                 @endisset

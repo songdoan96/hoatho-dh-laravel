@@ -105,8 +105,8 @@ Route::prefix('kcs')->name('kcs.')->group(function () {
 
     Route::get("/{line}", [KCSController::class, 'line'])->name('line');
 
-    Route::get("/sua-ldong-chitieu/{kcs}", [KCSController::class, 'editWorker'])->name('editWorker');
-    Route::post("/sua-ldong-chitieu/{kcs}", [KCSController::class, 'updateWorker'])->name('updateWorker');
+    Route::post("/sua/ldong-chitieu/{kcs}", [KCSController::class, 'updateWorker'])->name('updateWorker');
+    Route::get("/sua/ldong-chitieu", [KCSController::class, 'editWorker'])->name('editWorker');
 
     Route::get('/sp-dat-loi/{kcs}', [KCSController::class, 'editPassFail'])->name('editPassFail')->middleware('isAdmin');
     Route::post('/sp-dat-loi/{kcs}', [KCSController::class, 'updatePassFail'])->name('updatePassFail')->middleware('isAdmin');
