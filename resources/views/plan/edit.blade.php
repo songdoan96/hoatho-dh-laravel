@@ -58,8 +58,7 @@
                 </div>
                 <div class="my-5 flex items-center gap-2">
                     <label for="nhaphoanthanhthem" class="font-medium w-1/3">SL nhập thêm</label>
-                    <input type="number" name="nhaphoanthanhthem" min="0"
-                        max="{{ $plan->thuchien - $plan->nhaphoanthanh }}"
+                    <input type="number" name="nhaphoanthanhthem" max="{{ $plan->thuchien - $plan->nhaphoanthanh }}"
                         class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" />
                 </div>
                 <div class="flex justify-center gap-2">
