@@ -96,7 +96,7 @@ Route::prefix('/sanxuat')->name('produce.')->group(function () {
 Route::prefix('kcs')->name('kcs.')->group(function () {
     Route::get('/', [KCSController::class, 'dashboard'])->name('dashboard');
     Route::get('/bao-cao/{kcs}', [KCSController::class, 'edit'])->name('edit');
-    Route::get('/them-chi-tieu/{xn}', [KCSController::class, 'add'])->name('add');
+    Route::get('/them-chi-tieu', [KCSController::class, 'add'])->name('add');
     Route::post('/them-chi-tieu', [KCSController::class, 'store'])->name('store');
 
     Route::post('/passed/{kcs}', [KCSController::class, 'passed'])->name('passed');

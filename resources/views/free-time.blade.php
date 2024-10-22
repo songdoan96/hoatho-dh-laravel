@@ -10,8 +10,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body scroll="no" style="overflow: hidden;" class="bg-black h-screen w-screen flex justify-center items-center">
-    <img class="bg-cover object-cover h-screen " src="{{ asset('images/freetime.jpg') }}" id="image-show" />
+<body scroll="no" style="overflow: hidden;"
+    class="bg-black text-white h-screen w-screen flex justify-center items-center">
+    {{-- <img class="bg-cover object-cover h-screen " src="{{ asset('images/freetime.jpg') }}" id="image-show" /> --}}
+    <h1 class="text-center text-2xl">Nghỉ trưa</h1>
 </body>
 
 </html>

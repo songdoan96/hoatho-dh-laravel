@@ -9,7 +9,10 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
             <div class="flex flex-1 justify-between items-center">
-                <h1 class="text-2xl uppercase font-bold text-center w-full">KCS {{ $xn }} - thêm chỉ tiêu ngày
+                {{-- <h1 class="text-2xl uppercase font-bold text-center w-full">KCS {{ $xn }} - thêm chỉ tiêu ngày
+                    <span class="font-bold text-black bg-white px-1">{{ date('d-m-Y') }}</span>
+                </h1> --}}
+                <h1 class="text-2xl uppercase font-bold text-center w-full">KCS thêm chỉ tiêu ngày
                     <span class="font-bold text-black bg-white px-1">{{ date('d-m-Y') }}</span>
                 </h1>
             </div>

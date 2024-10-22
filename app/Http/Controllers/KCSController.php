@@ -33,16 +33,27 @@ class KCSController extends Controller
 
     public function add(Request $request)
     {
-        if ($request->xn) {
-            $xn = "XN" . $request->xn;
-            $plans = Plan::where("daxong", 0)
-                ->where("chuyen", "LIKE", $xn . "%")
-                ->where("daraichuyen", 1)
-                ->orderBy("chuyen")
-                ->get();
-            if (count($plans)) {
-                return view("kcs.add", compact('plans', 'xn'));
-            }
+        // if ($request->xn) {
+        //     $xn = "XN" . $request->xn;
+        //     $plans = Plan::where("daxong", 0)
+        //         ->where("chuyen", "LIKE", $xn . "%")
+        //         ->where("daraichuyen", 1)
+        //         ->orderBy("chuyen")
+        //         ->get();
+        //     if (count($plans)) {
+        //         return view("kcs.add", compact('plans', 'xn'));
+        //     }
+        // }
+        // return redirect()->back()->with('danger', "Chưa có thông tin sản xuất");
+
+
+
+        $plans = Plan::where("daxong", 0)
+            ->where("daraichuyen", 1)
+            ->orderBy("chuyen")
+            ->get();
+        if (count($plans)) {
+            return view("kcs.add", compact('plans'));
         }
         return redirect()->back()->with('danger', "Chưa có thông tin sản xuất");
     }

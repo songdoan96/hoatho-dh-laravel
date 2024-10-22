@@ -29,7 +29,7 @@ class PlanController extends Controller
             ->get();
 
         if (count($countChuyen) >= 1) {
-            return redirect()->back()->with('danger', $chuyen . ' còn đơn hàng chưa rải chuyền');
+            return redirect()->back()->with('danger', "Tổ " . $chuyen . ' còn đơn hàng chưa rải chuyền');
         }
         Plan::create($request->all());
         return redirect()->route('plan.dashboard')->with('success', 'Đã thêm đơn hàng chờ sản xuất');
@@ -48,7 +48,7 @@ class PlanController extends Controller
             ->where('daxong', 0)
             ->where('daraichuyen', 1)->get();
         if (count($countChuyen) >= 1) {
-            return redirect()->back()->with('danger', $chuyen . ' còn đơn hàng chưa kết thúc');
+            return redirect()->back()->with('danger', "Tổ " . $chuyen . ' còn đơn hàng chưa kết thúc');
         }
         $plan->daraichuyen = true;
         $plan->ngayrai = date('Y-m-d');

@@ -19,10 +19,13 @@
             <div class="flex items-center justify-center w-full gap-4">
                 <h1 class="text-2xl uppercase font-bold">BÁO CÁO CHẤT LƯỢNG HÀNG NGÀY</h1>
                 @if (!after17h())
-                    <a href="{{ route('kcs.add', ['xn' => 1]) }}">
+                    <a href="{{ route('kcs.add') }}">
+                        <img src="{{ asset('images/plus.png') }}" alt="xn1" width="35">
+                    </a>
+                    <a class="hidden" href="{{ route('kcs.add', ['xn' => 1]) }}">
                         <img src="{{ asset('images/xn1.png') }}" alt="xn1" width="40">
                     </a>
-                    <a href="{{ route('kcs.add', ['xn' => 2]) }}">
+                    <a class="hidden" href="{{ route('kcs.add', ['xn' => 2]) }}">
                         <img src="{{ asset('images/xn2.png') }}" alt="xn2" width="40">
                     </a>
                 @endif

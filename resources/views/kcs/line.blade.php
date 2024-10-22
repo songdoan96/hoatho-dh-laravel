@@ -13,7 +13,7 @@
         .number {
             font-weight: 900;
             font-size: 5rem;
-            color: teal;
+            color: blue;
         }
 
         .red {
@@ -25,7 +25,8 @@
         }
 
         .yellow1 {
-            color: #1E3A8A;
+            /* color: #1E3A8A; */
+            color: yellow;
         }
 
 
@@ -56,11 +57,12 @@
                     <div class="flex-1 h-full py-2 flex text-4xl border-x-2">
                         <div class="w-1/2 px-4 flex">
                             <div class="flex flex-col justify-between w-2/3">
-                                @php
+                                {{-- @php
                                     $chuyen = explode('_', $plan->chuyen);
-                                @endphp
+                                @endphp --}}
                                 <p>May Đông Hà</p>
-                                <p>{{ $chuyen[0] . '-Tổ ' . $chuyen[1] }}</p>
+                                {{-- <p>{{ $chuyen[0] . '-Tổ ' . $chuyen[1] }}</p> --}}
+                                <p>Tổ: {{ $plan->chuyen }}</p>
                             </div>
                             <div class="flex items-center justify-center flex-1">
                                 <a href="{{ route('produce.dashboard') }}" class="h-full">
@@ -104,10 +106,10 @@
 
                     </div>
                 </div>
-                <div class="flex h-48 text-black bg-yellow">
-                    <div class="flex flex-1 text-center py-2 border-r-2 border-black">
+                <div class="flex flex-row gap-1 mb-2 h-48 text-black">
+                    <div class="flex flex-1 text-center py-2 bg-yellow">
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow1">Tác nghiệp</p>
+                            <p class="text-blue-900">Tác nghiệp</p>
                             <p class="text-2xl">Order qty</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
@@ -117,7 +119,7 @@
                             </p>
                         </div>
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow1">Thực hiện</p>
+                            <p class="text-blue-900">Thực hiện</p>
                             <p class="text-2xl">Finished</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
@@ -127,7 +129,7 @@
                             </p>
                         </div>
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow1">Nhập kho</p>
+                            <p class="text-blue-900">Nhập kho</p>
                             <p class="text-2xl">Stored</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
@@ -137,7 +139,7 @@
                             </p>
                         </div>
                         <div class="w-1/4 flex flex-col">
-                            <p class="yellow1">Nhập thiếu</p>
+                            <p class="text-blue-900">Nhập thiếu</p>
                             <p class="text-2xl">remaining qty</p>
                             <p class="text-5xl font-bold mt-4">
                                 <a class="teal" href="{{ route('plan.editPlan', $plan) }}">
@@ -146,7 +148,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="w-4/12 p-2">
+                    <div class="w-4/12 p-2 bg-yellow">
                         <p class="text-center text-2xl mb-2 red">3 lỗi cao nhất / Top 3 errors</p>
                         @if (count($errors) > 0 && $errors[0] != '')
                             <span class="text-2xl text-left w-full">
@@ -159,8 +161,8 @@
                         @endif
                     </div>
                 </div>
-                <div class="text-black flex-1 grid grid-cols-1 grid-rows-4 gap-1 pb-1">
-                    <div class="flex border-2 border-black px-2 bg-yellow">
+                <div class="text-white flex-1 grid grid-cols-1 grid-rows-4 gap-1">
+                    <div class="flex border-2 border-black px-2 bg-blue-400">
 
                         <div class="w-1/2 flex items-center">
                             <div class="flex flex-col justify-between w-1/2">
@@ -186,7 +188,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex border-2 border-black px-2 bg-yellow">
+                    <div class="flex border-2 border-black px-2 bg-blue-400">
                         <div class="w-1/2 flex items-center ">
                             <div class="flex flex-col justify-between w-1/2">
                                 <p class="yellow1">Chỉ tiêu/Ngày</p>
@@ -254,13 +256,7 @@
                         </div>
                     </div>
 
-
-
-
-
-
                 </div>
-
             </div>
         @else
             <div class="w-full h-full flex justify-center items-center bg-black text-white">
