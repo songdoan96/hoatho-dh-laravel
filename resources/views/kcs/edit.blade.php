@@ -123,7 +123,7 @@
                 chuyenElement.classList.add("hidden")
             } else {
                 const url =
-                    "http://localhost:8888/bell/help/" + chuyen;
+                    "http://172.17.0.30:8888/bell/help/" + chuyen;
                 try {
                     const response = await fetch(url);
                     if (!response.ok) {
@@ -142,7 +142,7 @@
                     btnHelp.forEach((btn) => {
                         btn.addEventListener("click", () => {
                             const help = btn.dataset.help;
-                            fetch("http://localhost:8888/bell/help", {
+                            fetch("http://172.17.0.30:8888/bell/help", {
                                 method: "POST",
                                 body: JSON.stringify({
                                     line: chuyen,
