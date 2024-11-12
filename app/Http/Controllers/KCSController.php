@@ -22,9 +22,9 @@ class KCSController extends Controller
 
     public function edit(KCS $kcs)
     {
-        if (after17h()) {
-            return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
-        }
+        // if (after17h()) {
+        //     return redirect()->route('kcs.dashboard')->with('danger', "Đã quá thời gian truy cập");
+        // }
         if ($kcs->plans->daxong == 1) {
             return redirect()->route('kcs.dashboard')->with('danger', "Đơn hàng đã kết thúc vui, vui lòng chọn đơn hàng mới");
         };
