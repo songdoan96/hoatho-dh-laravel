@@ -12,13 +12,13 @@ class SimpleController extends Controller
 {
     public function index()
     {
-        $simples = Simple::orderBy('created_at', 'desc')->limit(30)->get();
+        $simples = Simple::orderBy('created_at', 'desc')->get();
         return view("simple.index", compact('simples'));
     }
     public function dashboard(Request $request)
     {
 
-        $simples = $request->query("tuan") ? Simple::where("tuan", "LIKE", "%" . $request->query('tuan') . "%")->orderBy('created_at', 'desc')->limit(30)->get() : Simple::orderBy('created_at', 'desc')->limit(30)->get();
+        $simples = $request->query("tuan") ? Simple::where("tuan", "LIKE", "%" . $request->query('tuan') . "%")->orderBy('created_at', 'desc')->get() : Simple::orderBy('created_at', 'desc')->get();
         return view("simple.dashboard", compact('simples'));
     }
     public function add()
