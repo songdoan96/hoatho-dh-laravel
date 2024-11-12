@@ -11,9 +11,25 @@
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
 
             </h1>
+            <div id="bell" data-line="{{ $kcs->plans->chuyen }}" class="grid grid-cols-4 gap-2 text-sm text-black mt-1">
+                <div class="flex items-center justify-center">
+                    <button id="codien" data-help="codien"
+                        class="btn-help bg-gray-300 border-2 border-white w-20 h-20 rounded-full uppercase font-semibold">Cơ
+                        điện</button>
+                </div>
+                <div class="flex items-center justify-center"><button id="kythuat" data-help="kythuat"
+                        class="btn-help bg-gray-300 border-2 border-white w-20 h-20 rounded-full uppercase font-semibold">Kỹ
+                        thuật</button></div>
+                <div class="flex items-center justify-center"><button id="phulieu" data-help="phulieu"
+                        class="btn-help bg-gray-300 border-2 border-white w-20 h-20 rounded-full uppercase font-semibold">Phụ
+                        liệu</button></div>
+                <div class="flex items-center justify-center"><button id="tocat" data-help="tocat"
+                        class="btn-help bg-gray-300 border-2 border-white w-20 h-20 rounded-full uppercase font-semibold">Tổ
+                        cắt</button></div>
+            </div>
             <h2 class="bg-blue-500 text-center text-3xl font-bold py-1 my-2 flex gap-4 justify-center items-center">
                 <span>BÁO CÁO KCS {{ $kcs->plans->chuyen }}</span>
-                <label class="inline-flex items-center cursor-pointer">
+                <label class="inline-flex items-center cursor-pointer hidden">
                     <input name="isShow" id="isShow" type="checkbox" value="{{ $kcs->plans->chuyen }}"
                         class="sr-only peer">
                     <div
@@ -23,30 +39,13 @@
                 </label>
 
             </h2>
-            <div id="bell" class="hidden grid grid-cols-4 gap-2 p-2 text-sm text-black">
-                <div class="flex items-center justify-center">
-                    <button id="codien" data-help="codien" data-line="{{ $kcs->plans->chuyen }}"
-                        class="btn-help bg-gray-300 border-2 border-blue-500 w-20 h-20 rounded-full uppercase font-semibold">Cơ
-                        điện</button>
-                </div>
-                <div class="flex items-center justify-center"><button id="kythuat" data-help="kythuat"
-                        data-line="{{ $kcs->plans->chuyen }}"
-                        class="btn-help bg-gray-300 border-2 border-blue-500 w-20 h-20 rounded-full uppercase font-semibold">Kỹ
-                        thuật</button></div>
-                <div class="flex items-center justify-center"><button id="phulieu" data-help="phulieu"
-                        data-line="{{ $kcs->plans->chuyen }}"
-                        class="btn-help bg-gray-300 border-2 border-blue-500 w-20 h-20 rounded-full uppercase font-semibold">Phụ
-                        liệu</button></div>
-                <div class="flex items-center justify-center"><button id="tocat" data-help="tocat"
-                        data-line="{{ $kcs->plans->chuyen }}"
-                        class="btn-help bg-gray-300 border-2 border-blue-500 w-20 h-20 rounded-full uppercase font-semibold">Tổ
-                        cắt</button></div>
-            </div>
             <h2 class="font-bold text-center text-2xl">{{ formatDate($kcs->ngaytao, 'd/m/Y') }}
                 - {{ $kcs->plans->khachhang }}
                 - {{ $kcs->plans->mahang }}
 
             </h2>
+
+
             <div class="flex my-4">
                 <div class="w-1/3 flex flex-col items-center justify-center">
                     <p>Chỉ tiêu</p>
@@ -115,16 +114,51 @@
         </div>
     </div>
 @endsection
-{{-- @push('scripts')
+@push('scripts')
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const allBtnSubmit = document.querySelectorAll('button[type="submit"]');
-            allBtnSubmit.forEach(btn => {
-                btn.addEventListener("click", function(e) {
-                    this.setAttribute('disabled', 'disabled');
-                    this.form.submit();
-                })
-            })
+        document.addEventListener("DOMContentLoaded", async function() {
+            const chuyenElement = document.querySelector("#bell");
+            const chuyen = chuyenElement.dataset.line;
+            if (chuyen.startsWith("XN")) {
+                chuyenElement.classList.add("hidden")
+            } else {
+                const url =
+                    "http://localhost:8888/bell/help/" + chuyen;
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+
+                    const list = await response.json();
+                    list.forEach((l) => {
+                        if (document.querySelector(`#${l.help}`)) {
+                            document
+                                .querySelector(`#${l.help}`)
+                                .classList.add("bg-green-500");
+                        }
+                    });
+                    const btnHelp = document.querySelectorAll(".btn-help");
+                    btnHelp.forEach((btn) => {
+                        btn.addEventListener("click", () => {
+                            const help = btn.dataset.help;
+                            fetch("http://localhost:8888/bell/help", {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    line: chuyen,
+                                    help,
+                                }),
+                                headers: {
+                                    "Content-type": "application/json; charset=UTF-8",
+                                },
+                            });
+                            location.reload();
+                        });
+                    });
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
         });
     </script>
-@endpush --}}
+@endpush

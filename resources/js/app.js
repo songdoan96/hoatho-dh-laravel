@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // KCS Page show hide button
+    /*
+    // V1
     const showBellBtn = document.querySelector("#isShow");
     if (showBellBtn) {
         showBellBtn.addEventListener("change", async (event) => {
@@ -83,4 +85,5 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    */
 });
