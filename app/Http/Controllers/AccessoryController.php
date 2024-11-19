@@ -28,7 +28,7 @@ class AccessoryController extends Controller
     {
 
         // $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
-        $accWaiting = Accessory::whereNull("order_id")->where("day", "CHOKIEM")->get();
+        $accWaiting = Accessory::whereNull("order_id")->where("day", "CHOKIEM")->where("het", 0)->get();
         $accessories = Accessory::where("het", false)
             ->groupBy("day", "mahang", "loai")
             ->select("khachhang", "mahang", "day", "loai")

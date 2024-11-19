@@ -43,6 +43,7 @@
                     <option {{ $accessory->day == 'J' ? 'selected' : '' }} value="J">J</option>
                     <option {{ $accessory->day == 'K' ? 'selected' : '' }} value="K">K</option>
                     <option {{ $accessory->day == 'L' ? 'selected' : '' }} value="L">L</option>
+                    <option {{ $accessory->day == 'TTH' ? 'selected' : '' }} value="TTH">TTH</option>
                 </select>
 
             </div>
