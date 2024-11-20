@@ -4,10 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 @endpush
 @section('content')
-    <div
-        class="flex justify-center items-center w-screen bg-black text-white overflow-x-hidden min-h-screen overflow-y-scroll pb-72">
+    <div class="flex justify-center items-center w-screen bg-black text-white overflow-x-hidden h-screen overflow-y-scroll">
         <div class="w-full h-full md:w-2/3 p-4">
-            <h1 class="flex items-center justify-center">
+            <h1 class="flex items-center justify-center hidden">
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
 
             </h1>
