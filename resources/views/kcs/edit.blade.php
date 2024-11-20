@@ -5,7 +5,7 @@
 @endpush
 @section('content')
     <div class="flex justify-center items-center w-screen bg-black text-white overflow-x-hidden h-screen overflow-y-scroll">
-        <div class="w-full h-full md:w-2/3 p-4">
+        <div class="w-full h-full md:w-2/3">
             <h1 class="flex items-center justify-center hidden">
                 <img src="{{ asset('images/logo2.png') }}" alt="Logo" width="300">
 
@@ -43,8 +43,6 @@
                 - {{ $kcs->plans->mahang }}
 
             </h2>
-
-
             <div class="flex my-4">
                 <div class="w-1/3 flex flex-col items-center justify-center">
                     <p>Chỉ tiêu</p>

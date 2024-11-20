@@ -11,7 +11,7 @@
     </style>
 @endpush
 @section('content')
-    <div class="pt-10 lg:p-0 w-full grid">
+    <div class="lg:p-0 w-full grid">
         <div id="header" class="relative h-fit w-full left-0 right-0 flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('produce.dashboard') }}" class="w-10">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
