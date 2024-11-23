@@ -26,7 +26,7 @@
 
 <body scroll="no" style="overflow: hidden;">
     <article
-        class="bg-[#0163C6] text-[#ededed] text-lg font-black md:text-3xl overflow-hidden whitespace-nowrap w-screen flex">
+        class="bg-[#0163C6] text-[#ededed] text-lg font-black md:text-3xl overflow-hidden whitespace-nowrap w-screen flex hidden">
         <ul class="text-marquee"
             style="display: flex;padding: 0;animation-duration: <?= count($schedules) * 20 . 's' ?>">
             @foreach ($schedules as $schedule)
@@ -36,6 +36,11 @@
             @endforeach
         </ul>
     </article>
+    <div class="h-screen w-screen">
+        <video controls autoplay loop class="w-full h-full">
+            <source src="{{ asset('videos/giang-sinh.mp4') }}" class="h-full w-full">
+        </video>
+    </div>
     @if (count($images))
         <img id="image-show" class="w-full h-screen" />
     @else
@@ -53,7 +58,7 @@
             currentIndex++;
             setTimeout(changeImage, 60000);
         }
-        changeImage();
+        // changeImage();
     </script>
 </body>
 
