@@ -36,11 +36,11 @@
             @endforeach
         </ul>
     </article>
-    <div class="h-screen w-screen">
+    {{-- <div class="h-screen w-screen">
         <video controls autoplay loop class="w-full h-full">
             <source src="{{ asset('videos/giang-sinh.mp4') }}" class="h-full w-full">
         </video>
-    </div>
+    </div> --}}
     @if (count($images))
         <img id="image-show" class="w-full h-screen" />
     @else
@@ -58,7 +58,7 @@
             currentIndex++;
             setTimeout(changeImage, 60000);
         }
-        // changeImage();
+        changeImage();
     </script>
 </body>
 
