@@ -27,14 +27,14 @@
                     <div class="grid grid-cols-4 grid-rows-4 h-full gap-5">
                         @foreach (array_merge(range('A', 'L'), ['TTH']) as $day)
                             <div
-                                class="rounded border relative shadow  {{ in_array($day, array_keys($containers)) ? 'bg-green-100' : 'bg-gray-400' }}">
+                                class="rounded border relative shadow {{ in_array($day, array_keys($containers)) ? 'bg-green-100' : 'bg-gray-400' }}">
                                 <a href="{{ route('accessory.row', $day) }}"
                                     class="absolute -right-4 -top-2 text-white {{ in_array($day, array_keys($containers)) ? 'bg-green-500' : 'bg-gray-500' }} rounded h-10 w-10 flex items-center justify-center font-bold text-xl">
                                     {{ $day }}
                                 </a>
                                 <div class="flex w-full">
                                     @if (in_array($day, array_keys($containers)))
-                                        <table class="text-center w-full">
+                                        <table class="text-center">
                                             <thead>
                                                 <tr>
                                                     <th class="border w-1/3">Mã hàng</th>
@@ -44,7 +44,7 @@
                                             <tbody>
                                                 @foreach ($containers[$day] as $index => $item)
                                                     @if ($index < 4)
-                                                        <tr class="text-left" title="{{ $item[2] }}">
+                                                        <tr class="text-left  overflow-hidden" title="{{ $item[0] }}">
                                                             <td class="border"><span
                                                                     class="line-clamp-1">#{{ $item[1] }}</span></td>
                                                             <td class="border"><span
@@ -70,7 +70,8 @@
                         <h6 class="h-1/6 flex justify-center items-center text-center py-2 font-bold text-xl uppercase">Năng
                             lực kho</h6>
                         <canvas class="flex-1" id="myChart"></canvas>
-                        <h6 class="text-center font-bold text-base py-2">Trống {{ $countEmpty }}/13 dãy</h6>
+                        {{-- <h6 class="text-center font-bold text-base py-2">Trống {{ $countEmpty }}/13 dãy</h6> --}}
+                        <h6 class="text-center font-bold text-base py-2">Trống 0/13 dãy</h6>
                     </div>
                     <div class="flex h-1/3 gap-4">
                         <div class="w-1/2 bg-white">
@@ -239,6 +240,29 @@
             options
         }
         const ctx1 = document.getElementById('myChart');
-        new Chart(ctx1, config)
+        // new Chart(ctx1, config)
+
+
+        const ctx123 = document.getElementById('myChart');
+        const data123 = {
+            labels: [
+                'Trống',
+                'Chứa',
+            ],
+            datasets: [{
+                label: 'Kệ',
+                data: [0, 12],
+                backgroundColor: [
+                    '#a3a3a3',
+                    '#22C55E',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        const config123 = {
+            type: 'doughnut',
+            data: data123,
+        };
+        new Chart(ctx123, config123);
     </script>
 @endpush
