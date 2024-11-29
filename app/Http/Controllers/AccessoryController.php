@@ -24,12 +24,13 @@ class AccessoryController extends Controller
         }
         return view("accessory.dashboard", compact("accessories"));
     }
-    public function show()
+    public function show1()
     {
 
         // $accessories = Accessory::orderBy("created_at", "DESC")->limit(50)->get();
         $accWaiting = Accessory::whereNull("order_id")->where("day", "CHOKIEM")->where("het", 0)->get();
         $accessories = Accessory::where("het", false)
+            ->whereNull("order_id")
             ->groupBy("day", "mahang", "loai")
             ->select("khachhang", "mahang", "day", "loai")
             ->get()
@@ -58,6 +59,7 @@ class AccessoryController extends Controller
         //     }
         // }
         $nAccessories = Accessory::where("het", false)
+            ->whereNull("order_id")
             ->groupBy("day", "khachhang")
             ->select("day", "khachhang", "mahang")
             ->orderBy("khachhang")->get();
@@ -73,10 +75,28 @@ class AccessoryController extends Controller
         //     ->groupBy("day")
         //     ->orderBy("day")->get());
         $countEmpty = 13 - count(Accessory::where("het", false)
+            ->where("day", "!=", "TTH")
             ->groupBy("day")
             ->orderBy("day")->get());
 
-        return view("accessory.show", compact("accessories", "containers", "newCount", "countEmpty", "accWaiting"));
+        return view("accessory.show1", compact("accessories", "containers", "newCount", "countEmpty", "accWaiting"));
+    }
+    public function show()
+    {
+
+        $accWaiting = Accessory::whereNull("order_id")->where("day", "CHOKIEM")->where("het", 0)->get();
+        $accessories = Accessory::get();
+        $containers = [];
+        foreach (range("A", "L") as  $day) {
+            $containers[$day] = Accessory::where("day", $day)
+                ->where("het", false)
+                ->whereNull("order_id")
+                ->orderBy("khachhang")
+                ->groupBy("loai")
+                ->limit(6)
+                ->get();
+        }
+        return view("accessory.show", compact("accessories", "containers", "accWaiting"));
     }
     public function add($id = null)
     {
