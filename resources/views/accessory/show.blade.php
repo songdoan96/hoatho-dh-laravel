@@ -137,7 +137,12 @@
         Object.entries(countDay).forEach((day, index) => {
             labels.push(`${day[0]}: ${day[1]}`);
             dataValue.push(day[1]);
-            backgroundColor.push(colors[index]);
+            if (colors[index]) {
+
+                backgroundColor.push(colors[index]);
+            } else {
+                backgroundColor.push(getRandomColor());
+            }
         });
         // labels.push("Trống: " + {{ $countEmpty }});
         // dataValue.push({{ $countEmpty }});
