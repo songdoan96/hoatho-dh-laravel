@@ -119,6 +119,7 @@
                     Nhập kho
                 </button>
             </div>
+        </form>
     </div>
 
 @endsection
