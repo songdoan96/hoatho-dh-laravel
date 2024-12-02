@@ -126,13 +126,18 @@ class AccessoryController extends Controller
         $accessory = Accessory::find($id);
         $totalOrders = $accessory->orders()->sum("soluong");
         if ($accessory->soluong - $totalOrders == (float)$request->soluong) {
-            $accessory->het = true;
-            $accessory->save();
             Accessory::create([
                 ...$request->all(),
                 "order_id" => $id,
-                "het" => true
+                "het" => true,
             ]);
+            $findOrderOver = Accessory::where("order_id", $id)->get();
+            foreach ($findOrderOver as $orderOver) {
+                $orderOver->het = true;
+                $orderOver->save();
+            }
+            $accessory->het = true;
+            $accessory->save();
         } else {
             Accessory::create([
                 ...$request->all(),
