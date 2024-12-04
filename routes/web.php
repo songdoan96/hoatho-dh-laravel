@@ -5,18 +5,17 @@ use App\Models\Plan;
 use App\Models\Factory;
 use App\Models\Welcome;
 use App\Models\Schedule;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KCSController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PlanController;
-use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SimpleController;
 use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\AccessoryController;
+use App\Http\Controllers\CuttingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +79,11 @@ Route::get('/free-time/{line}', function ($line) {
 // Login
 Route::get('/dang-nhap', [AuthController::class, 'login'])->name('login');
 Route::post('/dang-nhap', [AuthController::class, 'store'])->name('login.store');
+
+// Tải file
+Route::get('/download-file/{name}', [MainController::class, 'downloadFile'])->name('downloadFile');
+
+
 
 // Sx
 Route::prefix('/sanxuat')->name('produce.')->group(function () {
@@ -173,6 +177,7 @@ Route::prefix("noibo")->name('internal.')->group(function () {
 Route::prefix('/phulieu')->name('accessory.')->group(function () {
     Route::get('/', [AccessoryController::class, 'dashboard'])->name('dashboard');
     Route::get('/show', [AccessoryController::class, 'show'])->name('show');
+    Route::get('/show1', [AccessoryController::class, 'show1'])->name('show');
     Route::get('/them/{id?}', [AccessoryController::class, 'add'])->name('add');
     Route::post('/them', [AccessoryController::class, 'store'])->name('store');
 
@@ -198,4 +203,27 @@ Route::prefix('/phulieu')->name('accessory.')->group(function () {
     Route::delete('/delete/{accessory}', [AccessoryController::class, 'delete'])->name('delete');
 
     Route::get("het/{mahang?}/{accessory?}", [AccessoryController::class, 'soldOut'])->name("soldOut");
+});
+
+Route::prefix("/tocat")->name("cutting.")->group(function () {
+    Route::get("/", [CuttingController::class, 'dashboard'])->name("dashboard");
+
+    Route::get('/sua-btp/{plan}', [CuttingController::class, 'editBtp'])->name('editBtp');
+    Route::post('/sua-btp/{plan}', [CuttingController::class, 'editBtpUpdate'])->name('editBtpUpdate');
+
+    Route::post('/btp/them', [CuttingController::class, 'addBtpWithPlan'])->name('addBtpWithPlan');
+    Route::delete('/btp/xoa/{btp}', [CuttingController::class, 'btpDelete'])->name('btpDelete');
+    Route::get('/btp/sua-ngay/{btp}', [CuttingController::class, 'editBtpWithDay'])->name('editBtpWithDay');
+    Route::post('/btp/sua-ngay/{btp}', [CuttingController::class, 'updateBtpWithDay'])->name('updateBtpWithDay');
+
+    Route::get("/btp/chi-tiet/{btp}", [CuttingController::class, 'detailBtp'])->name("detailBtp");
+
+    Route::post('/btp/upload', [CuttingController::class, 'btpUpload'])->name('btpUpload');
+
+    Route::post('/btp/chuyen/upload', [CuttingController::class, 'btpUploadLine'])->name('btpUploadLine');
+
+    Route::get("/btp/btpEditPlan/{btp}", [CuttingController::class, 'btpEditPlan'])->name("btpEditPlan");
+    Route::post("/btp/btpEditPlan/{btp}", [CuttingController::class, 'btpEditPlanUpdate'])->name("btpEditPlanUpdate");
+
+    Route::get('/download/{plan}', [CuttingController::class, 'exportFileBtp'])->name('exportFileBtp');
 });

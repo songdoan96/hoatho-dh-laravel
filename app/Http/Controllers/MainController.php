@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\KCS;
 use App\Models\Plan;
-use App\Models\Simple;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class MainController extends Controller
 {
@@ -25,5 +25,9 @@ class MainController extends Controller
             $kcsData = KCS::where('ngaytao', date('Y-m-d'))->with("plans")->get()->sortBy('plans.chuyen');
             return view("show", compact('type', 'kcsData'));
         }
+    }
+    public function downloadFile($name)
+    {
+        return Response::download($name . ".xlsx");
     }
 }

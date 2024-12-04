@@ -20,6 +20,7 @@
                         @endphp
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
+                    <option value="daotao">Đào tạo</option>
                     {{-- @foreach ($factories as $factory)
                         <option value="{{ $factory->line }}">{{ $factory->line }}</option>
                     @endforeach --}}

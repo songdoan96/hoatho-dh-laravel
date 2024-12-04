@@ -155,7 +155,7 @@
                                     {{ formatNumber($kc->btpcap) }}
                                 </td>
                                 <td class="border">
-                                    @php $von = abs(($kc->plans->btpcap - $kc->plans->thuchien) / $kc->chitieungay); @endphp
+                                    @php $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
                                     {{ formatNumber($von, 1) }}
                                 </td>
                                 <td class="border">

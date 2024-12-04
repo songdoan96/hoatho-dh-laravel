@@ -17,7 +17,7 @@
         <div class="bg-white flex justify-between mb-2 px-4 py-2">
             <div class="flex gap-2 items-end mb-2">
                 <img src="{{ asset('images/download.png') }}" alt="Download" width="40">
-                <a class="underline" href="{{ route('accessory.downloadFile') }}">
+                <a class="underline" href="{{ route('downloadFile', 'phu-lieu') }}">
                     Tải file mẫu
                 </a>
             </div>

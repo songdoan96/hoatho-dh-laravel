@@ -170,8 +170,11 @@
                                 <p>semi-finished</p>
                             </div>
                             <p class="number flex-1 text-left">
-                                <a href="{{ route('produce.editBtp', $plan) }}">
+                                {{-- <a href="{{ route('cutting.editBtp', $plan) }}">
                                     {{ formatNumber($plan->btpcap) }}
+                                </a> --}}
+                                <a href="{{ route('cutting.editBtp', $plan) }}">
+                                    {{ $plan->btp_day->sum('slcap') }}
                                 </a>
                             </p>
                         </div>
@@ -181,7 +184,7 @@
                                 <p>Remaining rate</p>
                             </div>
                             <p class="number flex-1 text-left">
-                                <a href="{{ route('produce.editBtp', $plan) }}"
+                                <a href="{{ route('cutting.editBtp', $plan) }}"
                                     class="@if (isset($von) && $von > $plan->mucvon) animate-blink red @endif">
                                     {{ isset($von) ? formatNumber($von, 1) : '--' }}
                                 </a>
