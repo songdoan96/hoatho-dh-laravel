@@ -226,4 +226,6 @@ Route::prefix("/tocat")->name("cutting.")->group(function () {
     Route::post("/btp/btpEditPlan/{btp}", [CuttingController::class, 'btpEditPlanUpdate'])->name("btpEditPlanUpdate");
 
     Route::get('/download/{plan}', [CuttingController::class, 'exportFileBtp'])->name('exportFileBtp');
+
+    Route::get('/download-btp', [CuttingController::class, 'exportFileBtpDayWithDate'])->name('exportFileBtpDayWithDate');
 });

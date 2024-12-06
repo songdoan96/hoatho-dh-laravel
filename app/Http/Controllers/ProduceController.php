@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KCS;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 

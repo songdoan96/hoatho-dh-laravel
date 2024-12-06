@@ -34,6 +34,9 @@
                             </th>
 
                             <th class="border p-2">
+                                BTP
+                            </th>
+                            <th class="border p-2">
                                 LK nhập hoàn thành
                             </th>
                             <th class="border p-2">
@@ -59,6 +62,12 @@
                                 </td>
                                 <td class="border p-2">
                                     {{ $plan->sltacnghiep }}
+                                </td>
+                                <td class="border p-2">
+                                    <a href="{{ route('cutting.editBtp', $plan) }}">
+
+                                        {{ $plan->btp_day->sum('slcap') }}
+                                    </a>
                                 </td>
                                 @php $slthieu=$plan->sltacnghiep-$plan->nhaphoanthanh; @endphp
                                 <td class="border p-2 flex justify-center">

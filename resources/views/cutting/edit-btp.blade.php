@@ -52,10 +52,9 @@
 
             @if (count($btp))
                 <div class="flex justify-center items-center w-full py-2">
-                    <form class="w-2/3 mx-auto flex justify-center" action="http://localhost:8000/tocat/btp/upload"
+                    <form class="w-2/3 mx-auto flex justify-center" action="{{ route('cutting.btpUploadLine') }}"
                         method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="_token" value="d21RdWN5tdAEhlhZ4f1RSH5ECKmcZsItwvKjOHSa"
-                            autocomplete="off">
+                        @csrf
                         <input type="file" name="file" id="file" required=""
                             class="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                         <button type="submit" id="accessory-upload-btn"
@@ -68,37 +67,37 @@
 
             <div class="flex justify-center mt-2">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                    <table class="w-full text-left font-bold text-gray-500 ">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     Size
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     Màu
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     SLKH
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     SL cắt
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     LK cắt
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     SL chưa cắt
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     SL cấp
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     LK cấp
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-2">
                                     SL chưa cấp
                                 </th>
-                                <th scope="col" class="px-6 py-3 flex gap-4">
+                                <th scope="col" class="px-6 py-2 flex gap-4">
                                     <button id="btn-btp-add" class="w-6">
                                         <img src="{{ asset('images/plus.png') }}" alt="">
                                     </button>
@@ -115,13 +114,13 @@
                                 <tr
                                     class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                     <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $bt->size }}
                                     </th>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2">
                                         {{ $bt->color }}
                                     </td>
-                                    <td class="px-6 py-4 font-bold">
+                                    <td class="px-6 py-2 font-bold text-blue-600">
                                         <a href="{{ route('cutting.btpEditPlan', $bt) }}" class="underline">
                                             {{ $bt->slkh }}
                                         </a>
@@ -131,30 +130,31 @@
                                         $lkcat = $bt->btpDay->where('btp_id', $bt->id)->sum('slcat');
                                         $lkcap = $bt->btpDay->where('btp_id', $bt->id)->sum('slcap');
                                     @endphp
-                                    <td class="px-6 py-4">
-                                        <a class="underline" href="{{ route('cutting.editBtpWithDay', $bt) }}">
+                                    <td class="px-6 py-2">
+                                        <a class="underline text-green-700"
+                                            href="{{ route('cutting.editBtpWithDay', $bt) }}">
                                             {{ $btDay->slcat ?? 0 }}
                                         </a>
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2 text-green-700">
                                         {{ $lkcat ?? 0 }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2 text-green-700">
                                         {{ $bt->slkh - $lkcat ?? 0 }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2 text-red-700">
                                         <a class="underline" href="{{ route('cutting.editBtpWithDay', $bt) }}">
                                             {{ $btDay->slcap ?? 0 }}
                                         </a>
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2 text-red-700">
 
                                         {{ $lkcap ?? 0 }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2 text-red-700">
                                         {{ $lkcat - $lkcap ?? 0 }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-2">
                                         <div class="flex items-center gap-2">
                                             @if ($lkcat == 0 && $lkcap == 0)
                                                 <form action="{{ route('cutting.btpDelete', $bt) }}" method="POST">

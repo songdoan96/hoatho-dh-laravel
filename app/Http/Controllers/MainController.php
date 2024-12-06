@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\KCS;
 use App\Models\Plan;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class MainController extends Controller

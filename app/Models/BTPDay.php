@@ -21,4 +21,8 @@ class BTPDay extends Model
     {
         return $this->belongsTo(BTP::class, "btp_id", "id");
     }
+    public function plan()
+    {
+        return $this->hasOneThrough(Plan::class, BTP::class, 'id', 'id', 'btp_id', 'plan_id');
+    }
 }

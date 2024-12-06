@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.cutting')
 
 @push('meta')
     <meta http-equiv="refresh" content="3600">
@@ -8,21 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endpush
 
+@section('header-title', 'THEO DÕI BTP CHO TỪNG CHUYỀN NGÀY ' . date('d-m-Y'))
 
 
 @section('content')
-    <div class="min-h-screen flex flex-col">
-        <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
-            <a href="{{ route('produce.dashboard') }}" class="w-10">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo">
-            </a>
-            <div class="flex items-center gap-4 flex-1 justify-center">
-                <h1 class="text-center text-2xl uppercase font-bold">THEO DÕI BTP CHO TỪNG CHUYỀN NGÀY
-                    {{ date('d-m-Y') }}</h1>
+    @if (count($plans))
+        <div class="min-h-screen flex flex-col">
+            <div class="absolute right-2 top-2 flex items-center gap-4">
+                <a href="{{ route('cutting.exportFileBtpDayWithDate') }}">
+                    <img class="w-8" src="{{ asset('images/file.png') }}" alt="">
+                </a>
+                <a href="{{ route('produce.finish') }}" title="Đơn hàng đã xuất">
+                    <img class="w-8" src="{{ asset('images/history.png') }}" alt="Báo cáo cuối ngày">
+                </a>
             </div>
-        </div>
-
-        @if (count($plans))
             <div class="p-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @foreach ($plans as $plan)
@@ -57,15 +56,7 @@
                                     <span>{{ formatNumber($plan->sltacnghiep - $slcat) }} </span>
                                 </div>
 
-                                <div class="flex justify-between items-center gap-1 mt-2 hidden">
-                                    <span class="bg-gray-100 h-3 w-full relative overflow-hidden">
-                                        <span class="absolute h-full left-0 bg-[#7cd79f]"
-                                            style="width: {{ $lkcatPercent }}%"></span>
-                                        <span
-                                            class="text-blue-900 absolute w-full h-full text-xs font-bold flex justify-center items-center">{{ $lkcatPercent }}
-                                            %</span>
-                                    </span>
-                                </div>
+
                                 <div class="flex justify-between">
                                     <span>LK cấp</span>
                                     <span>{{ formatNumber($slcap) }} </span>
@@ -152,8 +143,6 @@
                 </div>
 
             </div>
-        @endif
-
-
-    </div>
+        </div>
+    @endif
 @endsection

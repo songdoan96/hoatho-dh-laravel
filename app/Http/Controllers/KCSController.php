@@ -134,7 +134,7 @@ class KCSController extends Controller
                 if ($kcs->sldat != 0 || $kcs->slloi != 0) {
                     $tyleloi = ($kcs->slloi / ($kcs->sldat + $kcs->slloi)) * 100;
                 }
-                $von = abs(($plan->btpcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
+                $von = abs(($plan->btp_day->sum('slcap') - $plan->nhaphoanthanh) / $kcs->chitieungay);
                 $errors = explode(",", $kcs->chitietloi);
 
 

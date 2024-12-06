@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Imports\BTPImport;
+use App\Imports\BTPLineImport;
 use App\Models\BTP;
 use App\Models\BTPDay;
 use Illuminate\Http\Request;
 use App\Models\Plan;
-use App\Imports\AccessoryImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Validators\ValidationException;
 use App\Exports\BTPExport;
+use App\Exports\BTPDayExport;
 
 class CuttingController extends Controller
 {
@@ -110,7 +111,7 @@ class CuttingController extends Controller
     public function btpUploadLine(Request $request)
     {
         try {
-            Excel::import(new BTPImport($request->plan_id), $request->file);
+            Excel::import(new BTPLineImport(), $request->file);
             return redirect()->back()->with('success', "Tải lên thành công");
         } catch (ValidationException $e) {
             $failures = $e->failures();
@@ -136,6 +137,10 @@ class CuttingController extends Controller
 
     public function exportFileBtp(Plan $plan)
     {
-        return Excel::download(new BTPExport($plan), "to" . $plan->chuyen . "(" . date("d-m-Y") . ")" . ".xlsx");
+        return Excel::download(new BTPExport($plan), "to-" . $plan->chuyen  . date("-d_m_Y")  . ".xlsx");
+    }
+    public function exportFileBtpDayWithDate()
+    {
+        return Excel::download(new BTPDayExport(),  "Bao-cao-btp-" . date("d-m-Y") . ".xlsx");
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -15,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('plan_id');
             $table->date('ngaytao')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->unsignedSmallInteger('laodong')->default(0);
-            $table->unsignedSmallInteger('duphong')->default(0);
+            $table->unsignedFloat('laodong', 5, 2)->default(0);
+            $table->unsignedFloat('duphong', 5, 2)->default(0);
             $table->unsignedSmallInteger('chitieungay')->default(0);
             $table->unsignedSmallInteger('sldat')->default(0);
             $table->unsignedSmallInteger('slloi')->default(0);

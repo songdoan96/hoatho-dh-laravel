@@ -25,14 +25,14 @@ class AccessoryImport implements ToModel, SkipsEmptyRows, WithHeadingRow, WithVa
         if ($row["ngay"] != "") {
             return new Accessory([
                 "ngay" => Carbon::instance(Date::excelToDateTimeObject($row["ngay"]))->format("Y-m-d"),
-                "khachhang" => Str::upper($row["khach_hang"]),
-                "mahang" => Str::upper($row["ma_hang"]),
-                "loai" => (string)$row["loai"],
-                "day" => (string)$row["day"],
-                "mau" => (string)$row["mau"] ?: null,
-                "size" => (string)$row["size"] ?: null,
-                "donvi" => (string)$row["don_vi"],
-                "po" => (string)$row["po"],
+                "khachhang" => trim(Str::upper($row["khach_hang"])),
+                "mahang" => trim(Str::upper($row["ma_hang"])),
+                "loai" => trim((string)$row["loai"]),
+                "day" => trim((string)$row["day"]),
+                "mau" => trim((string)$row["mau"] ?: null),
+                "size" => trim((string)$row["size"] ?: null),
+                "donvi" => trim((string)$row["don_vi"]),
+                "po" => trim((string)$row["po"]),
                 "soluong" => (float)$row["so_luong"],
                 "ghichu" => (string)$row["ghi_chu"]
             ]);
