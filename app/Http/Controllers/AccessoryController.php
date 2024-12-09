@@ -150,10 +150,22 @@ class AccessoryController extends Controller
 
     public function delete(Accessory $accessory)
     {
-        $accessory->delete();
         if ($accessory->order_id) {
+            $accParent = Accessory::find($accessory->order_id);
+            if ($accParent && $accParent->het == true) {
+                $accParent->het = false;
+                $accParent->save();
+                $accChild = Accessory::where('order_id', $accParent->id)->get();
+                foreach ($accChild as $child) {
+                    $child->het = false;
+                    $child->save();
+                }
+            }
+            $accessory->delete();
+
             return redirect()->route('accessory.type', $accessory->order_id)->with("success", "Xóa thành công");
         } else {
+            $accessory->delete();
             return redirect()->route('accessory.dashboard')->with("success", "Xóa thành công");
         }
 

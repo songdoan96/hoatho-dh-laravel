@@ -26,6 +26,7 @@ class KCS extends Model
         "thuchien",
         "nhaphoanthanh",
         "btpcap",
+        "ghichu"
     ];
     public function plans(): BelongsTo
     {

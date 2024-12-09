@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                     @foreach ($accessories as $accessory)
-                        <tr class="test-sm bg-gray-50 hover:bg-gray-200 border-b">
+                        <tr class="test-sm bg-red-100 hover:bg-red-200 border-b">
                             <td title="id-{{ $accessory->id }}" class="border py-2 px-1 border-black">
                                 {{ formatDate($accessory->ngay, 'd-m-Y') }}
                             </td>

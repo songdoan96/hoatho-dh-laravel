@@ -8,10 +8,20 @@
         }
     </style>
 @endpush
+
 @section('content')
     <div class="bg-gray-200">
-
         @if (count($accessories))
+            @php
+                $totalQtyWithStyle = $accessory->totalQtyWithStyle();
+                $totalQtyOrderWithStyle = $accessory->totalQtyOrderWithStyle();
+                $conlai = $totalQtyWithStyle - $totalQtyOrderWithStyle;
+
+                $totalQtyWithStyleAll = $accessory->totalQtyWithStyleAll();
+                $totalQtyOrderWithStyleAll = $accessory->totalQtyOrderWithStyleAll();
+                $conlaiAll = $totalQtyWithStyleAll - $totalQtyOrderWithStyleAll;
+
+            @endphp
             <div class="relative overflow-x-auto">
                 <div class="flex flex-col p-2">
                     <div class="flex uppercase gap-2 w-full">
@@ -48,20 +58,20 @@
                             <div class="flex flex-col items-center gap-2 ">
                                 <span>SL nhập</span>
                                 <span
-                                    class="min-w-28 text-center whitespace-nowrap bg-emerald-100 text-emerald-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyWithStyle(), 2) }}<span
+                                    class="min-w-28 text-center whitespace-nowrap bg-emerald-100 text-emerald-700 p-1 px-2 rounded-full">{{ formatNumber($totalQtyWithStyleAll, 2) }}<span
                                         class="text-sm"> {{ $accessory->donvi }}</span></span>
                             </div>
 
                             <div class="flex flex-col items-center gap-2 ">
                                 <span>SL xuất</span>
                                 <span
-                                    class="min-w-28 text-center whitespace-nowrap bg-red-100 text-red-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}<span
+                                    class="min-w-28 text-center whitespace-nowrap bg-red-100 text-red-700 p-1 px-2 rounded-full">{{ formatNumber($totalQtyOrderWithStyleAll, 2) }}<span
                                         class="text-sm"> {{ $accessory->donvi }}</span></span>
                             </div>
                             <div class="flex flex-col items-center gap-2 ">
                                 <span>SL tồn</span>
                                 <span
-                                    class="min-w-28 text-center whitespace-nowrap bg-sky-100 text-sky-700 p-1 px-2 rounded-full">{{ formatNumber($accessory->totalQtyWithStyle() - $accessory->totalQtyOrderWithStyle(), 2) }}<span
+                                    class="min-w-28 text-center whitespace-nowrap bg-sky-100 text-sky-700 p-1 px-2 rounded-full">{{ formatNumber($conlaiAll, 2) }}<span
                                         class="text-sm"> {{ $accessory->donvi }}</span></span>
                             </div>
 
@@ -247,7 +257,6 @@
                                                 </form>
                                             @endif
                                         </div>
-
                                     </td>
                                 </tr>
                                 @if (count($accessory->orders))
@@ -283,8 +292,6 @@
                                             <td class="border py-2 px-1 border-black"></td>
                                             <td class="border py-2 px-1 border-black">{{ $order->nguoinhan }}</td>
                                             <td class="border py-2 px-1 border-black">{{ $order->ghichu }}</td>
-
-
                                             <td class="border py-2 px-1 border-black">
                                                 <div class="flex gap-1 justify-end items-center">
                                                     <a href="sua.php?id=294" title="Sửa phụ liệu"
@@ -321,8 +328,25 @@
                                     @endforeach
                                 @endif
                             @endforeach
-
-
+                            <tr class="test-sm bg-gray-50 border-b">
+                                <td class="border py-2 px-1 border-black font-bold" colspan="9">
+                                    Tổng
+                                </td>
+                                <td class="border py-2 px-1 border-black">
+                                    <span
+                                        class="text-center whitespace-nowrap text-emerald-700 font-bold text-xl">{{ formatNumber($totalQtyWithStyle, 2) }}</span>
+                                </td>
+                                <td class="border py-2 px-1 border-black">
+                                    <span
+                                        class="min-w-28 text-center whitespace-nowrap text-red-700 font-bold text-xl">{{ formatNumber($totalQtyOrderWithStyle, 2) }}</span>
+                                </td>
+                                <td class="border py-2 px-1 border-black">
+                                    <span
+                                        class="min-w-28 text-center whitespace-nowrap text-sky-700 font-bold text-xl">{{ formatNumber($conlai, 2) }}</span>
+                                </td>
+                                <td class="border py-2 px-1 border-black" colspan="3">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

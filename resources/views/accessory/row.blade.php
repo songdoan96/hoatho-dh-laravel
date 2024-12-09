@@ -23,11 +23,20 @@
             </div>
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 flex-1 p-4 h-full">
                 @foreach ($accessories as $accessory)
+                    @php
+                        $totalQtyWithRow = $accessory->totalQtyWithRow();
+                        $totalQtyOrderWithRow = $accessory->totalQtyOrderWithRow();
+                        $conlai = $totalQtyWithRow - $totalQtyOrderWithRow;
+                    @endphp
                     <div class="flex bg-white shadow-lg relative">
                         <div
                             class="point w-10 h-10 flex justify-center items-center rounded-full bg-red-600 absolute -right-3 -top-3">
                             <span class="text-white text-xs font-bold">
-                                {{ formatNumber(($accessory->ordersQty() / $accessory->soluong) * 100, 1) . '%' }}
+                                @if ($totalQtyWithRow != 0)
+                                    {{ formatNumber(($totalQtyOrderWithRow / $totalQtyWithRow) * 100, 1) . '%' }}
+                                @else
+                                    0%
+                                @endif
                             </span>
                         </div>
                         <div class="flex flex-col w-1/6 justify-between border-r-2">
@@ -47,14 +56,14 @@
                                 <div class="flex flex-col items-center justify-center w-1/3">
                                     <p class="font-bold uppercase">Nhập</p>
                                     <span
-                                        class="min-w-28 text-center whitespace-nowrap bg-emerald-100 text-emerald-700 p-1 px-2 text-base font-bold rounded-full">{{ formatNumber($accessory->totalQtyWithRow(), 2) }}<span
+                                        class="min-w-28 text-center whitespace-nowrap bg-emerald-100 text-emerald-700 p-1 px-2 text-base font-bold rounded-full">{{ formatNumber($totalQtyWithRow, 2) }}<span
                                             class="text-sm"> {{ $accessory->donvi }}</span></span>
                                 </div>
                                 <div class="flex flex-col items-center justify-center w-1/3">
                                     <p class="font-bold uppercase">Xuất</p>
                                     <span
                                         class="min-w-28 text-center whitespace-nowrap bg-rose-100 text-rose-700 p-1 px-2 text-base font-bold rounded-full">
-                                        {{ formatNumber($accessory->totalQtyOrderWithRow(), 2) }}<span class="text-sm">
+                                        {{ formatNumber($totalQtyOrderWithRow, 2) }}<span class="text-sm">
                                             {{ $accessory->donvi }}</span>
                                     </span>
                                 </div>

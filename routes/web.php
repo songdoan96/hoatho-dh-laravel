@@ -16,6 +16,7 @@ use App\Http\Controllers\ProduceController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\AccessoryController;
 use App\Http\Controllers\CuttingController;
+use App\Http\Controllers\FinishedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -228,4 +229,11 @@ Route::prefix("/tocat")->name("cutting.")->group(function () {
     Route::get('/download/{plan}', [CuttingController::class, 'exportFileBtp'])->name('exportFileBtp');
 
     Route::get('/download-btp', [CuttingController::class, 'exportFileBtpDayWithDate'])->name('exportFileBtpDayWithDate');
+});
+
+
+Route::prefix('hoanthanh')->name('finished.')->group(function () {
+    Route::get('/', [FinishedController::class, 'dashboard'])->name('dashboard');
+    Route::post('/add', [FinishedController::class, 'store'])->name('store');
+    Route::get('/edit/{finished}', [FinishedController::class, 'edit'])->name('edit');
 });

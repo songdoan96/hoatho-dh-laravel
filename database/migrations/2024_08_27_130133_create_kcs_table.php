@@ -30,6 +30,7 @@ return new class extends Migration
 
 
             $table->string('chitietloi')->nullable();
+            $table->string('ghichu')->nullable();
             //            $table->timestamp('created_at')->useCurrent();
             $table->foreign('plan_id')->references('id')->on('plans');
             // $table->timestamps();

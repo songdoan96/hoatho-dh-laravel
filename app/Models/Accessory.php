@@ -49,10 +49,29 @@ class Accessory extends Model
             ->whereNull("order_id")
             ->sum("soluong");
     }
+    public function totalQtyWithStyleAll()
+    {
+        return Accessory::where("mahang", $this->mahang)
+            ->where("loai", $this->loai)
+            ->where("size", $this->size)
+            ->where("mau", $this->mau)
+            ->whereNull("order_id")
+            ->sum("soluong");
+    }
     public function totalQtyOrderWithStyle()
     {
         return Accessory::whereNotNull("order_id")
             ->where("het", false)
+            ->where("khachhang", $this->khachhang)
+            ->where("loai", $this->loai)
+            ->where("mahang", $this->mahang)
+            ->where("size", $this->size)
+            ->where("mau", $this->mau)
+            ->sum("soluong");
+    }
+    public function totalQtyOrderWithStyleAll()
+    {
+        return Accessory::whereNotNull("order_id")
             ->where("khachhang", $this->khachhang)
             ->where("loai", $this->loai)
             ->where("mahang", $this->mahang)

@@ -33,6 +33,10 @@
                             <td class="px-2 py-1 border"><input name="duphong" class="w-16 border px-2 border-blue-500"
                                     type="text" value="{{ $kc->duphong }}">
                             </td>
+                            <td class="px-2 py-1 border font-bold uppercase">Ghi chú:</td>
+                            <td class="px-2 py-1 border"><input name="ghichu" class="w-32 border px-2 border-blue-500"
+                                    type="text" value="{{ $kc->ghichu }}">
+                            </td>
                             <td class="px-2 py-1 border"><button
                                     class="min-w-24 text-white bg-white-700 bg-blue-500 font-medium rounded-lg text-sm w-full sm:w-auto p-2 text-center"
                                     type="submit">Cập nhật</button></td>

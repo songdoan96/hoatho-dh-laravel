@@ -22,7 +22,7 @@ class AccessoryImport implements ToModel, SkipsEmptyRows, WithHeadingRow, WithVa
     use Importable;
     public function model(array $row)
     {
-        if ($row["ngay"] != "") {
+        if ($row["ngay"] != "" && $row["soluong"] != "") {
             return new Accessory([
                 "ngay" => Carbon::instance(Date::excelToDateTimeObject($row["ngay"]))->format("Y-m-d"),
                 "khachhang" => trim(Str::upper($row["khach_hang"])),

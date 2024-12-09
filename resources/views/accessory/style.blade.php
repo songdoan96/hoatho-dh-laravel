@@ -50,6 +50,11 @@
                 </thead>
                 <tbody>
                     @foreach ($accessories as $accessory)
+                        @php
+                            $totalQtyWithStyle = $accessory->totalQtyWithStyle();
+                            $totalQtyOrderWithStyle = $accessory->totalQtyOrderWithStyle();
+                            $conlai = $totalQtyWithStyle - $totalQtyOrderWithStyle;
+                        @endphp
                         <tr class="test-sm bg-gray-50 hover:bg-gray-200 border-b">
                             <td title="id-{{ $accessory->id }}" class="border py-2 px-1 border-black">
                                 {{ formatDate($accessory->ngay, 'd-m-Y') }}
@@ -88,18 +93,16 @@
                                 class="w-20 underline text-sm bg-green-700 text-green-200 whitespace-nowrap border border-black">
 
                                 <a
-                                    href="{{ route('accessory.add', $accessory->id) }}">{{ formatNumber($accessory->totalQtyWithStyle(), 2) }}</a>
+                                    href="{{ route('accessory.add', $accessory->id) }}">{{ formatNumber($totalQtyWithStyle, 2) }}</a>
                             </td>
 
 
                             <td class="w-20 text-sm border border-black  bg-red-700 text-red-200 whitespace-nowrap">
-                                {{-- <a class="underline"
-                                        href="{{ route('accessory.order', $accessory->id) }}">{{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}</a> --}}
-                                {{ formatNumber($accessory->totalQtyOrderWithStyle(), 2) }}
+                                {{ formatNumber($totalQtyOrderWithStyle, 2) }}
                             </td>
 
                             <td class="w-20 text-sm border-r text-white bg-sky-700 py-2 px-1 whitespace-nowrap">
-                                {{ formatNumber($accessory->totalQtyWithStyle() - $accessory->totalQtyOrderWithStyle(), 2) }}
+                                {{ formatNumber($conlai, 2) }}
                             </td>
 
                         </tr>
