@@ -155,7 +155,13 @@
                                     {{ formatNumber($kc->plans->btp_day->where('ngay', '<=', $kc->ngaytao)->sum('slcap')) }}
                                 </td>
                                 <td class="border">
-                                    @php $von = abs(($kc->plans->btp_day->sum('slcap') - $kc->plans->nhaphoanthanh) / $kc->chitieungay); @endphp
+                                    @php
+                                        // $von = abs(
+                                        //     ($kc->plans->btp_day->sum('slcap') - $kc->plans->nhaphoanthanh) /
+                                        //         $kc->chitieungay,
+                                        // );
+                                        $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay);
+                                    @endphp
                                     {{ formatNumber($von, 1) }}
                                 </td>
                                 <td class="border">

@@ -25,6 +25,13 @@
             <div class="p-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     @foreach ($plans as $plan)
+                        @php
+                            $slkh = $plan->btp->sum('slkh');
+                            $slcap = $plan->btp_day->sum('slcap');
+                            $slcat = $plan->btp_day->sum('slcat');
+                            $lkcapPercent = round(($slcap / $plan->sltacnghiep) * 100, 1);
+                            $lkcatPercent = round(($slcat / $plan->sltacnghiep) * 100, 1);
+                        @endphp
                         <a href="{{ route('cutting.editBtp', $plan) }}"
                             class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition rounded">
                             <div class="flex gap-1 text-xl font-bold">
@@ -39,21 +46,16 @@
                             <div class="bg-blue-100 p-2 flex flex-col text-black">
                                 <div class="flex justify-between">
                                     <span>Tác nghiệp</span>
-                                    <span>{{ formatNumber($plan->sltacnghiep) }} </span>
+                                    <span>{{ formatNumber($slkh) ?? 0 }} </span>
                                 </div>
-                                @php
-                                    $slcap = $plan->btp_day->sum('slcap');
-                                    $slcat = $plan->btp_day->sum('slcat');
-                                    $lkcapPercent = round(($slcap / $plan->sltacnghiep) * 100, 1);
-                                    $lkcatPercent = round(($slcat / $plan->sltacnghiep) * 100, 1);
-                                @endphp
+
                                 <div class="flex justify-between">
                                     <span>LK cắt</span>
                                     <span>{{ formatNumber($slcat) }} </span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span>SL chưa cắt</span>
-                                    <span>{{ formatNumber($plan->sltacnghiep - $slcat) }} </span>
+                                    <span>{{ formatNumber($slkh - $slcat) }} </span>
                                 </div>
 
 

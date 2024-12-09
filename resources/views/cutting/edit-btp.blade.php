@@ -21,6 +21,8 @@
                 <div class="flex"><span class="w-2/5 font-semibold">Mã hàng: </span><span>{{ $plan->mahang }}</span></div>
                 <div class="flex"><span class="w-2/5 font-semibold">LK tác nghiệp:
                     </span><span>{{ $plan->sltacnghiep }}</span></div>
+                <div class="flex"><span class="w-2/5 font-semibold">BTP:
+                    </span><span>{{ $plan->btpcap }}</span></div>
                 <div class="flex"><span class="w-2/5 font-semibold">BTP cắt:
                     </span><span>{{ $plan->btp_day->sum('slcat') }}</span></div>
                 <div class="flex"><span class="w-2/5 font-semibold">BTP cấp:
@@ -28,14 +30,14 @@
             </div>
 
             <form method="POST" action="{{ route('produce.editBtpUpdate', $plan) }}"
-                class="p-4 border w-5/12 mx-auto hidden">
+                class="p-4 border w-5/12 mx-auto mb-2">
                 @csrf
-                <div class="my-5 flex items-center gap-2">
+                <div class="my-2 flex items-center gap-2">
                     <label for="btp" class="font-medium w-1/2">BTP đã cấp</label>
                     <input type="number" id="btp" name="btp" readonly value="{{ $plan->btpcap }}"
                         class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" />
                 </div>
-                <div class="my-5 flex items-center gap-2">
+                <div class="my-2 flex items-center gap-2">
                     <label for="btpNew" class="font-medium w-1/2">BTP cấp thêm</label>
                     <input type="number" id="btpNew" name="btpNew" max="{{ $plan->sltacnghiep - $plan->btpcap }}"
                         class="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" />

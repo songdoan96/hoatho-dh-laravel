@@ -126,7 +126,7 @@ class CuttingController extends Controller
     public function btpEditPlanUpdate(BTP $btp, Request $request)
     {
         $btp->update($request->all());
-        return redirect()->route("cutting.editBtp", $btp->plans->id);
+        return redirect()->route("cutting.editBtp", $btp->plan->id);
     }
 
     public function detailBtp(BTP $btp)

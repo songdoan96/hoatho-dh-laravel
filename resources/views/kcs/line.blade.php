@@ -170,12 +170,12 @@
                                 <p>semi-finished</p>
                             </div>
                             <p class="number flex-1 text-left">
-                                {{-- <a href="{{ route('cutting.editBtp', $plan) }}">
-                                    {{ formatNumber($plan->btpcap) }}
-                                </a> --}}
                                 <a href="{{ route('cutting.editBtp', $plan) }}">
-                                    {{ $plan->btp_day->sum('slcap') }}
+                                    {{ formatNumber($plan->btpcap) }}
                                 </a>
+                                {{-- <a href="{{ route('cutting.editBtp', $plan) }}">
+                                    {{ $plan->btp_day->sum('slcap') }}
+                                </a> --}}
                             </p>
                         </div>
                         <div class="w-1/2 flex items-center">
