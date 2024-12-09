@@ -152,7 +152,8 @@
                                     </td>
                                 @endif
                                 <td class="border">
-                                    {{ formatNumber($kc->plans->btp_day->where('ngay', '<=', $kc->ngaytao)->sum('slcap')) }}
+                                    {{-- {{ formatNumber($kc->plans->btp_day->where('ngay', '<=', $kc->ngaytao)->sum('slcap')) }} --}}
+                                    {{ formatNumber($kc->btpcap) }}
                                 </td>
                                 <td class="border">
                                     @php

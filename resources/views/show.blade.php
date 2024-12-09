@@ -269,7 +269,8 @@
                                         </td>
                                     @endif
                                     <td class="border">
-                                        {{ formatNumber($kc->plans->btp_day->sum('slcap')) }}
+                                        {{-- {{ formatNumber($kc->plans->btp_day->sum('slcap')) }} --}}
+                                        {{ formatNumber($kc->plans->btpcap) }}
                                     </td>
                                     <td class="border">
                                         @php
