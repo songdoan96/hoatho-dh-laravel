@@ -24,7 +24,8 @@ class Plan extends Model
         'mucvon',
         'ghichu',
         'daxong',
-        'ngayxong'
+        'ngayxong',
+        'dot'
     ];
     public function kcs(): HasMany
     {
