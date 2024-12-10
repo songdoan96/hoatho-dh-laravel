@@ -15,16 +15,31 @@ class BTPDayExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        // return Plan::where('daxong', 0)
-        //     ->where('daraichuyen', 1)
-        //     ->orderBy('chuyen')
-        //     ->with('btp_day')
-        //     ->get();
-        return BTPDay::with("plan")
+        return Plan::where('daxong', 0)
+            ->where('daraichuyen', 1)
+            ->orderBy('chuyen')
             ->get()
-            ->where('plan.daxong', 0)
-            ->where('plan.daraichuyen', 1)
-            ->sortBy('plan.chuyen');
+            ->map(function ($plan) {
+                $result = [];
+                foreach ($plan->btp as $value) {
+                    $result[] = [
+                        $plan->chuyen,
+                        $plan->mahang,
+                        $plan->dot,
+                        $value->size,
+                        $value->color,
+                        $value->slkh,
+                        $value->btpDay->sum("slcat"),
+                        $value->btpDay->sum("slcap"),
+                    ];
+                }
+                return $result;
+            });
+        // return BTPDay::with("plan")
+        //     ->get()
+        //     ->where('plan.daxong', 0)
+        //     ->where('plan.daraichuyen', 1)
+        //     ->sortBy('plan.chuyen');
     }
     public function headings(): array
     {
@@ -37,26 +52,25 @@ class BTPDayExport implements FromCollection, WithHeadings, WithMapping
             "SLKH",
             "LK cắt",
             "LK cấp",
-            "Ngày",
-            "SL cắt",
-            "SL cấp",
+            // "Ngày",
+            // "SL cắt",
+            // "SL cấp",
         ];
     }
-    public function map($btpDay): array
+    public function map($plan): array
     {
-        dd($btpDay);
-        return [
-            $btpDay->plan->chuyen,
-            $btpDay->plan->mahang,
-            date("d-m-Y"),
-            // $btpDay->btp->size,
-            // $btpDay->btp->color,
-            // $btpDay->btp->slkh,
-            // $btpDay->slcat ?? 0,
-            // BTPDay::where("btp_id", $btpDay->id)->sum("slcat"),
-            // $btpDay->slcap ?? 0,
-            // BTPDay::where("btp_id", $btpDay->id)->sum("slcap"),
-
-        ];
+        return $plan;
+        // return [
+        //     // $btpDay->plan->chuyen,
+        //     // $btpDay->plan->mahang,
+        //     date("d-m-Y"),
+        //     // $btpDay->btp->size,
+        //     // $btpDay->btp->color,
+        //     // $btpDay->btp->slkh,
+        //     // $btpDay->slcat ?? 0,
+        //     // BTPDay::where("btp_id", $btpDay->id)->sum("slcat"),
+        //     // $btpDay->slcap ?? 0,
+        //     // BTPDay::where("btp_id", $btpDay->id)->sum("slcap"),
+        // ];
     }
 }
