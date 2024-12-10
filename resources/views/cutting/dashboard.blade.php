@@ -31,6 +31,14 @@
                             $slcat = $plan->btp_day->sum('slcat');
                             $lkcapPercent = round(($slcap / $plan->sltacnghiep) * 100, 1);
                             $lkcatPercent = round(($slcat / $plan->sltacnghiep) * 100, 1);
+                            $kcs = $plan->kcs->where('ngaytao', date('Y-m-d'))->first();
+                            if ($kcs) {
+                                if ($plan->chuyen == 11 || $plan->chuyen == 15) {
+                                    $von = abs(($plan->btpcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
+                                } else {
+                                    $von = abs(($slcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
+                                }
+                            }
                         @endphp
                         <a href="{{ route('cutting.editBtp', $plan) }}"
                             class="bg-white border border-black font-semibold text-gray-100 text-lg flex flex-col gap-1 overflow-hidden hover:scale-105 transition rounded">
@@ -66,6 +74,10 @@
                                 <div class="flex justify-between">
                                     <span>SL chưa cấp</span>
                                     <span>{{ formatNumber($slcat - $slcap) }} </span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Vốn</span>
+                                    <span>{{ formatNumber($von, 1) ?? '--' }} </span>
                                 </div>
 
                                 <div class="flex justify-between items-center gap-1 mt-2 hidden">

@@ -103,8 +103,9 @@
                             <form action="{{ route('cutting.btpDetailDelete', $btpDay) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button onclick="return confirm('Xóa lịch')" type="submit"><img
-                                        src="{{ asset('images/trash.png') }}" alt="Xóa" width="20"></button>
+                                <button class="transition hover:scale-105" onclick="return confirm('Xóa hàng này?')"
+                                    type="submit"><img src="{{ asset('images/trash.png') }}" alt="Xóa"
+                                        width="20"></button>
                         </td>
                     </tr>
                 @endforeach
