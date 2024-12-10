@@ -134,11 +134,12 @@ class KCSController extends Controller
                 if ($kcs->sldat != 0 || $kcs->slloi != 0) {
                     $tyleloi = ($kcs->slloi / ($kcs->sldat + $kcs->slloi)) * 100;
                 }
-                // $von = abs(($plan->btp_day->sum('slcap') - $plan->nhaphoanthanh) / $kcs->chitieungay);
-                $von = abs(($plan->btpcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
+                if ($plan->chuyen == 11 || $plan->chuyen == 15) {
+                    $von = abs(($plan->btpcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
+                } else {
+                    $von = abs(($plan->btp_day->sum('slcap') - $plan->nhaphoanthanh) / $kcs->chitieungay);
+                }
                 $errors = explode(",", $kcs->chitietloi);
-
-
                 $totalHour = 8.5;
                 $current_time = strtotime(date("Y-m-d H:i:s"));
                 $morning_start = strtotime(date('Y-m-d 07:30:00'));

@@ -157,11 +157,24 @@
                                 </td>
                                 <td class="border">
                                     @php
+
+                                        if ($kc->plans->chuyen == 11 || $kc->plans->chuyen == 15) {
+                                            $von = abs(
+                                                ($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay,
+                                            );
+                                        } else {
+                                            $von = abs(
+                                                ($kc->plans->btp_day->sum('slcap') - $kc->plans->nhaphoanthanh) /
+                                                    $kc->chitieungay,
+                                            );
+                                        }
+
                                         // $von = abs(
                                         //     ($kc->plans->btp_day->sum('slcap') - $kc->plans->nhaphoanthanh) /
                                         //         $kc->chitieungay,
                                         // );
-                                        $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay);
+                                        // $von = abs(($kc->plans->btpcap - $kc->plans->nhaphoanthanh) / $kc->chitieungay);
+
                                     @endphp
                                     {{ formatNumber($von, 1) }}
                                 </td>

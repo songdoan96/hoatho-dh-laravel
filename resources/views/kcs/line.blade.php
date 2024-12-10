@@ -170,9 +170,18 @@
                                 <p>semi-finished</p>
                             </div>
                             <p class="number flex-1 text-left">
-                                <a href="{{ route('cutting.editBtp', $plan) }}">
+                                @if ($plan->chuyen == 11 || $plan->chuyen == 15)
+                                    <a href="{{ route('cutting.editBtp', $plan) }}">
+                                        {{ formatNumber($plan->btpcap) }}
+                                    </a>
+                                @else
+                                    <a href="{{ route('cutting.editBtp', $plan) }}">
+                                        {{ $plan->btp_day->sum('slcap') }}
+                                    </a>
+                                @endif
+                                {{-- <a href="{{ route('cutting.editBtp', $plan) }}">
                                     {{ formatNumber($plan->btpcap) }}
-                                </a>
+                                </a> --}}
                                 {{-- <a href="{{ route('cutting.editBtp', $plan) }}">
                                     {{ $plan->btp_day->sum('slcap') }}
                                 </a> --}}

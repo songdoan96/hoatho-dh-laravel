@@ -26,6 +26,9 @@
                                 Mã hàng
                             </th>
                             <th class="border p-2">
+                                Đợt
+                            </th>
+                            <th class="border p-2">
                                 Ngày kết thúc
                             </th>
 
@@ -58,14 +61,16 @@
                                     {{ $plan->mahang }}
                                 </td>
                                 <td class="border p-2">
+                                    {{ $plan->dot }}
+                                </td>
+                                <td class="border p-2">
                                     {{ formatDate($plan->ngayxong, 'd-m-Y') }}
                                 </td>
                                 <td class="border p-2">
                                     {{ $plan->sltacnghiep }}
                                 </td>
                                 <td class="border p-2">
-                                    <a href="{{ route('cutting.editBtp', $plan) }}">
-
+                                    <a class="underline" href="{{ route('cutting.editBtp', $plan) }}">
                                         {{ $plan->btp_day->sum('slcap') }}
                                     </a>
                                 </td>
