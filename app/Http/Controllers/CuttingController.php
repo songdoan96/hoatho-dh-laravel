@@ -143,4 +143,10 @@ class CuttingController extends Controller
     {
         return Excel::download(new BTPDayExport(),  "Bao-cao-btp-" . date("d-m-Y") . ".xlsx");
     }
+
+    public function btpDetailDelete(BTPDay $btpDay)
+    {
+        $btpDay->delete();
+        return redirect()->back()->with('success', 'Xóa thành công.');
+    }
 }

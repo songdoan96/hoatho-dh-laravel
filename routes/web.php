@@ -218,6 +218,7 @@ Route::prefix("/tocat")->name("cutting.")->group(function () {
     Route::post('/btp/sua-ngay/{btp}', [CuttingController::class, 'updateBtpWithDay'])->name('updateBtpWithDay');
 
     Route::get("/btp/chi-tiet/{btp}", [CuttingController::class, 'detailBtp'])->name("detailBtp");
+    Route::delete('/btp/chi-tiet/xoa/{btpDay}', [CuttingController::class, 'btpDetailDelete'])->name('btpDetailDelete');
 
     Route::post('/btp/upload', [CuttingController::class, 'btpUpload'])->name('btpUpload');
 
@@ -225,6 +226,9 @@ Route::prefix("/tocat")->name("cutting.")->group(function () {
 
     Route::get("/btp/btpEditPlan/{btp}", [CuttingController::class, 'btpEditPlan'])->name("btpEditPlan");
     Route::post("/btp/btpEditPlan/{btp}", [CuttingController::class, 'btpEditPlanUpdate'])->name("btpEditPlanUpdate");
+
+
+
 
     Route::get('/download/{plan}', [CuttingController::class, 'exportFileBtp'])->name('exportFileBtp');
 

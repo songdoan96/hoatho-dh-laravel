@@ -73,6 +73,9 @@
                     <th scope="col" class="px-6 py-3">
                         SL cấp
                     </th>
+                    <th scope="col" class="px-6 py-3">
+
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -96,6 +99,13 @@
                         <td class="px-6 py-1 border">
                             {{ $btpDay->slcap }}
                         </td>
+                        <td>
+                            <form action="{{ route('cutting.btpDetailDelete', $btpDay) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button onclick="return confirm('Xóa lịch')" type="submit"><img
+                                        src="{{ asset('images/trash.png') }}" alt="Xóa" width="20"></button>
+                        </td>
                     </tr>
                 @endforeach
 
@@ -108,6 +118,9 @@
                     </td>
                     <td class="px-6 py-1 border">
                         {{ $btp->btpDay->sum('slcap') }}
+                    </td>
+                    <td class="px-6 py-1 border">
+
                     </td>
                 </tr>
             </tbody>
