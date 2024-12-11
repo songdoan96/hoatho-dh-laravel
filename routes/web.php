@@ -207,6 +207,7 @@ Route::prefix('/phulieu')->name('accessory.')->group(function () {
 });
 
 Route::prefix("/tocat")->name("cutting.")->group(function () {
+    Route::get("/show", [CuttingController::class, 'show'])->name("show");
     Route::get("/", [CuttingController::class, 'dashboard'])->name("dashboard");
 
     Route::get('/sua-btp/{plan}', [CuttingController::class, 'editBtp'])->name('editBtp');

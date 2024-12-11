@@ -34,6 +34,7 @@ class FinishedController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         Finished::create($request->all());
         return redirect()->back()->with('success', "Thêm mới thành công.");
     }

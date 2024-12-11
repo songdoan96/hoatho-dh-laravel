@@ -16,6 +16,15 @@ use App\Exports\BTPDayExport;
 class CuttingController extends Controller
 {
 
+    public function show()
+    {
+        $plans = Plan::where('daxong', 0)
+            ->where('daraichuyen', 1)
+            ->orderBy('chuyen')
+            ->get();
+
+        return view("cutting.show", compact("plans"));
+    }
     public function dashboard()
     {
         $plans = Plan::where('daxong', 0)
