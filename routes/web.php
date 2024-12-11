@@ -178,7 +178,7 @@ Route::prefix("noibo")->name('internal.')->group(function () {
 Route::prefix('/phulieu')->name('accessory.')->group(function () {
     Route::get('/', [AccessoryController::class, 'dashboard'])->name('dashboard');
     Route::get('/show', [AccessoryController::class, 'show'])->name('show');
-    Route::get('/show1', [AccessoryController::class, 'show1'])->name('show');
+    // Route::get('/show1', [AccessoryController::class, 'show1'])->name('show');
     Route::get('/them/{id?}', [AccessoryController::class, 'add'])->name('add');
     Route::post('/them', [AccessoryController::class, 'store'])->name('store');
 

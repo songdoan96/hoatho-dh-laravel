@@ -32,6 +32,7 @@
                             $lkcapPercent = round(($slcap / $plan->sltacnghiep) * 100, 1);
                             $lkcatPercent = round(($slcat / $plan->sltacnghiep) * 100, 1);
                             $kcs = $plan->kcs->where('ngaytao', date('Y-m-d'))->first();
+
                             if ($kcs) {
                                 if ($plan->chuyen == 11 || $plan->chuyen == 15) {
                                     $von = abs(($plan->btpcap - $plan->nhaphoanthanh) / $kcs->chitieungay);
@@ -77,7 +78,12 @@
                                 </div>
                                 <div class="flex justify-between">
                                     <span>Vốn</span>
-                                    <span>{{ formatNumber($von, 1) ?? '--' }} </span>
+                                    @isset($von)
+                                        <span>{{ formatNumber($von, 1) }} </span>
+                                    @else
+                                        --
+                                    @endisset
+
                                 </div>
 
                                 <div class="flex justify-between items-center gap-1 mt-2 hidden">

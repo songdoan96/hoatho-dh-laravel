@@ -59,10 +59,12 @@
                                 @if ($khachhang)
                                     <div class="flex flex-col">
                                         @foreach ($containers[$day] as $container)
-                                            <div class="flex line-clamp-1" title="{{ $container->loai }}">
-                                                <p class="w-1/2 line-clamp-1">- {{ $container->mahang }}: </p>
-                                                <p class="w-1/2 line-clamp-1">{{ $container->loai }}</p>
-                                            </div>
+                                            <ul class="flex gap-1">
+                                                <li class="w-1/2 line-clamp-1" title="{{ $container->mahang }}">
+                                                    #{{ $container->mahang }}</li>
+                                                <li class="w-1/2 line-clamp-1" title="{{ $container->loai }}">
+                                                    :{{ $container->loai }}</li>
+                                            </ul>
                                         @endforeach
                                     </div>
                                 @endif
