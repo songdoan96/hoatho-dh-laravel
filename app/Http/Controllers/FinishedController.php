@@ -33,9 +33,11 @@ class FinishedController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function position($position)
     {
-        //
+        $finishes = Finished::where('daxuat', 0)
+            ->where('vitri', $position)->get();
+        return view("finished.position", compact("position", "finishes"));
     }
 
     /**

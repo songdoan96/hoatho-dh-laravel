@@ -244,4 +244,5 @@ Route::prefix('hoanthanh')->name('finished.')->group(function () {
     Route::get('/edit/{finished}', [FinishedController::class, 'edit'])->name('edit');
     Route::post('/update/{finished}', [FinishedController::class, 'update'])->name('update');
     Route::delete('/delete/{finished}', [FinishedController::class, 'destroy'])->name('destroy');
+    Route::get('/day/{position}', [FinishedController::class, 'position'])->name('position');
 });

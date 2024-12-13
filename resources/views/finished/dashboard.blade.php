@@ -80,7 +80,9 @@
                     @foreach ($finishes as $finish)
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <th scope="row" class="p-2 border">
-                                {{ $finish->vitri }}
+                                <a class="underline" href="{{ route('finished.position', $finish->vitri) }}">
+                                    {{ $finish->vitri }}
+                                </a>
                             </th>
                             <td class="p-2 border">
                                 {{ $finish->khachhang }}
