@@ -19,9 +19,23 @@ class Finished extends BaseModel
         'danhap',
         'dadong',
         'sothung',
+        'ngay_prefinal',
+        'prefinal',
+        'ngay_final',
         'final',
-        'date_final',
-        'date_shipment',
-        'vitri'
+        'ngay_xuat',
+        'vitri',
+        'kichthung'
     ];
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($model) {
+            foreach ($model->attributes as $key => $value) {
+                if (is_string($value)) {
+                    $model->attributes[$key] = strtoupper(trim($value));
+                }
+            }
+        });
+    }
 }

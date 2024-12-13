@@ -21,12 +21,15 @@ return new class extends Migration
             $table->unsignedInteger('slkh');
             $table->unsignedInteger('danhap')->default(0);
             $table->unsignedInteger('dadong')->default(0);
-            $table->unsignedInteger('sothung')->default(0);
-            $table->enum('final', [0, 1, 2])->default(0);
+            $table->string('sothung')->nullable();
+            $table->date('ngay_prefinal')->nullable();
+            $table->enum('prefinal', [0, 1, 2])->default(0);
             $table->date('ngay_final')->nullable();
+            $table->enum('final', [0, 1, 2])->default(0);
             $table->date('ngay_xuat')->nullable();
             $table->string('vitri')->nullable();
             $table->boolean('daxuat')->default(false);
+            $table->string('kichthung')->nullable();
             $table->timestamps();
         });
     }

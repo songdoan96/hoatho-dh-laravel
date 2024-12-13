@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-
-class Plan extends Model
+class Plan extends BaseModel
 {
-    use HasFactory;
     const UPDATED_AT = null;
 
     protected $fillable = [
@@ -27,11 +22,11 @@ class Plan extends Model
         'ngayxong',
         'dot'
     ];
-    public function kcs(): HasMany
+    public function kcs()
     {
         return $this->hasMany(KCS::class);
     }
-    public function btp(): HasMany
+    public function btp()
     {
         return $this->hasMany(BTP::class);
     }

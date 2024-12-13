@@ -7,18 +7,27 @@ use Illuminate\Http\Request;
 
 class FinishedController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        $finishes = Finished::where('daxuat', 0)->get();
+        if ($request->mahang) {
+            $finishes = Finished::where('daxuat', 0)->where("mahang", $request->mahang)->get();
+        }
+        if ($request->po) {
+            $finishes = Finished::where('daxuat', 0)->where("po", 'LIKE', "%$request->po%")->get();
+        } else {
+            $finishes = Finished::where('daxuat', 0)->get();
+        }
+
         return view('finished.dashboard', compact('finishes'));
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function tv()
     {
-        //
+        // $finishes=Finished::where('daxuat', 0)->get();  
+        return view("finished.tv");
     }
 
     /**
@@ -34,7 +43,15 @@ class FinishedController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $checkExist = Finished::where('mahang', $request->mahang)
+            ->where('po', $request->po)
+            ->where('mau', $request->mau)
+            ->where('size', $request->size)
+            ->where('slkh', $request->slkh)
+            ->first();
+        if ($checkExist) {
+            return redirect()->back()->with('danger', "Mã hàng đã tồn tại.");
+        }
         Finished::create($request->all());
         return redirect()->back()->with('success', "Thêm mới thành công.");
     }
@@ -58,16 +75,18 @@ class FinishedController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Finished $finished)
     {
-        //
+        $finished->update($request->all());
+        return redirect()->route('finished.dashboard')->with('success', "Chỉnh sửa thành công.");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Finished $finished)
     {
-        //
+        $finished->delete();
+        return redirect()->back()->with('success', "Xóa thành công.");
     }
 }

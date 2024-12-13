@@ -2,12 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class BTPDay extends Model
+class BTPDay extends BaseModel
 {
-    use HasFactory;
     protected $table = "btp_day";
 
     public $timestamps = false;

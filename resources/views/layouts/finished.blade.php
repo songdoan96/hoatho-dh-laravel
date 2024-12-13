@@ -16,7 +16,7 @@
     <div class="min-h-screen flex flex-col bg-white">
         <div id="header" class="flex items-center px-2 py-1 bg-blue-500 text-white">
             <a href="{{ route('finished.dashboard') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-12">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10">
             </a>
             <h1 class="text-center text-2xl uppercase font-bold w-full">@yield('header-title', 'QUẢN LÝ KHO HOÀN THÀNH')</h1>
 

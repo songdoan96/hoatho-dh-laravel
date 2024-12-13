@@ -2,14 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-
-class KCS extends Model
+class KCS extends BaseModel
 {
-    use HasFactory;
 
     //    const UPDATED_AT = null;
     protected $table = "kcs";
@@ -28,7 +22,7 @@ class KCS extends Model
         "btpcap",
         "ghichu"
     ];
-    public function plans(): BelongsTo
+    public function plans()
     {
         return $this->belongsTo(Plan::class, "plan_id", "id");
     }

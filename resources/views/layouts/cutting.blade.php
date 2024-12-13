@@ -19,8 +19,6 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-12">
             </a>
             <h1 class="text-center text-2xl uppercase font-bold w-full">@yield('header-title', 'QUẢN LÝ XUẤT NHẬP PHỤ LIỆU')</h1>
-
-
         </div>
         @yield('content')
     </div>

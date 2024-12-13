@@ -9,13 +9,24 @@
 @endpush
 
 @section('header-title', 'THEO DÕI BTP CHO TỪNG CHUYỀN NGÀY ' . date('d-m-Y'))
+@push('styles')
+    <style>
+        #header {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
 
+        #header a img {
+            width: 2rem;
+        }
+    </style>
+@endpush
 
 @section('content')
     @if (count($plans))
         <div class="min-h-screen flex flex-col">
             <div class="p-1">
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-1">
                     @foreach ($plans as $plan)
                         @php
                             $slkh = $plan->btp->sum('slkh');
@@ -34,41 +45,41 @@
                             }
                         @endphp
                         <a href="{{ route('cutting.editBtp', $plan) }}"
-                            class="bg-white border border-black font-semibold text-gray-100 flex flex-col gap-1 overflow-hidden hover:scale-105 transition rounded">
+                            class="bg-white border border-black font-semibold text-gray-100 flex flex-col overflow-hidden hover:scale-105 transition rounded leading-tight">
                             <div class="flex gap-1 font-bold">
-                                <div class="w-1/2 bg-sky-600 flex items-center justify-center">
+                                <div class="w-1/3 bg-sky-600 flex items-center justify-center">
                                     <p class="text-xl">{{ $plan->chuyen }}</p>
                                 </div>
-                                <div class="w-1/2 bg-sky-600 flex flex-col items-center">
+                                <div class="w-2/3 bg-sky-600 flex flex-col items-center">
                                     <p class="line-clamp-1">{{ $plan->khachhang }}</p>
                                     <p class="line-clamp-1">{{ $plan->mahang }}</p>
                                 </div>
                             </div>
-                            <div class="bg-sky-100 p-2 flex flex-col text-black">
-                                <div class="flex justify-between">
+                            <div class="bg-sky-100 p-1 pb-0 flex flex-col text-black">
+                                <div class="flex justify-between px-2">
                                     <span>Tác nghiệp</span>
                                     <span>{{ formatNumber($slkh) ?? 0 }} </span>
                                 </div>
 
-                                <div class="flex justify-between text-green-500">
+                                <div class="flex justify-between px-2 text-green-500">
                                     <span>LK cắt</span>
                                     <span>{{ formatNumber($slcat) }} </span>
                                 </div>
-                                <div class="flex justify-between">
+                                <div class="flex justify-between px-2">
                                     <span>SL chưa cắt</span>
                                     <span>{{ formatNumber($slkh - $slcat) }} </span>
                                 </div>
 
 
-                                <div class="flex justify-between text-orange-500">
+                                <div class="flex justify-between px-2 text-orange-500">
                                     <span>LK cấp</span>
                                     <span>{{ formatNumber($slcap) }} </span>
                                 </div>
-                                <div class="flex justify-between">
+                                <div class="flex justify-between px-2">
                                     <span>SL chưa cấp</span>
                                     <span>{{ formatNumber($slcat - $slcap) }} </span>
                                 </div>
-                                <div class="flex justify-between text-red-500">
+                                <div class="flex justify-between px-2 text-red-500">
                                     <span>Vốn</span>
                                     @isset($von)
                                         <span>{{ formatNumber($von, 1) }} </span>
@@ -80,7 +91,7 @@
 
                                 @php
 
-                                    $subDate = \Carbon\Carbon::today()->subDays(4);
+                                    $subDate = \Carbon\Carbon::today()->subDays(5);
                                     $btpsDay = $plan->btp_day->where('ngay', '>=', $subDate)->sortBy('ngay');
                                     $btpsDayData = [];
                                     foreach ($btpsDay as $key => $btpDay) {
@@ -113,14 +124,14 @@
                                             const data = {
                                                 labels: labels,
                                                 datasets: [{
-                                                    label: 'BTP cắt',
+                                                    label: 'SL cắt',
                                                     data: dataValues,
                                                     fill: false,
                                                     borderColor: '#22C55E',
                                                     backgroundColor: '#22C55E',
                                                     tension: 0.1
                                                 }, {
-                                                    label: 'BTP cấp',
+                                                    label: 'SL cấp',
                                                     data: dataValues1,
                                                     fill: false,
                                                     borderColor: '#F77316',
