@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', 'QUẢN LÝ XUẤT NHẬP TỒN PHỤ LIỆU')
+@push('meta')
+    <meta http-equiv="refresh" content="1800">
+@endpush
 @push('styles')
     <style>
         table th {

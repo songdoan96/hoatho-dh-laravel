@@ -1,5 +1,7 @@
 @extends('layouts.finished')
-
+@push('meta')
+    <meta http-equiv="refresh" content="1800">
+@endpush
 @section('content')
     <div class="main flex flex-1 w-screen">
         <div class="flex w-full gap-1">
@@ -11,7 +13,7 @@
                         <span>Ầ</span>
                         <span>N</span>
                         <span>G</span>
-                        <span>2</span>
+                        <span>1</span>
                     </div>
                     <div class="grid grid-cols-4 flex-1 grid-rows-2">
                         @foreach (range('A', 'H') as $container)
@@ -35,9 +37,9 @@
                                                 <p
                                                     class="text-xs text-center border-b border-black leading-none line-clamp-1">
                                                     #{{ $finishes[0]->mahang }}</p>
-                                                <ul style="font-size: 12px">
+                                                <ul style="font-size: 10px">
                                                     @foreach ($finishes as $finish)
-                                                        <li>{{ $finish->po }}: {{ $finish->sothung }}</li>
+                                                        <li>{{ $finish->po }}: {{ $finish->sothung }}T</li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -65,7 +67,7 @@
                         <span>Ầ</span>
                         <span>N</span>
                         <span>G</span>
-                        <span>1</span>
+                        <span>2</span>
                     </div>
                     <div class="grid grid-cols-4 flex-1">
                         @foreach (range('I', 'P') as $container)
@@ -89,9 +91,9 @@
                                                 <p
                                                     class="text-xs text-center border-b border-black leading-none line-clamp-1">
                                                     #{{ $finishes[0]->mahang }}</p>
-                                                <ul style="font-size: 12px">
+                                                <ul style="font-size: 10px">
                                                     @foreach ($finishes as $finish)
-                                                        <li>{{ $finish->po }}: {{ $finish->sothung }}</li>
+                                                        <li>{{ $finish->po }}: {{ $finish->sothung }}T</li>
                                                     @endforeach
                                                 </ul>
                                             </div>
