@@ -199,11 +199,25 @@
 
     {{-- Modal --}}
     <div id="finished-add" tabindex="-1"
-        class="hidden bg-black overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class=" bg-black overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-4xl max-h-full mx-auto flex h-screen justify-center items-center">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow w-full">
                 <!-- Modal header -->
+
+                <form action="" enctype="multipart/form-data"
+                    class="mx-auto flex-1 absolute w-full flex justify-center items-center top-4 gap-8">
+                    @csrf
+                    <div class="flex gap-2 items-end mb-2">
+                        <img src="{{ asset('images/download.png') }}" alt="Download" width="40">
+                        <a class="underline" href="{{ route('downloadFile', 'hoan-thanh') }}">
+                            Tải file mẫu
+                        </a>
+                    </div>
+                    <input type="file" name="file" id="file" required
+                        class="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+
+                </form>
                 <form id="form-add-finished" method="POST" action="{{ route('finished.store') }}"
                     enctype="multipart/form-data">
                     @csrf
