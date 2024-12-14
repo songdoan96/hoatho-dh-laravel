@@ -238,11 +238,13 @@ Route::prefix("/tocat")->name("cutting.")->group(function () {
 
 
 Route::prefix('hoanthanh')->name('finished.')->group(function () {
+    Route::middleware('authLogged')->group(function () {
+        Route::get('/', [FinishedController::class, 'dashboard'])->name('dashboard');
+        Route::get('/edit/{finished}', [FinishedController::class, 'edit'])->name('edit');
+        Route::post('/update/{finished}', [FinishedController::class, 'update'])->name('update');
+        Route::delete('/delete/{finished}', [FinishedController::class, 'destroy'])->name('destroy');
+        Route::post('/add', [FinishedController::class, 'store'])->name('store');
+    });
     Route::get("/tv", [FinishedController::class, 'tv'])->name("tv");
-    Route::get('/', [FinishedController::class, 'dashboard'])->name('dashboard');
-    Route::post('/add', [FinishedController::class, 'store'])->name('store');
-    Route::get('/edit/{finished}', [FinishedController::class, 'edit'])->name('edit');
-    Route::post('/update/{finished}', [FinishedController::class, 'update'])->name('update');
-    Route::delete('/delete/{finished}', [FinishedController::class, 'destroy'])->name('destroy');
     Route::get('/day/{position}', [FinishedController::class, 'position'])->name('position');
 });
